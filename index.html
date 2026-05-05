@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Crank — Bicis, Café y Taller en Cuenca</title>
+<meta name="description" content="Crank es una tienda y taller de bicicletas en Cuenca, Ecuador. Bicicletas de ruta, MTB y gravel, accesorios, café de especialidad y mecánica multimarca." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0a;
+    --bg-soft: #141414;
+    --bg-card: #1a1a1a;
+    --line: #262626;
+    --text: #f5f5f5;
+    --text-dim: #a3a3a3;
+    --text-muted: #737373;
+    --accent: #ff5722;
+    --accent-hover: #ff7043;
+    --green: #84cc16;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(10, 10, 10, 0.75);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 24px;
+    max-width: 1280px; margin: 0 auto;
+  }
+  .logo {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 26px; letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .logo-dot { width: 10px; height: 10px; background: var(--accent); border-radius: 50%; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 14px; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cart {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 8px;
+    transition: background 0.2s;
+  }
+  .nav-cart:hover { background: var(--accent-hover); }
+  .nav-cart-count {
+    background: white; color: var(--accent);
+    border-radius: 999px;
+    min-width: 22px; height: 22px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700;
+    padding: 0 6px;
+  }
+  .menu-btn { display: none; background: transparent; border: none; color: var(--text); cursor: pointer; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    padding: 140px 0 80px;
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at top right, rgba(255, 87, 34, 0.15), transparent 60%),
+      radial-gradient(ellipse at bottom left, rgba(132, 204, 22, 0.08), transparent 50%),
+      var(--bg);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('img/mountain-ride.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.35;
+    filter: grayscale(0.2) contrast(1.05);
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg,
+      rgba(10,10,10,0.6) 0%,
+      rgba(10,10,10,0.8) 60%,
+      rgba(10,10,10,1) 100%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  }
+  .hero-content {
+    position: relative;
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px;
+    align-items: center;
+    min-height: calc(100vh - 220px);
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255, 87, 34, 0.12);
+    border: 1px solid rgba(255, 87, 34, 0.3);
+    color: var(--accent);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 13px; font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 28px;
+  }
+  .hero-tag-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .hero h1 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(52px, 8vw, 110px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 28px;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero h1 .stroke {
+    -webkit-text-stroke: 2px var(--text);
+    color: transparent;
+  }
+  .hero p {
+    font-size: 18px; color: var(--text-dim);
+    max-width: 520px; margin-bottom: 36px;
+  }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 28px;
+    border-radius: 999px;
+    font-weight: 600; font-size: 15px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+  .btn-primary { background: var(--accent); color: white; }
+  .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--line);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-visual {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-bike {
+    width: 100%; max-width: 520px;
+    aspect-ratio: 1;
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(255, 87, 34, 0.15);
+  }
+  .hero-bike img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .hero-bike svg { width: 100%; height: 100%; filter: drop-shadow(0 20px 40px rgba(255, 87, 34, 0.2)); }
+  .stat-badge {
+    position: absolute;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 14px 18px;
+    backdrop-filter: blur(10px);
+  }
+  .stat-badge .num { font-family: 'Archivo Black', sans-serif; font-size: 22px; color: var(--accent); }
+  .stat-badge .label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; }
+  .badge-1 { top: 10%; left: -10px; }
+  .badge-2 { bottom: 15%; right: -10px; }
+
+  /* MARQUEE */
+  .marquee {
+    background: var(--accent);
+    padding: 18px 0;
+    overflow: hidden;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+  .marquee-track {
+    display: flex; gap: 60px;
+    white-space: nowrap;
+    animation: scroll 30s linear infinite;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 22px;
+    color: black;
+    letter-spacing: -0.01em;
+  }
+  .marquee-track span { display: inline-flex; align-items: center; gap: 60px; }
+  .marquee-track .dot { width: 12px; height: 12px; background: black; border-radius: 50%; }
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* SECTIONS */
+  section { padding: 100px 0; position: relative; }
+  .section-header { margin-bottom: 60px; max-width: 720px; }
+  .section-eyebrow {
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-eyebrow::before {
+    content: ''; width: 30px; height: 1px; background: var(--accent);
+  }
+  .section-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+  .section-desc { font-size: 18px; color: var(--text-dim); }
+
+  /* DISCIPLINES */
+  #disciplinas { background: var(--bg-soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .disciplines-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .discipline {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: all 0.3s;
+    position: relative;
+    display: flex; flex-direction: column;
+  }
+  .discipline:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .discipline-img {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    position: relative;
+  }
+  .discipline-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .discipline:hover .discipline-img img { transform: scale(1.05); }
+  .discipline-body { padding: 28px 30px 32px; }
+  .discipline-icon {
+    width: 56px; height: 56px;
+    background: rgba(255, 87, 34, 0.1);
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+    color: var(--accent);
+  }
+  .discipline h3 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 28px;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+  .discipline p { color: var(--text-dim); margin-bottom: 20px; font-size: 15px; }
+  .discipline-features { list-style: none; }
+  .discipline-features li {
+    color: var(--text-muted);
+    font-size: 13px;
+    padding: 6px 0;
+    border-top: 1px solid var(--line);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .discipline-features li::before {
+    content: '→'; color: var(--accent);
+  }
+
+  /* SHOP */
+  .shop-filters {
+    display: flex; gap: 12px; margin-bottom: 36px; flex-wrap: wrap;
+  }
+  .filter-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    color: var(--text-dim);
+    padding: 10px 20px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 14px; font-weight: 500;
+    font-family: inherit;
+    transition: all 0.2s;
+  }
+  .filter-btn:hover { color: var(--text); }
+  .filter-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .product {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s;
+    display: flex; flex-direction: column;
+  }
+  .product:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .product-image {
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .product:hover .product-image img { transform: scale(1.06); }
+  .product-image svg { width: 70%; height: 70%; }
+  .product-tag {
+    position: absolute; top: 14px; left: 14px;
+    background: var(--accent);
+    color: white;
+    font-size: 11px; font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .product-tag.green { background: var(--green); color: black; }
+  .product-info { padding: 22px; flex: 1; display: flex; flex-direction: column; }
+  .product-brand {
+    color: var(--text-muted);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+    font-family: 'Space Mono', monospace;
+  }
+  .product-name {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 18px;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+  .product-bottom {
+    margin-top: auto;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+  .product-price {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 22px;
+    color: var(--accent);
+  }
+  .add-cart-btn {
+    background: var(--text);
+    color: var(--bg);
+    border: none;
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 13px;
+    transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: inherit;
+  }
+  .add-cart-btn:hover { background: var(--accent); color: white; }
+
+  /* CAFE */
+  #cafe {
+    background:
+      radial-gradient(ellipse at top left, rgba(132, 204, 22, 0.08), transparent 50%),
+      var(--bg-soft);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .cafe-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    align-items: center;
+  }
+  .cafe-visual {
+    aspect-ratio: 1;
+    border-radius: 24px;
+    border: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+    background: #0a0a0a;
+  }
+  .cafe-visual img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .cafe-visual::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent 40%, rgba(255, 87, 34, 0.15) 100%);
+    pointer-events: none;
+  }
+  .cafe-features {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+    margin-top: 32px;
+  }
+  .cafe-feature {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px;
+  }
+  .cafe-feature-num {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 32px; color: var(--accent);
+    line-height: 1;
+  }
+  .cafe-feature-label { color: var(--text-dim); font-size: 13px; margin-top: 6px; }
+
+  /* TALLER */
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    overflow: hidden;
+  }
+  .service {
+    background: var(--bg-card);
+    padding: 36px;
+    transition: background 0.3s;
+  }
+  .service:hover { background: var(--bg-soft); }
+  .service-icon {
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .service h4 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 20px;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .service p { color: var(--text-dim); font-size: 14px; margin-bottom: 16px; }
+  .service-price {
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  /* MARCAS */
+  #marcas { background: var(--bg-soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .brands-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .brand {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    transition: all 0.3s;
+  }
+  .brand:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .brand-logo {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 24px;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+  .brand-tag {
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+  .brand p { color: var(--text-dim); font-size: 14px; }
+
+  /* GALLERY */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 12px;
+  }
+  .gallery-grid > div {
+    aspect-ratio: 1;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    border: 1px solid var(--line);
+  }
+  .gallery-grid > div.tall { grid-row: span 2; aspect-ratio: 1 / 2; }
+  .gallery-grid > div.wide { grid-column: span 2; aspect-ratio: 2 / 1; }
+  .gallery-grid img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease, filter 0.3s;
+  }
+  .gallery-grid > div::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.6));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .gallery-grid > div:hover img { transform: scale(1.08); }
+  .gallery-grid > div:hover::after { opacity: 1; }
+  .gallery-cta {
+    margin-top: 36px;
+    text-align: center;
+  }
+  @media (max-width: 768px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid > div.wide { grid-column: span 2; }
+    .gallery-grid > div.tall { grid-row: span 1; aspect-ratio: 1; }
+  }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+  }
+  .contact-card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 40px;
+  }
+  .contact-card h3 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
+  .contact-row {
+    display: flex; align-items: center; gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .contact-row:last-child { border-bottom: none; }
+  .contact-icon {
+    width: 44px; height: 44px;
+    background: rgba(255, 87, 34, 0.1);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .contact-row .label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .contact-row .value { font-size: 15px; color: var(--text); font-weight: 500; }
+  .contact-row a { color: inherit; text-decoration: none; }
+  .contact-row a:hover { color: var(--accent); }
+  .hours-list { list-style: none; }
+  .hours-list li {
+    display: flex; justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 15px;
+  }
+  .hours-list li:last-child { border-bottom: none; }
+  .hours-list li span:first-child { color: var(--text-dim); }
+  .hours-list li.closed span:last-child { color: var(--text-muted); }
+
+  /* FOOTER */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--line);
+    padding: 60px 0 30px;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
+    margin-bottom: 40px;
+  }
+  .footer-col h5 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    font-family: 'Space Mono', monospace;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { padding: 6px 0; }
+  .footer-col ul a { color: var(--text-dim); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .footer-col ul a:hover { color: var(--accent); }
+  .footer-tagline { color: var(--text-dim); font-size: 14px; margin-top: 16px; max-width: 320px; }
+  .footer-social { display: flex; gap: 12px; margin-top: 20px; }
+  .footer-social a {
+    width: 42px; height: 42px;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-dim);
+    transition: all 0.2s;
+  }
+  .footer-social a:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+  .footer-bottom {
+    padding-top: 30px;
+    border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* CART DRAWER */
+  .cart-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 200;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s;
+    backdrop-filter: blur(4px);
+  }
+  .cart-overlay.open { opacity: 1; pointer-events: all; }
+  .cart-drawer {
+    position: fixed; top: 0; right: 0; bottom: 0;
+    width: 100%; max-width: 440px;
+    background: var(--bg-soft);
+    border-left: 1px solid var(--line);
+    z-index: 201;
+    transform: translateX(100%);
+    transition: transform 0.3s;
+    display: flex; flex-direction: column;
+  }
+  .cart-drawer.open { transform: translateX(0); }
+  .cart-header {
+    padding: 24px;
+    border-bottom: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .cart-header h3 { font-family: 'Archivo Black', sans-serif; font-size: 22px; }
+  .cart-close {
+    background: transparent; border: none;
+    color: var(--text); cursor: pointer;
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 10px;
+    transition: background 0.2s;
+  }
+  .cart-close:hover { background: var(--bg-card); }
+  .cart-items { flex: 1; overflow-y: auto; padding: 20px 24px; }
+  .cart-item {
+    display: flex; gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .cart-item-image {
+    width: 70px; height: 70px;
+    background: var(--bg-card);
+    border-radius: 10px;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cart-item-info { flex: 1; }
+  .cart-item-name { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+  .cart-item-price { color: var(--accent); font-weight: 700; font-size: 14px; font-family: 'Space Mono', monospace; }
+  .cart-qty { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+  .cart-qty button {
+    width: 26px; height: 26px;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    color: var(--text);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .cart-qty button:hover { border-color: var(--accent); }
+  .cart-qty span { min-width: 24px; text-align: center; font-weight: 600; font-size: 14px; }
+  .cart-empty { text-align: center; padding: 60px 24px; color: var(--text-muted); }
+  .cart-footer {
+    padding: 24px;
+    border-top: 1px solid var(--line);
+    background: var(--bg);
+  }
+  .cart-total {
+    display: flex; justify-content: space-between;
+    margin-bottom: 16px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 22px;
+  }
+  .cart-total .amount { color: var(--accent); }
+  .checkout-btn {
+    width: 100%;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s;
+  }
+  .checkout-btn:hover { background: var(--accent-hover); }
+  .checkout-note { font-size: 12px; color: var(--text-muted); text-align: center; margin-top: 12px; }
+
+  /* TOAST */
+  .toast {
+    position: fixed; bottom: 30px; left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--accent);
+    color: white;
+    padding: 14px 24px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 14px;
+    z-index: 300;
+    transition: transform 0.3s;
+    box-shadow: 0 10px 40px rgba(255, 87, 34, 0.4);
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 968px) {
+    .hero-content { grid-template-columns: 1fr; gap: 40px; }
+    .hero-visual { order: -1; max-width: 360px; margin: 0 auto; }
+    .disciplines-grid { grid-template-columns: 1fr; }
+    .cafe-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    section { padding: 70px 0; }
+    .hero { padding: 120px 0 60px; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    .cafe-features { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo"><span class="logo-dot"></span>CRANK</a>
+    <ul class="nav-links">
+      <li><a href="#disciplinas">Bicis</a></li>
+      <li><a href="#tienda">Tienda</a></li>
+      <li><a href="#cafe">Café</a></li>
+      <li><a href="#taller">Taller</a></li>
+      <li><a href="#marcas">Marcas</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <button class="nav-cart" onclick="openCart()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      Carrito <span class="nav-cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="container hero-content">
+    <div>
+      <div class="hero-tag"><span class="hero-tag-dot"></span>Cuenca, Ecuador</div>
+      <h1>
+        Pedalea<br>
+        <span class="accent">más lejos.</span><br>
+        <span class="stroke">Toma mejor café.</span>
+      </h1>
+      <p>Bicicletas de ruta, MTB y gravel. Accesorios premium, café de especialidad y mecánica multimarca. Todo bajo un mismo techo en el corazón de Cuenca.</p>
+      <div class="hero-actions">
+        <a href="#tienda" class="btn btn-primary">
+          Ver bicicletas
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#taller" class="btn btn-outline">Agendar taller</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-bike">
+        <img src="img/hero-cyclist.jpg" alt="Ciclista Crank en ruta" />
+      </div>
+      <div class="stat-badge badge-1">
+        <div class="num">15+</div>
+        <div class="label">Marcas premium</div>
+      </div>
+      <div class="stat-badge badge-2">
+        <div class="num">100%</div>
+        <div class="label">Mecánica certificada</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>BICIS<span class="dot"></span>CAFÉ<span class="dot"></span>MECÁNICA<span class="dot"></span>RUTA<span class="dot"></span>MTB<span class="dot"></span>GRAVEL<span class="dot"></span>CUENCA<span class="dot"></span></span>
+    <span>BICIS<span class="dot"></span>CAFÉ<span class="dot"></span>MECÁNICA<span class="dot"></span>RUTA<span class="dot"></span>MTB<span class="dot"></span>GRAVEL<span class="dot"></span>CUENCA<span class="dot"></span></span>
+  </div>
+</div>
+
+<!-- DISCIPLINAS -->
+<section id="disciplinas">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Disciplinas</div>
+      <h2 class="section-title">Una bici para cada terreno.</h2>
+      <p class="section-desc">Desde el asfalto de la avenida hasta los senderos de El Cajas. Te ayudamos a encontrar la bici perfecta para tu estilo.</p>
+    </div>
+    <div class="disciplines-grid">
+      <div class="discipline">
+        <div class="discipline-img"><img src="img/road-bike.jpg" alt="Ciclismo de ruta" loading="lazy"/></div>
+        <div class="discipline-body">
+          <div class="discipline-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>
+          </div>
+          <h3>Ruta</h3>
+          <p>Velocidad pura sobre asfalto. Cuadros aerodinámicos, componentes de carbono y la geometría perfecta para subir cualquier puerto.</p>
+          <ul class="discipline-features">
+            <li>Cuadros de carbono y aluminio</li>
+            <li>Grupos electrónicos y mecánicos</li>
+            <li>Ruedas tubeless ready</li>
+          </ul>
+        </div>
+      </div>
+      <div class="discipline">
+        <div class="discipline-img"><img src="img/bike-detail.jpg" alt="Mountain bike" loading="lazy"/></div>
+        <div class="discipline-body">
+          <div class="discipline-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 18l4-8 6 4 4-6 6 10"/><circle cx="6" cy="10" r="2"/><circle cx="18" cy="14" r="2"/></svg>
+          </div>
+          <h3>MTB</h3>
+          <p>Para los que buscan adrenalina en cada sendero. Suspensión full o hardtail, listas para los Andes ecuatorianos.</p>
+          <ul class="discipline-features">
+            <li>Suspensión RockShox y Fox</li>
+            <li>Frenos hidráulicos de disco</li>
+            <li>Cuadros 29" y 27.5"</li>
+          </ul>
+        </div>
+      </div>
+      <div class="discipline">
+        <div class="discipline-img"><img src="img/gravel-bike.jpg" alt="Bici gravel" loading="lazy"/></div>
+        <div class="discipline-body">
+          <div class="discipline-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6l4 4M21 6l-4 4M3 18l4-4M21 18l-4-4"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h3>Gravel</h3>
+          <p>Lo mejor de dos mundos: aventura sin límites. La bici ideal para escapar a las trochas y descubrir Ecuador sin ataduras.</p>
+          <ul class="discipline-features">
+            <li>Geometría versátil y cómoda</li>
+            <li>Llantas all-road 700x40-50c</li>
+            <li>Bikepacking ready</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIENDA -->
+<section id="tienda">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Tienda</div>
+      <h2 class="section-title">Bicis, partes y accesorios.</h2>
+      <p class="section-desc">Catálogo curado con las mejores marcas del mercado. Envíos a todo el Ecuador.</p>
+    </div>
+
+    <div class="shop-filters">
+      <button class="filter-btn active" data-filter="todo">Todo</button>
+      <button class="filter-btn" data-filter="ruta">Ruta</button>
+      <button class="filter-btn" data-filter="mtb">MTB</button>
+      <button class="filter-btn" data-filter="gravel">Gravel</button>
+      <button class="filter-btn" data-filter="accesorios">Accesorios</button>
+      <button class="filter-btn" data-filter="cafe">Café</button>
+    </div>
+
+    <div class="products-grid" id="productsGrid"></div>
+  </div>
+</section>
+
+<!-- CAFE -->
+<section id="cafe">
+  <div class="container">
+    <div class="cafe-grid">
+      <div class="cafe-visual">
+        <img src="img/bike-table.jpg" alt="Café y bicicletas en Crank Cuenca" />
+      </div>
+      <div>
+        <div class="section-eyebrow">Café</div>
+        <h2 class="section-title">El combustible perfecto.</h2>
+        <p class="section-desc">Café de especialidad ecuatoriano, recién tostado. Espresso, filtrados y métodos lentos preparados por baristas que también pedalean.</p>
+        <div class="cafe-features">
+          <div class="cafe-feature">
+            <div class="cafe-feature-num">100%</div>
+            <div class="cafe-feature-label">Café ecuatoriano de altura</div>
+          </div>
+          <div class="cafe-feature">
+            <div class="cafe-feature-num">V60</div>
+            <div class="cafe-feature-label">Métodos: Chemex, Aeropress y más</div>
+          </div>
+          <div class="cafe-feature">
+            <div class="cafe-feature-num">7</div>
+            <div class="cafe-feature-label">Días a la semana abiertos</div>
+          </div>
+          <div class="cafe-feature">
+            <div class="cafe-feature-num">3</div>
+            <div class="cafe-feature-label">Orígenes rotativos en barra</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TALLER -->
+<section id="taller">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Taller</div>
+      <h2 class="section-title">Mecánica multimarca.</h2>
+      <p class="section-desc">Servicio técnico con más de 10 años de experiencia. Trabajamos con todas las marcas, desde Shimano y SRAM hasta Campagnolo. Tu bici en las mejores manos.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service">
+        <div class="service-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M5 19l3-3M16 8l3-3"/><circle cx="12" cy="12" r="4"/></svg>
+        </div>
+        <h4>Mantenimiento básico</h4>
+        <p>Limpieza, lubricación, ajuste de cambios y frenos. Lo esencial para mantener tu bici rodando perfecta.</p>
+        <div class="service-price">Desde $25</div>
+      </div>
+      <div class="service">
+        <div class="service-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 7h-3v6l4 2"/><circle cx="12" cy="13" r="9"/></svg>
+        </div>
+        <h4>Mantenimiento completo</h4>
+        <p>Desarme total, limpieza profunda, cambio de cables, ajustes y revisión integral.</p>
+        <div class="service-price">Desde $80</div>
+      </div>
+      <div class="service">
+        <div class="service-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/></svg>
+        </div>
+        <h4>Servicio de suspensión</h4>
+        <p>Mantenimiento de horquillas y shocks. Cambio de aceite, retenes y calibración.</p>
+        <div class="service-price">Desde $60</div>
+      </div>
+      <div class="service">
+        <div class="service-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3z"/><path d="M9 9h6v6H9z"/></svg>
+        </div>
+        <h4>Bike fit</h4>
+        <p>Ajuste profesional de tu posición sobre la bici. Más cómodo, más eficiente, sin lesiones.</p>
+        <div class="service-price">Desde $120</div>
+      </div>
+      <div class="service">
+        <div class="service-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20"/></svg>
+        </div>
+        <h4>Tubeless setup</h4>
+        <p>Instalación profesional de sistema tubeless. Adiós a los pinchazos.</p>
+        <div class="service-price">Desde $35</div>
+      </div>
+      <div class="service">
+        <div class="service-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <h4>Armado de bici</h4>
+        <p>Armado profesional de cuadros nuevos. Bici lista para rodar el mismo día.</p>
+        <div class="service-price">Desde $100</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARCAS -->
+<section id="marcas">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Marcas</div>
+      <h2 class="section-title">Representantes oficiales.</h2>
+      <p class="section-desc">Trabajamos directamente con las marcas que mejor entienden el ciclismo. Calidad, garantía y soporte de primera.</p>
+    </div>
+    <div class="brands-grid">
+      <div class="brand">
+        <div class="brand-tag">Wheels</div>
+        <div class="brand-logo">UNIVERSAL COLOURS</div>
+        <p>Ruedas premium hechas a mano en Europa. Distribuidor exclusivo en Ecuador.</p>
+      </div>
+      <div class="brand">
+        <div class="brand-tag">Components</div>
+        <div class="brand-logo">ONEUP</div>
+        <p>Componentes MTB de alto rendimiento. Tijas, manillares y herramientas que duran.</p>
+      </div>
+      <div class="brand">
+        <div class="brand-tag">Apparel</div>
+        <div class="brand-logo">UNIVERSAL COLOURS EC</div>
+        <p>Indumentaria técnica para ciclismo de ruta y gravel. Confort en cada kilómetro.</p>
+      </div>
+      <div class="brand">
+        <div class="brand-tag">+ Marcas</div>
+        <div class="brand-logo">Y MUCHO MÁS</div>
+        <p>Shimano, SRAM, Continental, Maxxis, Fox, RockShox y otras marcas líderes en stock.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section id="galeria">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Galería</div>
+      <h2 class="section-title">La cultura Crank.</h2>
+      <p class="section-desc">Salidas grupales, eventos, talleres y la vida ciclista en Cuenca. Síguenos en Instagram para más.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="tall"><img src="img/tunnel-ride.jpg" alt="Túnel en ruta" loading="lazy"/></div>
+      <div><img src="img/group-ride.jpg" alt="Salida grupal" loading="lazy"/></div>
+      <div><img src="img/ride-like-a-girl.jpg" alt="Ride Like A Girl" loading="lazy"/></div>
+      <div><img src="img/shop-interior.jpg" alt="Interior de la tienda" loading="lazy"/></div>
+      <div class="wide"><img src="img/mountain-ride.jpg" alt="Ride por las montañas" loading="lazy"/></div>
+      <div><img src="img/lifestyle-cyclist.jpg" alt="Ciclista" loading="lazy"/></div>
+      <div><img src="img/crank-long-ride.jpg" alt="Crank Long Ride" loading="lazy"/></div>
+      <div><img src="img/sunglasses.jpg" alt="Accesorios" loading="lazy"/></div>
+      <div><img src="img/workshop.jpg" alt="Taller mecánico" loading="lazy"/></div>
+      <div><img src="img/pinarello.jpg" alt="Bici Pinarello" loading="lazy"/></div>
+    </div>
+    <div class="gallery-cta">
+      <a href="https://instagram.com/crank.ec" target="_blank" class="btn btn-outline">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        Síguenos en @crank.ec
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Contacto</div>
+      <h2 class="section-title">Visítanos en Cuenca.</h2>
+      <p class="section-desc">Ven a tomarte un café, conocer las bicis y conversar sobre tu próxima aventura sobre ruedas.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>Encuéntranos</h3>
+        <div class="contact-row">
+          <div class="contact-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="label">Dirección</div>
+            <div class="value">Cuenca, Ecuador</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="label">WhatsApp</div>
+            <div class="value"><a href="https://wa.me/593000000000">Escríbenos</a></div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </div>
+          <div>
+            <div class="label">Instagram</div>
+            <div class="value"><a href="https://instagram.com/crank.ec" target="_blank">@crank.ec</a></div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="label">Email</div>
+            <div class="value"><a href="mailto:hola@crank.ec">hola@crank.ec</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <h3>Horarios</h3>
+        <ul class="hours-list">
+          <li><span>Lunes</span><span>9:00 — 19:00</span></li>
+          <li><span>Martes</span><span>9:00 — 19:00</span></li>
+          <li><span>Miércoles</span><span>9:00 — 19:00</span></li>
+          <li><span>Jueves</span><span>9:00 — 19:00</span></li>
+          <li><span>Viernes</span><span>9:00 — 19:00</span></li>
+          <li><span>Sábado</span><span>9:00 — 17:00</span></li>
+          <li class="closed"><span>Domingo</span><span>Cerrado</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="#" class="logo"><span class="logo-dot"></span>CRANK</a>
+        <p class="footer-tagline">Bicis, café y mecánica multimarca en el corazón de Cuenca, Ecuador.</p>
+        <div class="footer-social">
+          <a href="https://instagram.com/crank.ec" target="_blank" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://wa.me/593000000000" aria-label="WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          </a>
+          <a href="mailto:hola@crank.ec" aria-label="Email">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Tienda</h5>
+        <ul>
+          <li><a href="#tienda">Bicis de Ruta</a></li>
+          <li><a href="#tienda">Bicis MTB</a></li>
+          <li><a href="#tienda">Bicis Gravel</a></li>
+          <li><a href="#tienda">Accesorios</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Servicios</h5>
+        <ul>
+          <li><a href="#taller">Taller</a></li>
+          <li><a href="#taller">Bike Fit</a></li>
+          <li><a href="#cafe">Café</a></li>
+          <li><a href="#marcas">Marcas</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Información</h5>
+        <ul>
+          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="#contacto">Ubicación</a></li>
+          <li><a href="#contacto">Horarios</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 CRANK EC // CUENCA, ECUADOR</div>
+      <div>HECHO CON ☕ Y 🚲 EN LOS ANDES</div>
+    </div>
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3>Tu Carrito</h3>
+    <button class="cart-close" onclick="closeCart()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total">
+      <span>Total</span>
+      <span class="amount" id="cartTotal">$0</span>
+    </div>
+    <button class="checkout-btn" onclick="checkout()">Finalizar compra por WhatsApp</button>
+    <p class="checkout-note">Te enviaremos por WhatsApp para confirmar tu pedido</p>
+  </div>
+</aside>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // Product catalog
+  const products = [
+    { id: 1, name: 'Pinarello Dogma F', brand: 'Universal Colours', category: 'ruta', price: 12500, tag: 'PREMIUM', img: 'img/pinarello.jpg' },
+    { id: 2, name: 'MTB Trail Series 29"', brand: 'Crank Editions', category: 'mtb', price: 3200, tag: 'TOP', img: 'img/bike-detail.jpg' },
+    { id: 3, name: 'Gravel Aventura', brand: 'Crank Editions', category: 'gravel', price: 3800, tag: 'NUEVO', img: 'img/gravel-bike.jpg' },
+    { id: 4, name: 'Bici Ruta Carbono', brand: 'Universal Colours', category: 'ruta', price: 4500, img: 'img/road-bike.jpg' },
+    { id: 5, name: 'Casco Pro Aero', brand: 'ProSafety', category: 'accesorios', price: 280, img: 'img/helmet.jpg' },
+    { id: 6, name: 'Gafas Performance', brand: 'Universal Colours', category: 'accesorios', price: 195, img: 'img/sunglasses.jpg' },
+    { id: 7, name: 'Café Espresso 250g', brand: 'Crank Roast', category: 'cafe', price: 12, tag: 'FRESCO', tagGreen: true, img: 'img/bike-table.jpg' },
+    { id: 8, name: 'Maillot CRANK Long Ride', brand: 'Crank Editions', category: 'accesorios', price: 95, img: 'img/crank-long-ride.jpg' },
+    { id: 9, name: 'Bici Ruta Edición Pucará', brand: 'Crank Editions', category: 'ruta', price: 5200, tag: 'EDICIÓN', img: 'img/ride-like-a-girl.jpg' },
+    { id: 10, name: 'Café Filtrado V60', brand: 'Crank Roast', category: 'cafe', price: 14, tag: 'NUEVO', img: 'img/lifestyle-cyclist.jpg' },
+    { id: 11, name: 'Sesión Bike Fit Pro', brand: 'Crank Taller', category: 'accesorios', price: 120, img: 'img/workshop.jpg' },
+    { id: 12, name: 'Pack Salida Grupal', brand: 'Crank Rides', category: 'accesorios', price: 45, img: 'img/group-ride.jpg' },
+  ];
+
+  const cart = {};
+
+  function renderProducts(filter = 'todo') {
+    const grid = document.getElementById('productsGrid');
+    const filtered = filter === 'todo' ? products : products.filter(p => p.category === filter);
+    grid.innerHTML = filtered.map(p => `
+      <div class="product" data-category="${p.category}">
+        <div class="product-image">
+          <img src="${p.img}" alt="${p.name}" loading="lazy" />
+          ${p.tag ? `<span class="product-tag${p.tagGreen ? ' green' : ''}">${p.tag}</span>` : ''}
+        </div>
+        <div class="product-info">
+          <div class="product-brand">${p.brand}</div>
+          <div class="product-name">${p.name}</div>
+          <div class="product-bottom">
+            <span class="product-price">$${p.price.toLocaleString()}</span>
+            <button class="add-cart-btn" onclick="addToCart(${p.id})">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14"/></svg>
+              Añadir
+            </button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function addToCart(id) {
+    if (!cart[id]) cart[id] = 0;
+    cart[id]++;
+    updateCart();
+    showToast('Añadido al carrito');
+  }
+
+  function changeQty(id, delta) {
+    cart[id] = (cart[id] || 0) + delta;
+    if (cart[id] <= 0) delete cart[id];
+    updateCart();
+  }
+
+  function updateCart() {
+    const items = Object.entries(cart);
+    const count = items.reduce((sum, [, q]) => sum + q, 0);
+    const total = items.reduce((sum, [id, q]) => {
+      const p = products.find(x => x.id === parseInt(id));
+      return sum + (p ? p.price * q : 0);
+    }, 0);
+    document.getElementById('cartCount').textContent = count;
+    document.getElementById('cartTotal').textContent = '$' + total.toLocaleString();
+    document.getElementById('cartFooter').style.display = count > 0 ? 'block' : 'none';
+
+    const cartItemsEl = document.getElementById('cartItems');
+    if (items.length === 0) {
+      cartItemsEl.innerHTML = '<div class="cart-empty">Tu carrito está vacío.<br>Agrega algunos productos.</div>';
+      return;
+    }
+    cartItemsEl.innerHTML = items.map(([id, q]) => {
+      const p = products.find(x => x.id === parseInt(id));
+      if (!p) return '';
+      return `
+        <div class="cart-item">
+          <div class="cart-item-image"><img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;border-radius:10px" /></div>
+          <div class="cart-item-info">
+            <div class="cart-item-name">${p.name}</div>
+            <div class="cart-item-price">$${(p.price * q).toLocaleString()}</div>
+            <div class="cart-qty">
+              <button onclick="changeQty(${p.id}, -1)">−</button>
+              <span>${q}</span>
+              <button onclick="changeQty(${p.id}, 1)">+</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function openCart() {
+    document.getElementById('cartOverlay').classList.add('open');
+    document.getElementById('cartDrawer').classList.add('open');
+  }
+  function closeCart() {
+    document.getElementById('cartOverlay').classList.remove('open');
+    document.getElementById('cartDrawer').classList.remove('open');
+  }
+
+  function checkout() {
+    const items = Object.entries(cart);
+    if (items.length === 0) return;
+    let msg = 'Hola Crank! Quiero pedir:%0A%0A';
+    let total = 0;
+    items.forEach(([id, q]) => {
+      const p = products.find(x => x.id === parseInt(id));
+      if (p) {
+        msg += `• ${q}x ${p.name} - $${(p.price * q).toLocaleString()}%0A`;
+        total += p.price * q;
+      }
+    });
+    msg += `%0ATotal: $${total.toLocaleString()}`;
+    window.open(`https://wa.me/593000000000?text=${msg}`, '_blank');
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2000);
+  }
+
+  // Filters
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderProducts(btn.dataset.filter);
+    });
+  });
+
+  renderProducts();
+  updateCart();
+</script>
+
+</body>
+</html>
