@@ -7,21 +7,37 @@
 <meta name="description" content="Crank es una tienda y taller de bicicletas en Cuenca, Ecuador. Bicicletas de ruta, MTB y gravel, accesorios, café de especialidad y mecánica multimarca." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #0a0a0a;
-    --bg-soft: #141414;
-    --bg-card: #1a1a1a;
-    --line: #262626;
-    --text: #f5f5f5;
-    --text-dim: #a3a3a3;
-    --text-muted: #737373;
-    --accent: #ff5722;
-    --accent-hover: #ff7043;
-    --green: #84cc16;
+    /* Brand palette */
+    --forest: #0D2821;
+    --forest-light: #194C3F;
+    --forest-deep: #071713;
+    --hueso: #F2EAD3;
+    --hueso-light: #FAF6E9;
+    --naranja: #FF5722;
+    --naranja-hover: #FF7043;
+    --lima: #C8FF00;
+    --magenta: #E91E63;
+    --carbon: #1A1A1A;
+    --asphalt: #3D3D3D;
+    --concrete: #737373;
+    --offwhite: #FAFAF7;
+    --line: rgba(242,234,211,0.12);
+    --line-strong: rgba(242,234,211,0.22);
+
+    /* Aliases for easy theme */
+    --bg: var(--forest);
+    --bg-soft: #0F2E26;
+    --bg-card: #133A30;
+    --text: var(--hueso);
+    --text-dim: rgba(242,234,211,0.7);
+    --text-muted: rgba(242,234,211,0.5);
+    --accent: var(--naranja);
+    --accent-hover: var(--naranja-hover);
   }
 
   html { scroll-behavior: smooth; }
@@ -39,9 +55,9 @@
   nav {
     position: fixed; top: 0; left: 0; right: 0;
     z-index: 100;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    background: rgba(10, 10, 10, 0.75);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    background: rgba(13, 40, 33, 0.85);
     border-bottom: 1px solid var(--line);
   }
   .nav-inner {
@@ -56,17 +72,17 @@
     text-decoration: none;
     display: flex; align-items: center; gap: 8px;
   }
-  .logo-dot { width: 10px; height: 10px; background: var(--accent); border-radius: 50%; }
-  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .logo-dot { width: 10px; height: 10px; background: var(--naranja); border-radius: 50%; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
   .nav-links a {
     color: var(--text-dim);
     text-decoration: none;
     font-size: 14px; font-weight: 500;
     transition: color 0.2s;
   }
-  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover { color: var(--naranja); }
   .nav-cart {
-    background: var(--accent);
+    background: var(--naranja);
     color: white;
     border: none;
     padding: 10px 18px;
@@ -76,72 +92,61 @@
     cursor: pointer;
     display: flex; align-items: center; gap: 8px;
     transition: background 0.2s;
+    font-family: inherit;
   }
-  .nav-cart:hover { background: var(--accent-hover); }
+  .nav-cart:hover { background: var(--naranja-hover); }
   .nav-cart-count {
-    background: white; color: var(--accent);
+    background: white; color: var(--naranja);
     border-radius: 999px;
     min-width: 22px; height: 22px;
     display: inline-flex; align-items: center; justify-content: center;
     font-size: 12px; font-weight: 700;
     padding: 0 6px;
   }
-  .menu-btn { display: none; background: transparent; border: none; color: var(--text); cursor: pointer; }
 
   /* HERO */
   .hero {
     min-height: 100vh;
-    padding: 140px 0 80px;
+    padding: 140px 0 60px;
     position: relative;
     overflow: hidden;
-    background:
-      radial-gradient(ellipse at top right, rgba(255, 87, 34, 0.15), transparent 60%),
-      radial-gradient(ellipse at bottom left, rgba(132, 204, 22, 0.08), transparent 50%),
-      var(--bg);
+    background: var(--forest);
   }
   .hero-bg {
     position: absolute; inset: 0;
-    background-image: url('img/mountain-ride.jpg');
+    background-image: url('img/hero-cyclist.jpg');
     background-size: cover;
-    background-position: center;
-    opacity: 0.35;
-    filter: grayscale(0.2) contrast(1.05);
+    background-position: center 40%;
+    opacity: 0.32;
+    filter: contrast(1.05) saturate(0.85);
   }
   .hero-bg::after {
     content: '';
     position: absolute; inset: 0;
     background: linear-gradient(180deg,
-      rgba(10,10,10,0.6) 0%,
-      rgba(10,10,10,0.8) 60%,
-      rgba(10,10,10,1) 100%);
-  }
-  .hero-grid {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 50px 50px;
-    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+      rgba(13,40,33,0.5) 0%,
+      rgba(13,40,33,0.85) 60%,
+      rgba(13,40,33,1) 100%);
   }
   .hero-content {
     position: relative;
     display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px;
     align-items: center;
-    min-height: calc(100vh - 220px);
+    min-height: calc(100vh - 200px);
   }
   .hero-tag {
     display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(255, 87, 34, 0.12);
-    border: 1px solid rgba(255, 87, 34, 0.3);
-    color: var(--accent);
-    padding: 6px 14px;
+    background: rgba(255, 87, 34, 0.14);
+    border: 1px solid rgba(255, 87, 34, 0.4);
+    color: var(--naranja);
+    padding: 7px 14px;
     border-radius: 999px;
     font-size: 13px; font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-bottom: 28px;
   }
-  .hero-tag-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
+  .hero-tag-dot { width: 6px; height: 6px; background: var(--naranja); border-radius: 50%; animation: pulse 2s infinite; }
   @keyframes pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.4; }
@@ -153,9 +158,9 @@
     letter-spacing: -0.03em;
     margin-bottom: 28px;
   }
-  .hero h1 .accent { color: var(--accent); }
+  .hero h1 .accent { color: var(--naranja); }
   .hero h1 .stroke {
-    -webkit-text-stroke: 2px var(--text);
+    -webkit-text-stroke: 2px var(--hueso);
     color: transparent;
   }
   .hero p {
@@ -172,55 +177,57 @@
     cursor: pointer;
     border: none;
     transition: all 0.2s;
+    font-family: inherit;
   }
-  .btn-primary { background: var(--accent); color: white; }
-  .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
+  .btn-primary { background: var(--naranja); color: white; }
+  .btn-primary:hover { background: var(--naranja-hover); transform: translateY(-2px); }
   .btn-outline {
     background: transparent;
     color: var(--text);
-    border: 1px solid var(--line);
+    border: 1px solid var(--line-strong);
   }
-  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-outline:hover { border-color: var(--naranja); color: var(--naranja); }
+  .btn-lima { background: var(--lima); color: var(--forest-deep); }
+  .btn-lima:hover { background: #d8ff33; transform: translateY(-2px); }
 
   .hero-visual {
     position: relative;
     display: flex; align-items: center; justify-content: center;
   }
-  .hero-bike {
-    width: 100%; max-width: 520px;
-    aspect-ratio: 1;
-    position: relative;
+  .hero-image {
+    width: 100%; max-width: 480px;
+    aspect-ratio: 4/5;
     border-radius: 24px;
     overflow: hidden;
     border: 1px solid var(--line);
     box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(255, 87, 34, 0.15);
+    position: relative;
   }
-  .hero-bike img {
+  .hero-image img {
     width: 100%; height: 100%;
     object-fit: cover;
     display: block;
   }
-  .hero-bike svg { width: 100%; height: 100%; filter: drop-shadow(0 20px 40px rgba(255, 87, 34, 0.2)); }
   .stat-badge {
     position: absolute;
     background: var(--bg-card);
-    border: 1px solid var(--line);
+    border: 1px solid var(--line-strong);
     border-radius: 16px;
     padding: 14px 18px;
     backdrop-filter: blur(10px);
   }
-  .stat-badge .num { font-family: 'Archivo Black', sans-serif; font-size: 22px; color: var(--accent); }
+  .stat-badge .num { font-family: 'Archivo Black', sans-serif; font-size: 22px; color: var(--naranja); }
   .stat-badge .label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; }
-  .badge-1 { top: 10%; left: -10px; }
-  .badge-2 { bottom: 15%; right: -10px; }
+  .badge-1 { top: 8%; left: -10px; }
+  .badge-2 { bottom: 12%; right: -10px; }
 
   /* MARQUEE */
   .marquee {
-    background: var(--accent);
+    background: var(--lima);
     padding: 18px 0;
     overflow: hidden;
-    border-top: 1px solid rgba(0,0,0,0.1);
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-top: 2px solid var(--forest-deep);
+    border-bottom: 2px solid var(--forest-deep);
   }
   .marquee-track {
     display: flex; gap: 60px;
@@ -228,11 +235,11 @@
     animation: scroll 30s linear infinite;
     font-family: 'Archivo Black', sans-serif;
     font-size: 22px;
-    color: black;
+    color: var(--forest-deep);
     letter-spacing: -0.01em;
   }
   .marquee-track span { display: inline-flex; align-items: center; gap: 60px; }
-  .marquee-track .dot { width: 12px; height: 12px; background: black; border-radius: 50%; }
+  .marquee-track .dot { width: 12px; height: 12px; background: var(--forest-deep); border-radius: 50%; }
   @keyframes scroll {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
@@ -242,7 +249,7 @@
   section { padding: 100px 0; position: relative; }
   .section-header { margin-bottom: 60px; max-width: 720px; }
   .section-eyebrow {
-    color: var(--accent);
+    color: var(--naranja);
     font-family: 'Space Mono', monospace;
     font-size: 13px;
     text-transform: uppercase;
@@ -251,7 +258,7 @@
     display: flex; align-items: center; gap: 12px;
   }
   .section-eyebrow::before {
-    content: ''; width: 30px; height: 1px; background: var(--accent);
+    content: ''; width: 30px; height: 1px; background: var(--naranja);
   }
   .section-title {
     font-family: 'Archivo Black', sans-serif;
@@ -259,6 +266,7 @@
     line-height: 1;
     letter-spacing: -0.02em;
     margin-bottom: 20px;
+    color: var(--hueso);
   }
   .section-desc { font-size: 18px; color: var(--text-dim); }
 
@@ -273,35 +281,34 @@
     border-radius: 24px;
     overflow: hidden;
     transition: all 0.3s;
-    position: relative;
     display: flex; flex-direction: column;
   }
-  .discipline:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .discipline:hover { border-color: var(--naranja); transform: translateY(-4px); }
   .discipline-img {
-    aspect-ratio: 16/9;
+    aspect-ratio: 16/10;
     overflow: hidden;
-    position: relative;
   }
   .discipline-img img {
     width: 100%; height: 100%;
     object-fit: cover;
     transition: transform 0.5s;
   }
-  .discipline:hover .discipline-img img { transform: scale(1.05); }
+  .discipline:hover .discipline-img img { transform: scale(1.06); }
   .discipline-body { padding: 28px 30px 32px; }
   .discipline-icon {
     width: 56px; height: 56px;
-    background: rgba(255, 87, 34, 0.1);
+    background: rgba(255, 87, 34, 0.14);
     border-radius: 16px;
     display: flex; align-items: center; justify-content: center;
     margin-bottom: 20px;
-    color: var(--accent);
+    color: var(--naranja);
   }
   .discipline h3 {
     font-family: 'Archivo Black', sans-serif;
     font-size: 28px;
     margin-bottom: 12px;
     letter-spacing: -0.01em;
+    color: var(--hueso);
   }
   .discipline p { color: var(--text-dim); margin-bottom: 20px; font-size: 15px; }
   .discipline-features { list-style: none; }
@@ -312,9 +319,7 @@
     border-top: 1px solid var(--line);
     display: flex; align-items: center; gap: 8px;
   }
-  .discipline-features li::before {
-    content: '→'; color: var(--accent);
-  }
+  .discipline-features li::before { content: '→'; color: var(--naranja); }
 
   /* SHOP */
   .shop-filters {
@@ -333,14 +338,14 @@
   }
   .filter-btn:hover { color: var(--text); }
   .filter-btn.active {
-    background: var(--accent);
-    border-color: var(--accent);
+    background: var(--naranja);
+    border-color: var(--naranja);
     color: white;
   }
   .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
   }
   .product {
     background: var(--bg-card);
@@ -350,11 +355,10 @@
     transition: all 0.3s;
     display: flex; flex-direction: column;
   }
-  .product:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .product:hover { border-color: var(--naranja); transform: translateY(-4px); }
   .product-image {
     aspect-ratio: 1;
-    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
-    display: flex; align-items: center; justify-content: center;
+    background: var(--forest-deep);
     position: relative;
     overflow: hidden;
   }
@@ -364,10 +368,9 @@
     transition: transform 0.5s ease;
   }
   .product:hover .product-image img { transform: scale(1.06); }
-  .product-image svg { width: 70%; height: 70%; }
   .product-tag {
     position: absolute; top: 14px; left: 14px;
-    background: var(--accent);
+    background: var(--naranja);
     color: white;
     font-size: 11px; font-weight: 700;
     padding: 4px 10px;
@@ -375,8 +378,9 @@
     text-transform: uppercase;
     letter-spacing: 0.06em;
   }
-  .product-tag.green { background: var(--green); color: black; }
-  .product-info { padding: 22px; flex: 1; display: flex; flex-direction: column; }
+  .product-tag.lima { background: var(--lima); color: var(--forest-deep); }
+  .product-tag.magenta { background: var(--magenta); color: white; }
+  .product-info { padding: 20px; flex: 1; display: flex; flex-direction: column; }
   .product-brand {
     color: var(--text-muted);
     font-size: 12px;
@@ -387,27 +391,28 @@
   }
   .product-name {
     font-family: 'Archivo Black', sans-serif;
-    font-size: 18px;
+    font-size: 17px;
     margin-bottom: 12px;
     letter-spacing: -0.01em;
+    color: var(--hueso);
   }
   .product-bottom {
     margin-top: auto;
     display: flex; align-items: center; justify-content: space-between;
     gap: 12px;
-    padding-top: 16px;
+    padding-top: 14px;
     border-top: 1px solid var(--line);
   }
   .product-price {
     font-family: 'Archivo Black', sans-serif;
-    font-size: 22px;
-    color: var(--accent);
+    font-size: 20px;
+    color: var(--naranja);
   }
   .add-cart-btn {
-    background: var(--text);
-    color: var(--bg);
+    background: var(--hueso);
+    color: var(--forest-deep);
     border: none;
-    padding: 10px 14px;
+    padding: 9px 13px;
     border-radius: 10px;
     cursor: pointer;
     font-weight: 700;
@@ -416,13 +421,98 @@
     display: inline-flex; align-items: center; gap: 6px;
     font-family: inherit;
   }
-  .add-cart-btn:hover { background: var(--accent); color: white; }
+  .add-cart-btn:hover { background: var(--naranja); color: white; }
+
+  /* REWARDS */
+  #rewards {
+    background: var(--forest-deep);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .rewards-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    align-items: center;
+  }
+  .rewards-card-visual {
+    aspect-ratio: 1;
+    background: var(--carbon);
+    border-radius: 28px;
+    border: 1px solid var(--line-strong);
+    padding: 36px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .rewards-card-visual::before {
+    content: '';
+    position: absolute; inset: -2px;
+    border-radius: 28px;
+    padding: 3px;
+    background: conic-gradient(from 180deg, var(--naranja), var(--lima), var(--magenta), var(--naranja));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.6;
+  }
+  .rewards-circle {
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: var(--forest-deep);
+    border: 4px solid transparent;
+    background-image: linear-gradient(var(--forest-deep), var(--forest-deep)), conic-gradient(from 0deg, var(--naranja), var(--lima), var(--magenta), var(--naranja));
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+  }
+  .rewards-circle-text {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 36px; color: var(--hueso);
+    letter-spacing: -0.02em;
+  }
+  .rewards-stamps {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;
+    width: 100%; max-width: 320px;
+    margin-top: 8px;
+  }
+  .stamp {
+    aspect-ratio: 1;
+    border: 2px solid var(--line-strong);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-muted);
+  }
+  .stamp.filled {
+    background: var(--hueso);
+    border-color: var(--hueso);
+    color: var(--forest);
+  }
+  .stamp svg { width: 60%; height: 60%; }
+  .rewards-tiers {
+    display: flex; flex-direction: column; gap: 16px;
+    margin-top: 28px;
+  }
+  .tier {
+    display: flex; align-items: center; gap: 16px;
+    padding: 16px 20px;
+    background: rgba(242,234,211,0.04);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .tier-num {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 28px;
+    color: var(--naranja);
+    min-width: 50px;
+  }
+  .tier-info { flex: 1; }
+  .tier-info strong { color: var(--hueso); font-size: 15px; }
+  .tier-info p { color: var(--text-dim); font-size: 13px; margin-top: 2px; }
 
   /* CAFE */
   #cafe {
-    background:
-      radial-gradient(ellipse at top left, rgba(132, 204, 22, 0.08), transparent 50%),
-      var(--bg-soft);
+    background: var(--bg-soft);
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
   }
@@ -434,39 +524,31 @@
     aspect-ratio: 1;
     border-radius: 24px;
     border: 1px solid var(--line);
-    position: relative;
     overflow: hidden;
-    background: #0a0a0a;
   }
   .cafe-visual img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-  }
-  .cafe-visual::after {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(135deg, transparent 40%, rgba(255, 87, 34, 0.15) 100%);
-    pointer-events: none;
+    width: 100%; height: 100%; object-fit: cover;
   }
   .cafe-features {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
     margin-top: 32px;
   }
   .cafe-feature {
     background: var(--bg-card);
     border: 1px solid var(--line);
     border-radius: 14px;
-    padding: 20px;
+    padding: 18px;
   }
   .cafe-feature-num {
     font-family: 'Archivo Black', sans-serif;
-    font-size: 32px; color: var(--accent);
+    font-size: 30px; color: var(--naranja);
     line-height: 1;
   }
   .cafe-feature-label { color: var(--text-dim); font-size: 13px; margin-top: 6px; }
 
   /* TALLER */
   .services-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1px;
     background: var(--line);
     border: 1px solid var(--line);
@@ -475,59 +557,168 @@
   }
   .service {
     background: var(--bg-card);
-    padding: 36px;
+    padding: 32px;
     transition: background 0.3s;
   }
   .service:hover { background: var(--bg-soft); }
-  .service-icon {
-    color: var(--accent);
-    margin-bottom: 16px;
-  }
+  .service-icon { color: var(--naranja); margin-bottom: 16px; }
   .service h4 {
     font-family: 'Archivo Black', sans-serif;
-    font-size: 20px;
+    font-size: 19px;
     margin-bottom: 8px;
     letter-spacing: -0.01em;
+    color: var(--hueso);
   }
   .service p { color: var(--text-dim); font-size: 14px; margin-bottom: 16px; }
   .service-price {
-    color: var(--accent);
+    color: var(--naranja);
     font-family: 'Space Mono', monospace;
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 14px; font-weight: 700;
   }
+
+  /* CALENDAR */
+  #calendario { background: var(--forest-deep); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .events-list { display: flex; flex-direction: column; gap: 14px; }
+  .event {
+    display: grid; grid-template-columns: 130px 1fr auto; gap: 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 24px 28px;
+    align-items: center;
+    transition: all 0.2s;
+  }
+  .event:hover { border-color: var(--naranja); }
+  .event-date {
+    text-align: center;
+    border-right: 1px solid var(--line);
+    padding-right: 24px;
+  }
+  .event-date .day {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 38px; color: var(--naranja);
+    line-height: 1;
+  }
+  .event-date .month {
+    font-size: 12px; color: var(--text-dim);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-top: 4px;
+    font-family: 'Space Mono', monospace;
+  }
+  .event-info h4 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 22px;
+    color: var(--hueso);
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+  .event-info .meta {
+    font-size: 13px; color: var(--text-dim);
+    display: flex; gap: 18px; flex-wrap: wrap;
+    margin-top: 4px;
+  }
+  .event-info .meta span { display: inline-flex; align-items: center; gap: 6px; }
+  .event-tag {
+    font-size: 11px; font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .event-tag.ride { background: rgba(255, 87, 34, 0.15); color: var(--naranja); border: 1px solid rgba(255, 87, 34, 0.4); }
+  .event-tag.evento { background: rgba(200, 255, 0, 0.12); color: var(--lima); border: 1px solid rgba(200, 255, 0, 0.4); }
+  .event-tag.female { background: rgba(233, 30, 99, 0.15); color: var(--magenta); border: 1px solid rgba(233, 30, 99, 0.4); }
+  .event-cta a {
+    color: var(--hueso); text-decoration: none;
+    font-weight: 600; font-size: 14px;
+    border: 1px solid var(--line-strong);
+    padding: 10px 18px; border-radius: 999px;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: all 0.2s;
+  }
+  .event-cta a:hover { background: var(--naranja); border-color: var(--naranja); color: white; }
 
   /* MARCAS */
   #marcas { background: var(--bg-soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
   .brands-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
   }
   .brand {
     background: var(--bg-card);
     border: 1px solid var(--line);
     border-radius: 20px;
-    padding: 40px;
+    padding: 36px 28px;
     text-align: center;
     transition: all 0.3s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
   }
-  .brand:hover { border-color: var(--accent); transform: translateY(-4px); }
-  .brand-logo {
+  .brand:hover { border-color: var(--naranja); transform: translateY(-4px); }
+  .brand-logomark {
+    height: 80px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 18px;
+  }
+  .brand-logomark .uc-logo {
     font-family: 'Archivo Black', sans-serif;
-    font-size: 24px;
-    margin-bottom: 12px;
-    letter-spacing: -0.02em;
+    font-size: 22px;
+    color: var(--hueso);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    text-align: center;
+  }
+  .brand-logomark .uc-logo small {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--naranja);
+    letter-spacing: 0.18em;
+    margin-top: 8px;
+    font-weight: 700;
+  }
+  .brand-logomark .oneup-logo {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 30px;
+    color: var(--lima);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  .brand-logomark .oneup-logo span {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: var(--text-dim);
+    display: block;
+    letter-spacing: 0.06em;
+    margin-top: 6px;
   }
   .brand-tag {
-    color: var(--accent);
+    color: var(--naranja);
     font-family: 'Space Mono', monospace;
-    font-size: 12px;
+    font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 12px;
+    letter-spacing: 0.15em;
+    margin-bottom: 10px;
   }
-  .brand p { color: var(--text-dim); font-size: 14px; }
+  .brand h4 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 18px;
+    color: var(--hueso);
+    margin-bottom: 10px;
+  }
+  .brand p { color: var(--text-dim); font-size: 13px; }
+  .brand-link {
+    color: var(--naranja);
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-top: 14px;
+    display: inline-block;
+  }
 
   /* GALLERY */
   .gallery-grid {
@@ -549,74 +740,152 @@
   .gallery-grid img {
     width: 100%; height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease, filter 0.3s;
+    transition: transform 0.6s ease;
   }
   .gallery-grid > div::after {
     content: '';
     position: absolute; inset: 0;
-    background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.6));
+    background: linear-gradient(180deg, transparent 60%, rgba(7,23,19,0.7));
     opacity: 0;
     transition: opacity 0.3s;
   }
   .gallery-grid > div:hover img { transform: scale(1.08); }
   .gallery-grid > div:hover::after { opacity: 1; }
-  .gallery-cta {
-    margin-top: 36px;
-    text-align: center;
-  }
+  .gallery-cta { margin-top: 36px; text-align: center; }
   @media (max-width: 768px) {
     .gallery-grid { grid-template-columns: repeat(2, 1fr); }
     .gallery-grid > div.wide { grid-column: span 2; }
     .gallery-grid > div.tall { grid-row: span 1; aspect-ratio: 1; }
   }
 
-  /* CONTACT */
+  /* CONTACTO + FORM */
+  #contacto { background: var(--forest-deep); }
   .contact-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
   }
   .contact-card {
     background: var(--bg-card);
     border: 1px solid var(--line);
     border-radius: 24px;
-    padding: 40px;
+    padding: 36px;
   }
   .contact-card h3 {
     font-family: 'Archivo Black', sans-serif;
-    font-size: 28px;
-    margin-bottom: 24px;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: var(--hueso);
   }
   .contact-row {
     display: flex; align-items: center; gap: 16px;
-    padding: 16px 0;
+    padding: 14px 0;
     border-bottom: 1px solid var(--line);
   }
   .contact-row:last-child { border-bottom: none; }
   .contact-icon {
-    width: 44px; height: 44px;
-    background: rgba(255, 87, 34, 0.1);
+    width: 42px; height: 42px;
+    background: rgba(255, 87, 34, 0.14);
     border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
-    color: var(--accent);
+    color: var(--naranja);
     flex-shrink: 0;
   }
-  .contact-row .label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .contact-row .label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
   .contact-row .value { font-size: 15px; color: var(--text); font-weight: 500; }
   .contact-row a { color: inherit; text-decoration: none; }
-  .contact-row a:hover { color: var(--accent); }
+  .contact-row a:hover { color: var(--naranja); }
   .hours-list { list-style: none; }
   .hours-list li {
     display: flex; justify-content: space-between;
-    padding: 10px 0;
+    padding: 8px 0;
     border-bottom: 1px solid var(--line);
-    font-size: 15px;
+    font-size: 14px;
   }
   .hours-list li:last-child { border-bottom: none; }
   .hours-list li span:first-child { color: var(--text-dim); }
   .hours-list li.closed span:last-child { color: var(--text-muted); }
 
+  /* FORM */
+  .form-section {
+    padding: 100px 0;
+    background: var(--bg-soft);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .form-wrapper {
+    max-width: 720px; margin: 0 auto;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 48px;
+  }
+  .form-tabs {
+    display: flex; gap: 8px;
+    background: var(--forest-deep);
+    border-radius: 12px;
+    padding: 6px;
+    margin-bottom: 32px;
+  }
+  .form-tab {
+    flex: 1;
+    padding: 12px 16px;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-weight: 600; font-size: 14px;
+    font-family: inherit;
+    transition: all 0.2s;
+  }
+  .form-tab.active {
+    background: var(--naranja); color: white;
+  }
+  .form-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    margin-bottom: 16px;
+  }
+  .form-field { display: flex; flex-direction: column; }
+  .form-field label {
+    font-size: 12px; color: var(--text-dim);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .form-field input, .form-field select, .form-field textarea {
+    background: var(--forest-deep);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 16px;
+    color: var(--hueso);
+    font-family: inherit;
+    font-size: 14px;
+    transition: border-color 0.2s;
+  }
+  .form-field input:focus, .form-field select:focus, .form-field textarea:focus {
+    outline: none;
+    border-color: var(--naranja);
+  }
+  .form-field textarea { min-height: 100px; resize: vertical; }
+  .form-submit {
+    width: 100%;
+    margin-top: 24px;
+    background: var(--naranja);
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 12px;
+    font-weight: 700; font-size: 15px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s;
+  }
+  .form-submit:hover { background: var(--naranja-hover); }
+  .form-pane { display: none; }
+  .form-pane.active { display: block; }
+
   /* FOOTER */
   footer {
-    background: var(--bg);
+    background: var(--forest-deep);
     border-top: 1px solid var(--line);
     padding: 60px 0 30px;
   }
@@ -625,17 +894,17 @@
     margin-bottom: 40px;
   }
   .footer-col h5 {
-    font-size: 13px;
+    font-size: 12px;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     color: var(--text-muted);
     margin-bottom: 16px;
     font-family: 'Space Mono', monospace;
   }
   .footer-col ul { list-style: none; }
-  .footer-col ul li { padding: 6px 0; }
+  .footer-col ul li { padding: 5px 0; }
   .footer-col ul a { color: var(--text-dim); text-decoration: none; font-size: 14px; transition: color 0.2s; }
-  .footer-col ul a:hover { color: var(--accent); }
+  .footer-col ul a:hover { color: var(--naranja); }
   .footer-tagline { color: var(--text-dim); font-size: 14px; margin-top: 16px; max-width: 320px; }
   .footer-social { display: flex; gap: 12px; margin-top: 20px; }
   .footer-social a {
@@ -647,24 +916,20 @@
     color: var(--text-dim);
     transition: all 0.2s;
   }
-  .footer-social a:hover {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: white;
-  }
+  .footer-social a:hover { background: var(--naranja); border-color: var(--naranja); color: white; }
   .footer-bottom {
     padding-top: 30px;
     border-top: 1px solid var(--line);
     display: flex; justify-content: space-between; align-items: center;
     color: var(--text-muted);
-    font-size: 13px;
+    font-size: 12px;
     font-family: 'Space Mono', monospace;
   }
 
   /* CART DRAWER */
   .cart-overlay {
     position: fixed; inset: 0;
-    background: rgba(0,0,0,0.7);
+    background: rgba(7,23,19,0.8);
     z-index: 200;
     opacity: 0; pointer-events: none;
     transition: opacity 0.3s;
@@ -673,7 +938,7 @@
   .cart-overlay.open { opacity: 1; pointer-events: all; }
   .cart-drawer {
     position: fixed; top: 0; right: 0; bottom: 0;
-    width: 100%; max-width: 440px;
+    width: 100%; max-width: 460px;
     background: var(--bg-soft);
     border-left: 1px solid var(--line);
     z-index: 201;
@@ -687,7 +952,7 @@
     border-bottom: 1px solid var(--line);
     display: flex; justify-content: space-between; align-items: center;
   }
-  .cart-header h3 { font-family: 'Archivo Black', sans-serif; font-size: 22px; }
+  .cart-header h3 { font-family: 'Archivo Black', sans-serif; font-size: 22px; color: var(--hueso); }
   .cart-close {
     background: transparent; border: none;
     color: var(--text); cursor: pointer;
@@ -698,67 +963,69 @@
   }
   .cart-close:hover { background: var(--bg-card); }
   .cart-items { flex: 1; overflow-y: auto; padding: 20px 24px; }
-  .cart-item {
-    display: flex; gap: 16px;
-    padding: 16px 0;
-    border-bottom: 1px solid var(--line);
-  }
+  .cart-item { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); }
   .cart-item-image {
     width: 70px; height: 70px;
     background: var(--bg-card);
     border-radius: 10px;
     flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
   }
+  .cart-item-image img { width: 100%; height: 100%; object-fit: cover; }
   .cart-item-info { flex: 1; }
-  .cart-item-name { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
-  .cart-item-price { color: var(--accent); font-weight: 700; font-size: 14px; font-family: 'Space Mono', monospace; }
+  .cart-item-name { font-weight: 600; font-size: 14px; margin-bottom: 4px; color: var(--hueso); }
+  .cart-item-price { color: var(--naranja); font-weight: 700; font-size: 14px; font-family: 'Space Mono', monospace; }
   .cart-qty { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
   .cart-qty button {
     width: 26px; height: 26px;
     background: var(--bg-card);
     border: 1px solid var(--line);
-    color: var(--text);
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
+    color: var(--text); border-radius: 6px;
+    cursor: pointer; font-size: 14px;
+    font-family: inherit;
   }
-  .cart-qty button:hover { border-color: var(--accent); }
+  .cart-qty button:hover { border-color: var(--naranja); }
   .cart-qty span { min-width: 24px; text-align: center; font-weight: 600; font-size: 14px; }
   .cart-empty { text-align: center; padding: 60px 24px; color: var(--text-muted); }
-  .cart-footer {
-    padding: 24px;
-    border-top: 1px solid var(--line);
-    background: var(--bg);
-  }
+  .cart-footer { padding: 20px 24px; border-top: 1px solid var(--line); background: var(--forest-deep); }
   .cart-total {
     display: flex; justify-content: space-between;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     font-family: 'Archivo Black', sans-serif;
     font-size: 22px;
+    color: var(--hueso);
   }
-  .cart-total .amount { color: var(--accent); }
-  .checkout-btn {
-    width: 100%;
-    background: var(--accent);
-    color: white;
-    border: none;
-    padding: 16px;
+  .cart-total .amount { color: var(--naranja); }
+  .pay-options {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    margin-bottom: 8px;
+  }
+  .pay-btn {
+    background: var(--bg-card);
+    color: var(--hueso);
+    border: 1px solid var(--line);
+    padding: 14px 12px;
     border-radius: 12px;
-    font-weight: 700;
-    font-size: 15px;
+    font-weight: 700; font-size: 13px;
     cursor: pointer;
     font-family: inherit;
-    transition: background 0.2s;
+    transition: all 0.2s;
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
   }
-  .checkout-btn:hover { background: var(--accent-hover); }
-  .checkout-note { font-size: 12px; color: var(--text-muted); text-align: center; margin-top: 12px; }
+  .pay-btn:hover { border-color: var(--naranja); }
+  .pay-btn.whatsapp { background: #25D366; color: white; border-color: #25D366; }
+  .pay-btn.whatsapp:hover { background: #1ebe5a; }
+  .pay-btn.bank { background: var(--lima); color: var(--forest-deep); border-color: var(--lima); }
+  .pay-btn.bank:hover { background: #d8ff33; }
+  .pay-btn svg { margin-bottom: 4px; }
+  .pay-btn-label { font-size: 12px; opacity: 0.85; font-weight: 500; }
+  .checkout-note { font-size: 11px; color: var(--text-muted); text-align: center; margin-top: 10px; }
 
   /* TOAST */
   .toast {
     position: fixed; bottom: 30px; left: 50%;
     transform: translateX(-50%) translateY(100px);
-    background: var(--accent);
+    background: var(--naranja);
     color: white;
     padding: 14px 24px;
     border-radius: 999px;
@@ -770,14 +1037,67 @@
   }
   .toast.show { transform: translateX(-50%) translateY(0); }
 
+  /* MODAL (bank info) */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(7,23,19,0.85);
+    z-index: 400;
+    display: none; align-items: center; justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(8px);
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--bg-soft);
+    border: 1px solid var(--line-strong);
+    border-radius: 20px;
+    padding: 36px;
+    max-width: 480px; width: 100%;
+    color: var(--hueso);
+  }
+  .modal h3 { font-family: 'Archivo Black', sans-serif; font-size: 24px; margin-bottom: 8px; }
+  .modal p.sub { color: var(--text-dim); font-size: 14px; margin-bottom: 24px; }
+  .bank-row {
+    display: flex; justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 14px;
+    align-items: center; gap: 8px;
+  }
+  .bank-row:last-of-type { border: none; }
+  .bank-row span:first-child { color: var(--text-dim); }
+  .bank-row span:last-child { color: var(--hueso); font-weight: 600; font-family: 'Space Mono', monospace; user-select: all; }
+  .bank-row button.copy {
+    background: transparent; border: 1px solid var(--line);
+    color: var(--text); cursor: pointer;
+    width: 28px; height: 28px; border-radius: 6px;
+    font-family: inherit;
+    transition: all 0.2s;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .bank-row button.copy:hover { border-color: var(--naranja); }
+  .modal-cta { margin-top: 24px; display: flex; gap: 10px; }
+  .modal-cta button {
+    flex: 1; padding: 14px; border-radius: 10px;
+    font-weight: 700; font-size: 14px; cursor: pointer;
+    border: none; font-family: inherit;
+  }
+  .modal-cta .confirm { background: var(--naranja); color: white; }
+  .modal-cta .confirm:hover { background: var(--naranja-hover); }
+  .modal-cta .cancel { background: var(--bg-card); color: var(--hueso); border: 1px solid var(--line); }
+
   /* RESPONSIVE */
   @media (max-width: 968px) {
     .hero-content { grid-template-columns: 1fr; gap: 40px; }
     .hero-visual { order: -1; max-width: 360px; margin: 0 auto; }
     .disciplines-grid { grid-template-columns: 1fr; }
-    .cafe-grid { grid-template-columns: 1fr; }
+    .cafe-grid, .rewards-grid { grid-template-columns: 1fr; }
     .contact-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
+    .event { grid-template-columns: 100px 1fr; }
+    .event-cta { grid-column: 1 / -1; }
+    .form-wrapper { padding: 32px 24px; }
+    .form-row { grid-template-columns: 1fr; }
   }
   @media (max-width: 640px) {
     .nav-links { display: none; }
@@ -786,6 +1106,7 @@
     .footer-grid { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
     .cafe-features { grid-template-columns: 1fr; }
+    .pay-options { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -797,10 +1118,10 @@
     <ul class="nav-links">
       <li><a href="#disciplinas">Bicis</a></li>
       <li><a href="#tienda">Tienda</a></li>
+      <li><a href="#rewards">Sellos</a></li>
+      <li><a href="#calendario">Eventos</a></li>
       <li><a href="#cafe">Café</a></li>
       <li><a href="#taller">Taller</a></li>
-      <li><a href="#marcas">Marcas</a></li>
-      <li><a href="#galeria">Galería</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
     <button class="nav-cart" onclick="openCart()">
@@ -813,7 +1134,6 @@
 <!-- HERO -->
 <header class="hero">
   <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
   <div class="container hero-content">
     <div>
       <div class="hero-tag"><span class="hero-tag-dot"></span>Cuenca, Ecuador</div>
@@ -828,12 +1148,12 @@
           Ver bicicletas
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a href="#taller" class="btn btn-outline">Agendar taller</a>
+        <a href="#calendario" class="btn btn-outline">Próximas salidas</a>
       </div>
     </div>
     <div class="hero-visual">
-      <div class="hero-bike">
-        <img src="img/hero-cyclist.jpg" alt="Ciclista Crank en ruta" />
+      <div class="hero-image">
+        <img src="img/white-bike-mountain.jpg" alt="Bicicleta en las montañas de Cuenca" />
       </div>
       <div class="stat-badge badge-1">
         <div class="num">15+</div>
@@ -865,7 +1185,7 @@
     </div>
     <div class="disciplines-grid">
       <div class="discipline">
-        <div class="discipline-img"><img src="img/road-bike.jpg" alt="Ciclismo de ruta" loading="lazy"/></div>
+        <div class="discipline-img"><img src="img/white-bike-mountain.jpg" alt="Ciclismo de ruta" loading="lazy"/></div>
         <div class="discipline-body">
           <div class="discipline-icon">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>
@@ -880,7 +1200,7 @@
         </div>
       </div>
       <div class="discipline">
-        <div class="discipline-img"><img src="img/bike-detail.jpg" alt="Mountain bike" loading="lazy"/></div>
+        <div class="discipline-img"><img src="img/mtb-detail.jpg" alt="Mountain bike" loading="lazy"/></div>
         <div class="discipline-body">
           <div class="discipline-icon">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 18l4-8 6 4 4-6 6 10"/><circle cx="6" cy="10" r="2"/><circle cx="18" cy="14" r="2"/></svg>
@@ -895,7 +1215,7 @@
         </div>
       </div>
       <div class="discipline">
-        <div class="discipline-img"><img src="img/gravel-bike.jpg" alt="Bici gravel" loading="lazy"/></div>
+        <div class="discipline-img"><img src="img/mountain-path.jpg" alt="Bici gravel" loading="lazy"/></div>
         <div class="discipline-body">
           <div class="discipline-icon">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6l4 4M21 6l-4 4M3 18l4-4M21 18l-4-4"/><circle cx="12" cy="12" r="3"/></svg>
@@ -935,12 +1255,65 @@
   </div>
 </section>
 
+<!-- REWARDS -->
+<section id="rewards">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Programa de Sellos</div>
+      <h2 class="section-title">Pedalea. Acumula. Disfruta.</h2>
+      <p class="section-desc">Por cada visita, café o servicio en Crank, obtienes un sello en tu Crank Pass digital. Cuanto más pedaleas, mejores recompensas.</p>
+    </div>
+    <div class="rewards-grid">
+      <div class="rewards-card-visual">
+        <div class="rewards-circle">
+          <div class="rewards-circle-text">CRANK</div>
+        </div>
+        <div style="font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px;">5 de 10 sellos</div>
+        <div class="rewards-stamps">
+          <div class="stamp filled"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M6 17l6-9 6 9M9 8h6" stroke="currentColor" stroke-width="2" fill="none"/></svg></div>
+          <div class="stamp filled"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M6 17l6-9 6 9M9 8h6" stroke="currentColor" stroke-width="2" fill="none"/></svg></div>
+          <div class="stamp filled"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M6 17l6-9 6 9M9 8h6" stroke="currentColor" stroke-width="2" fill="none"/></svg></div>
+          <div class="stamp filled"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M6 17l6-9 6 9M9 8h6" stroke="currentColor" stroke-width="2" fill="none"/></svg></div>
+          <div class="stamp filled"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M6 17l6-9 6 9M9 8h6" stroke="currentColor" stroke-width="2" fill="none"/></svg></div>
+          <div class="stamp"></div>
+          <div class="stamp"></div>
+          <div class="stamp"></div>
+          <div class="stamp"></div>
+          <div class="stamp"></div>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-family:'Archivo Black',sans-serif;font-size:28px;color:var(--hueso);margin-bottom:14px;letter-spacing:-0.01em;">Cómo funciona</h3>
+        <p style="color:var(--text-dim);margin-bottom:16px;">Pide tu Crank Pass digital la próxima vez que vengas. Lo agregas a tu Apple Wallet o Google Wallet y nosotros lo escaneamos cada vez que nos visitas. Sin tarjetas físicas, sin papeles que perder.</p>
+        <div class="rewards-tiers">
+          <div class="tier">
+            <div class="tier-num">3</div>
+            <div class="tier-info"><strong>Café gratis</strong><p>Un espresso o americano de la casa, en tu próxima visita.</p></div>
+          </div>
+          <div class="tier">
+            <div class="tier-num">5</div>
+            <div class="tier-info"><strong>Mantenimiento básico gratis</strong><p>Limpieza, lubricación y ajuste de cambios.</p></div>
+          </div>
+          <div class="tier">
+            <div class="tier-num">10</div>
+            <div class="tier-info"><strong>Crank Long Ride VIP + 15% off</strong><p>Salida grupal exclusiva y descuento en tu próxima compra.</p></div>
+          </div>
+        </div>
+        <a href="#contacto" class="btn btn-primary" style="margin-top:24px;">
+          Pedir mi Crank Pass
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CAFE -->
 <section id="cafe">
   <div class="container">
     <div class="cafe-grid">
       <div class="cafe-visual">
-        <img src="img/bike-table.jpg" alt="Café y bicicletas en Crank Cuenca" />
+        <img src="img/coffee-bike.jpg" alt="Café y ciclismo" />
       </div>
       <div>
         <div class="section-eyebrow">Café</div>
@@ -1030,34 +1403,72 @@
   </div>
 </section>
 
+<!-- CALENDARIO -->
+<section id="calendario">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Calendario</div>
+      <h2 class="section-title">Próximos rides &amp; eventos.</h2>
+      <p class="section-desc">Salidas grupales, clínicas, eventos y rides de larga distancia. Reserva tu cupo desde la app o pásate por la tienda.</p>
+    </div>
+    <div class="events-list" id="eventsList"></div>
+  </div>
+</section>
+
 <!-- MARCAS -->
 <section id="marcas">
   <div class="container">
     <div class="section-header">
-      <div class="section-eyebrow">Marcas</div>
-      <h2 class="section-title">Representantes oficiales.</h2>
+      <div class="section-eyebrow">Marcas que representamos</div>
+      <h2 class="section-title">Distribución oficial.</h2>
       <p class="section-desc">Trabajamos directamente con las marcas que mejor entienden el ciclismo. Calidad, garantía y soporte de primera.</p>
     </div>
     <div class="brands-grid">
+      <a href="https://www.universalcolours.com/" target="_blank" rel="noopener" class="brand">
+        <div class="brand-logomark">
+          <div class="uc-logo">
+            UNIVERSAL<br>COLOURS
+            <small>· LONDON ·</small>
+          </div>
+        </div>
+        <div class="brand-tag">Apparel · UK</div>
+        <h4>Indumentaria técnica</h4>
+        <p>Maillots, culottes y kits de ruta y gravel hechos en Europa. Distribución oficial en Ecuador.</p>
+        <div class="brand-link">universalcolours.com →</div>
+      </a>
+      <a href="https://www.oneupcomponents.com/" target="_blank" rel="noopener" class="brand">
+        <div class="brand-logomark">
+          <div class="oneup-logo">
+            ONEUP<span>COMPONENTS</span>
+          </div>
+        </div>
+        <div class="brand-tag">Components · Canadá</div>
+        <h4>Componentes MTB</h4>
+        <p>Tijas dropper, manillares, pedales y multitools de alto rendimiento. Representante oficial.</p>
+        <div class="brand-link">oneupcomponents.com →</div>
+      </a>
       <div class="brand">
-        <div class="brand-tag">Wheels</div>
-        <div class="brand-logo">UNIVERSAL COLOURS</div>
-        <p>Ruedas premium hechas a mano en Europa. Distribuidor exclusivo en Ecuador.</p>
+        <div class="brand-logomark">
+          <div class="uc-logo" style="font-size:18px;">
+            UNIVERSAL COLOURS<br>EC
+            <small>· CUENCA ·</small>
+          </div>
+        </div>
+        <div class="brand-tag">Local Edition</div>
+        <h4>Ediciones Cuenca</h4>
+        <p>Kits limitados diseñados localmente. Solo en Crank.</p>
+        <div class="brand-link">@universal.colours.ec →</div>
       </div>
       <div class="brand">
-        <div class="brand-tag">Components</div>
-        <div class="brand-logo">ONEUP</div>
-        <p>Componentes MTB de alto rendimiento. Tijas, manillares y herramientas que duran.</p>
-      </div>
-      <div class="brand">
-        <div class="brand-tag">Apparel</div>
-        <div class="brand-logo">UNIVERSAL COLOURS EC</div>
-        <p>Indumentaria técnica para ciclismo de ruta y gravel. Confort en cada kilómetro.</p>
-      </div>
-      <div class="brand">
-        <div class="brand-tag">+ Marcas</div>
-        <div class="brand-logo">Y MUCHO MÁS</div>
-        <p>Shimano, SRAM, Continental, Maxxis, Fox, RockShox y otras marcas líderes en stock.</p>
+        <div class="brand-logomark">
+          <div style="font-family:'Archivo Black',sans-serif;font-size:24px;color:var(--hueso);text-align:center;line-height:1;">
+            +12<br><span style="font-family:'Inter',sans-serif;font-weight:300;font-size:13px;color:var(--text-dim);letter-spacing:0.1em;">marcas más</span>
+          </div>
+        </div>
+        <div class="brand-tag">Multimarca</div>
+        <h4>Y mucho más</h4>
+        <p>Shimano, SRAM, Continental, Maxxis, Fox, RockShox y otras marcas líderes.</p>
+        <div class="brand-link">Ver todas →</div>
       </div>
     </div>
   </div>
@@ -1073,21 +1484,129 @@
     </div>
     <div class="gallery-grid">
       <div class="tall"><img src="img/tunnel-ride.jpg" alt="Túnel en ruta" loading="lazy"/></div>
-      <div><img src="img/group-ride.jpg" alt="Salida grupal" loading="lazy"/></div>
-      <div><img src="img/ride-like-a-girl.jpg" alt="Ride Like A Girl" loading="lazy"/></div>
-      <div><img src="img/shop-interior.jpg" alt="Interior de la tienda" loading="lazy"/></div>
-      <div class="wide"><img src="img/mountain-ride.jpg" alt="Ride por las montañas" loading="lazy"/></div>
-      <div><img src="img/lifestyle-cyclist.jpg" alt="Ciclista" loading="lazy"/></div>
-      <div><img src="img/crank-long-ride.jpg" alt="Crank Long Ride" loading="lazy"/></div>
-      <div><img src="img/sunglasses.jpg" alt="Accesorios" loading="lazy"/></div>
-      <div><img src="img/workshop.jpg" alt="Taller mecánico" loading="lazy"/></div>
-      <div><img src="img/pinarello.jpg" alt="Bici Pinarello" loading="lazy"/></div>
+      <div><img src="img/group-road.jpg" alt="Salida grupal" loading="lazy"/></div>
+      <div><img src="img/cyclist-photo.jpg" alt="Ciclistas" loading="lazy"/></div>
+      <div><img src="img/celebration.jpg" alt="Celebración" loading="lazy"/></div>
+      <div class="wide"><img src="img/cyclists-paceline.jpg" alt="Pelotón en ruta" loading="lazy"/></div>
+      <div><img src="img/group-standing.jpg" alt="Equipo Crank" loading="lazy"/></div>
+      <div><img src="img/last-dance-1.jpg" alt="The Last Dance" loading="lazy"/></div>
+      <div><img src="img/sunglasses-display.jpg" alt="Accesorios" loading="lazy"/></div>
+      <div><img src="img/first-long-ride-1.jpg" alt="Crank Long Ride" loading="lazy"/></div>
+      <div><img src="img/mountain-path.jpg" alt="Mountain ride" loading="lazy"/></div>
     </div>
     <div class="gallery-cta">
-      <a href="https://instagram.com/crank.ec" target="_blank" class="btn btn-outline">
+      <a href="https://instagram.com/crank.ec" target="_blank" rel="noopener" class="btn btn-outline">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
         Síguenos en @crank.ec
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section" id="formulario">
+  <div class="container">
+    <div class="section-header" style="text-align:center;margin:0 auto 40px;">
+      <div class="section-eyebrow" style="justify-content:center;">Reserva</div>
+      <h2 class="section-title">Compra una bici o agenda taller.</h2>
+      <p class="section-desc">Completa el formulario y te contactaremos en menos de 24 horas para confirmar tu pedido o cita.</p>
+    </div>
+    <div class="form-wrapper">
+      <div class="form-tabs">
+        <button class="form-tab active" data-pane="compra">Quiero comprar</button>
+        <button class="form-tab" data-pane="taller">Agendar taller</button>
+      </div>
+
+      <div class="form-pane active" data-pane="compra">
+        <form onsubmit="submitForm(event, 'compra')">
+          <div class="form-row">
+            <div class="form-field">
+              <label>Nombre</label>
+              <input type="text" name="nombre" required placeholder="Tu nombre completo">
+            </div>
+            <div class="form-field">
+              <label>Teléfono / WhatsApp</label>
+              <input type="tel" name="telefono" required placeholder="+593 99 999 9999">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label>Email</label>
+              <input type="email" name="email" required placeholder="tu@email.com">
+            </div>
+            <div class="form-field">
+              <label>¿Qué te interesa?</label>
+              <select name="interes" required>
+                <option value="">Selecciona una opción</option>
+                <option>Bici de Ruta</option>
+                <option>Bici de MTB</option>
+                <option>Bici de Gravel</option>
+                <option>Accesorios</option>
+                <option>Indumentaria</option>
+                <option>Otro</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row" style="grid-template-columns:1fr;">
+            <div class="form-field">
+              <label>Mensaje (opcional)</label>
+              <textarea name="mensaje" placeholder="Cuéntanos qué buscas: marca, talla, presupuesto..."></textarea>
+            </div>
+          </div>
+          <button class="form-submit" type="submit">Enviar pedido por WhatsApp</button>
+        </form>
+      </div>
+
+      <div class="form-pane" data-pane="taller">
+        <form onsubmit="submitForm(event, 'taller')">
+          <div class="form-row">
+            <div class="form-field">
+              <label>Nombre</label>
+              <input type="text" name="nombre" required placeholder="Tu nombre completo">
+            </div>
+            <div class="form-field">
+              <label>Teléfono / WhatsApp</label>
+              <input type="tel" name="telefono" required placeholder="+593 99 999 9999">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label>Tipo de servicio</label>
+              <select name="servicio" required>
+                <option value="">Selecciona un servicio</option>
+                <option>Mantenimiento básico — $25</option>
+                <option>Mantenimiento completo — $80</option>
+                <option>Servicio de suspensión — $60</option>
+                <option>Bike fit — $120</option>
+                <option>Tubeless setup — $35</option>
+                <option>Armado de bici — $100</option>
+                <option>Otro</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label>Fecha preferida</label>
+              <input type="date" name="fecha" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label>Marca de la bici</label>
+              <input type="text" name="marca" placeholder="Ej: Specialized, Trek, Pinarello...">
+            </div>
+            <div class="form-field">
+              <label>Modelo / año</label>
+              <input type="text" name="modelo" placeholder="Ej: Tarmac SL7, 2024">
+            </div>
+          </div>
+          <div class="form-row" style="grid-template-columns:1fr;">
+            <div class="form-field">
+              <label>Detalles adicionales (opcional)</label>
+              <textarea name="mensaje" placeholder="¿Algún problema específico? ¿Notas algo raro?"></textarea>
+            </div>
+          </div>
+          <button class="form-submit" type="submit">Agendar cita por WhatsApp</button>
+        </form>
+      </div>
     </div>
   </div>
 </section>
@@ -1190,15 +1709,16 @@
           <li><a href="#taller">Taller</a></li>
           <li><a href="#taller">Bike Fit</a></li>
           <li><a href="#cafe">Café</a></li>
-          <li><a href="#marcas">Marcas</a></li>
+          <li><a href="#rewards">Programa Sellos</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h5>Información</h5>
         <ul>
+          <li><a href="#calendario">Calendario</a></li>
+          <li><a href="#marcas">Marcas</a></li>
           <li><a href="#contacto">Contacto</a></li>
-          <li><a href="#contacto">Ubicación</a></li>
-          <li><a href="#contacto">Horarios</a></li>
+          <li><a href="brand-manual.pdf" target="_blank">Manual de marca</a></li>
         </ul>
       </div>
     </div>
@@ -1224,31 +1744,101 @@
       <span>Total</span>
       <span class="amount" id="cartTotal">$0</span>
     </div>
-    <button class="checkout-btn" onclick="checkout()">Finalizar compra por WhatsApp</button>
-    <p class="checkout-note">Te enviaremos por WhatsApp para confirmar tu pedido</p>
+    <div class="pay-options">
+      <button class="pay-btn whatsapp" onclick="checkoutWhatsApp()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+        <span class="pay-btn-label">Confirmamos al instante</span>
+      </button>
+      <button class="pay-btn bank" onclick="openBankModal()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg>
+        Transferencia
+        <span class="pay-btn-label">Banco Pichincha / Pacífico</span>
+      </button>
+    </div>
+    <p class="checkout-note">Al confirmar, te contactaremos para coordinar entrega o retiro en tienda.</p>
   </div>
 </aside>
+
+<!-- BANK MODAL -->
+<div class="modal-overlay" id="bankModal">
+  <div class="modal">
+    <h3>Transferencia bancaria</h3>
+    <p class="sub">Realiza la transferencia y envíanos el comprobante por WhatsApp para confirmar tu pedido.</p>
+    <div class="bank-row">
+      <span>Banco</span>
+      <span>Banco Pichincha</span>
+      <button class="copy" onclick="copyText('Banco Pichincha')" title="Copiar">⧉</button>
+    </div>
+    <div class="bank-row">
+      <span>Tipo</span>
+      <span>Cuenta Corriente</span>
+      <button class="copy" onclick="copyText('Cuenta Corriente')" title="Copiar">⧉</button>
+    </div>
+    <div class="bank-row">
+      <span>Número</span>
+      <span>2100XXXXXXXX</span>
+      <button class="copy" onclick="copyText('2100XXXXXXXX')" title="Copiar">⧉</button>
+    </div>
+    <div class="bank-row">
+      <span>RUC / CI</span>
+      <span>0100000000001</span>
+      <button class="copy" onclick="copyText('0100000000001')" title="Copiar">⧉</button>
+    </div>
+    <div class="bank-row">
+      <span>Beneficiario</span>
+      <span>Crank EC</span>
+      <button class="copy" onclick="copyText('Crank EC')" title="Copiar">⧉</button>
+    </div>
+    <div class="bank-row">
+      <span>Email</span>
+      <span>hola@crank.ec</span>
+      <button class="copy" onclick="copyText('hola@crank.ec')" title="Copiar">⧉</button>
+    </div>
+    <div class="modal-cta">
+      <button class="cancel" onclick="closeBankModal()">Cerrar</button>
+      <button class="confirm" onclick="sendBankReceipt()">Enviar comprobante</button>
+    </div>
+  </div>
+</div>
 
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
 <script>
-  // Product catalog
+  // ==========================================
+  // PRODUCT CATALOG
+  // ==========================================
   const products = [
-    { id: 1, name: 'Pinarello Dogma F', brand: 'Universal Colours', category: 'ruta', price: 12500, tag: 'PREMIUM', img: 'img/pinarello.jpg' },
-    { id: 2, name: 'MTB Trail Series 29"', brand: 'Crank Editions', category: 'mtb', price: 3200, tag: 'TOP', img: 'img/bike-detail.jpg' },
-    { id: 3, name: 'Gravel Aventura', brand: 'Crank Editions', category: 'gravel', price: 3800, tag: 'NUEVO', img: 'img/gravel-bike.jpg' },
-    { id: 4, name: 'Bici Ruta Carbono', brand: 'Universal Colours', category: 'ruta', price: 4500, img: 'img/road-bike.jpg' },
-    { id: 5, name: 'Casco Pro Aero', brand: 'ProSafety', category: 'accesorios', price: 280, img: 'img/helmet.jpg' },
-    { id: 6, name: 'Gafas Performance', brand: 'Universal Colours', category: 'accesorios', price: 195, img: 'img/sunglasses.jpg' },
-    { id: 7, name: 'Café Espresso 250g', brand: 'Crank Roast', category: 'cafe', price: 12, tag: 'FRESCO', tagGreen: true, img: 'img/bike-table.jpg' },
-    { id: 8, name: 'Maillot CRANK Long Ride', brand: 'Crank Editions', category: 'accesorios', price: 95, img: 'img/crank-long-ride.jpg' },
-    { id: 9, name: 'Bici Ruta Edición Pucará', brand: 'Crank Editions', category: 'ruta', price: 5200, tag: 'EDICIÓN', img: 'img/ride-like-a-girl.jpg' },
-    { id: 10, name: 'Café Filtrado V60', brand: 'Crank Roast', category: 'cafe', price: 14, tag: 'NUEVO', img: 'img/lifestyle-cyclist.jpg' },
-    { id: 11, name: 'Sesión Bike Fit Pro', brand: 'Crank Taller', category: 'accesorios', price: 120, img: 'img/workshop.jpg' },
-    { id: 12, name: 'Pack Salida Grupal', brand: 'Crank Rides', category: 'accesorios', price: 45, img: 'img/group-ride.jpg' },
+    { id: 1, name: 'Pinarello Dogma F', brand: 'Universal Colours', category: 'ruta', price: 12500, tag: 'PREMIUM', img: 'img/white-bike-mountain.jpg' },
+    { id: 2, name: 'MTB Trail Series 29"', brand: 'Crank Editions', category: 'mtb', price: 3200, tag: 'TOP', img: 'img/mtb-detail.jpg' },
+    { id: 3, name: 'Gravel Aventura', brand: 'Crank Editions', category: 'gravel', price: 3800, tag: 'NUEVO', img: 'img/bike-frame-detail.jpg' },
+    { id: 4, name: 'Bici Ruta Carbono', brand: 'Universal Colours', category: 'ruta', price: 4500, img: 'img/bike-road.jpg' },
+    { id: 5, name: 'Casco Pro Aero', brand: 'ProSafety', category: 'accesorios', price: 280, img: 'img/yellow-helmets.jpg' },
+    { id: 6, name: 'Gafas Performance', brand: 'Universal Colours', category: 'accesorios', price: 195, img: 'img/sunglasses-display.jpg' },
+    { id: 7, name: 'Maillot Crank Long Ride', brand: 'Crank Editions', category: 'accesorios', price: 95, tag: 'EDICIÓN', tagLima: true, img: 'img/first-long-ride-1.jpg' },
+    { id: 8, name: 'Bici Ruta Edición Pucará', brand: 'Crank Editions', category: 'ruta', price: 5200, tag: 'EDICIÓN', img: 'img/cyclist-photo.jpg' },
+    { id: 9, name: 'Café Espresso 250g', brand: 'Crank Roast', category: 'cafe', price: 12, tag: 'FRESCO', tagLima: true, img: 'img/coffee-bike.jpg' },
+    { id: 10, name: 'Café Filtrado V60', brand: 'Crank Roast', category: 'cafe', price: 14, tag: 'NUEVO', img: 'img/celebration.jpg' },
+    { id: 11, name: 'Pack The Last Dance', brand: 'Crank Rides', category: 'accesorios', price: 65, tag: 'COLECCIÓN', tagMagenta: true, img: 'img/last-dance-1.jpg' },
+    { id: 12, name: 'Sesión Bike Fit Pro', brand: 'Crank Taller', category: 'accesorios', price: 120, img: 'img/cyclist-mid.jpg' },
   ];
 
+  // ==========================================
+  // EVENTS
+  // ==========================================
+  const events = [
+    { day: 17, month: 'MAY', year: 2026, title: 'Crank Long Ride · Cajas', time: '06:00', distance: '85 km', type: 'ride', meta: 'Salida desde Crank · Nivel intermedio' },
+    { day: 24, month: 'MAY', year: 2026, title: 'Female Ride · El Valle', time: '07:30', distance: '40 km', type: 'female', meta: 'Solo mujeres · Nivel principiante' },
+    { day: 31, month: 'MAY', year: 2026, title: 'Clínica de Mecánica Básica', time: '15:00', type: 'evento', meta: 'En el taller · 8 cupos · $20' },
+    { day: 7, month: 'JUN', year: 2026, title: 'Epic Ride · Pucará', time: '05:30', distance: '120 km', type: 'ride', meta: 'Reto avanzado · Inscripción $25' },
+    { day: 14, month: 'JUN', year: 2026, title: 'Café & Cleats · Domingo', time: '08:00', distance: '50 km', type: 'evento', meta: 'Salida + café en la tienda' },
+    { day: 21, month: 'JUN', year: 2026, title: 'The Last Dance · Ingapirca', time: '06:00', distance: '95 km', type: 'ride', meta: 'Edición limitada · Kit incluido' },
+  ];
+
+  // ==========================================
+  // CART STATE
+  // ==========================================
   const cart = {};
 
   function renderProducts(filter = 'todo') {
@@ -1258,7 +1848,7 @@
       <div class="product" data-category="${p.category}">
         <div class="product-image">
           <img src="${p.img}" alt="${p.name}" loading="lazy" />
-          ${p.tag ? `<span class="product-tag${p.tagGreen ? ' green' : ''}">${p.tag}</span>` : ''}
+          ${p.tag ? `<span class="product-tag${p.tagLima ? ' lima' : ''}${p.tagMagenta ? ' magenta' : ''}">${p.tag}</span>` : ''}
         </div>
         <div class="product-info">
           <div class="product-brand">${p.brand}</div>
@@ -1270,6 +1860,33 @@
               Añadir
             </button>
           </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderEvents() {
+    const list = document.getElementById('eventsList');
+    list.innerHTML = events.map(e => `
+      <div class="event">
+        <div class="event-date">
+          <div class="day">${e.day}</div>
+          <div class="month">${e.month}</div>
+        </div>
+        <div class="event-info">
+          <h4>${e.title}</h4>
+          <div class="meta">
+            <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>${e.time}</span>
+            ${e.distance ? `<span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>${e.distance}</span>` : ''}
+            <span><span class="event-tag ${e.type}">${e.type === 'ride' ? 'Ride' : (e.type === 'female' ? 'Female' : 'Evento')}</span></span>
+          </div>
+          <div style="font-size:13px;color:var(--text-muted);margin-top:8px;">${e.meta}</div>
+        </div>
+        <div class="event-cta">
+          <a href="https://wa.me/593000000000?text=${encodeURIComponent('Hola Crank! Quiero apuntarme a: ' + e.title + ' (' + e.day + '/' + e.month + ')')}" target="_blank">
+            Apuntarme
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
         </div>
       </div>
     `).join('');
@@ -1309,7 +1926,7 @@
       if (!p) return '';
       return `
         <div class="cart-item">
-          <div class="cart-item-image"><img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;border-radius:10px" /></div>
+          <div class="cart-item-image"><img src="${p.img}" alt="${p.name}" /></div>
           <div class="cart-item-info">
             <div class="cart-item-name">${p.name}</div>
             <div class="cart-item-price">$${(p.price * q).toLocaleString()}</div>
@@ -1333,9 +1950,9 @@
     document.getElementById('cartDrawer').classList.remove('open');
   }
 
-  function checkout() {
+  function buildOrderMessage() {
     const items = Object.entries(cart);
-    if (items.length === 0) return;
+    if (items.length === 0) return null;
     let msg = 'Hola Crank! Quiero pedir:%0A%0A';
     let total = 0;
     items.forEach(([id, q]) => {
@@ -1346,7 +1963,31 @@
       }
     });
     msg += `%0ATotal: $${total.toLocaleString()}`;
+    return { msg, total };
+  }
+
+  function checkoutWhatsApp() {
+    const order = buildOrderMessage();
+    if (!order) return;
+    window.open(`https://wa.me/593000000000?text=${order.msg}`, '_blank');
+  }
+
+  function openBankModal() {
+    if (Object.keys(cart).length === 0) return;
+    document.getElementById('bankModal').classList.add('open');
+  }
+  function closeBankModal() {
+    document.getElementById('bankModal').classList.remove('open');
+  }
+  function sendBankReceipt() {
+    const order = buildOrderMessage();
+    if (!order) return;
+    const msg = `Hola Crank! Voy a hacer transferencia para mi pedido:%0A%0A${order.msg.replace('Hola Crank! Quiero pedir:%0A%0A', '')}%0A%0AEnviaré el comprobante por aquí.`;
     window.open(`https://wa.me/593000000000?text=${msg}`, '_blank');
+    closeBankModal();
+  }
+  function copyText(text) {
+    navigator.clipboard.writeText(text).then(() => showToast('Copiado: ' + text));
   }
 
   function showToast(msg) {
@@ -1354,6 +1995,25 @@
     t.textContent = msg;
     t.classList.add('show');
     setTimeout(() => t.classList.remove('show'), 2000);
+  }
+
+  function submitForm(e, type) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+    let msg = '';
+    if (type === 'compra') {
+      msg = `Hola Crank! Quiero comprar:%0A%0ANombre: ${data.nombre}%0ATeléfono: ${data.telefono}%0AEmail: ${data.email}%0AInterés: ${data.interes}`;
+      if (data.mensaje) msg += `%0AMensaje: ${data.mensaje}`;
+    } else {
+      msg = `Hola Crank! Quiero agendar taller:%0A%0ANombre: ${data.nombre}%0ATeléfono: ${data.telefono}%0AServicio: ${data.servicio}%0AFecha: ${data.fecha}`;
+      if (data.marca) msg += `%0AMarca: ${data.marca}`;
+      if (data.modelo) msg += `%0AModelo: ${data.modelo}`;
+      if (data.mensaje) msg += `%0ADetalles: ${data.mensaje}`;
+    }
+    window.open(`https://wa.me/593000000000?text=${msg}`, '_blank');
+    e.target.reset();
+    showToast('Abriendo WhatsApp...');
   }
 
   // Filters
@@ -1365,7 +2025,20 @@
     });
   });
 
+  // Form tabs
+  document.querySelectorAll('.form-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.pane;
+      document.querySelectorAll('.form-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.form-pane').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelector(`.form-pane[data-pane="${target}"]`).classList.add('active');
+    });
+  });
+
+  // Init
   renderProducts();
+  renderEvents();
   updateCart();
 </script>
 
