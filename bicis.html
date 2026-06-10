@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bicis y Tienda — Crank Cuenca</title>
+<meta name="description" content="Bicicletas de ruta, MTB y gravel, accesorios y café en Crank Cuenca. Filtra por disciplina, compara y compra. Envíos a todo Ecuador." />
+<meta property="og:title" content="Bicis y Tienda — Crank Cuenca" />
+<meta property="og:description" content="Catálogo curado de bicicletas y accesorios. Ruta, MTB, gravel y más en Cuenca, Ecuador." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="img/bike-road.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body data-page="bicis">
+
+<div id="site-header"></div>
+
+<!-- PAGE HERO -->
+<header class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('img/bike-road.jpg');"></div>
+  <div class="container">
+    <div class="section-eyebrow">Bicis &amp; Tienda</div>
+    <h1>Una bici para <span class="accent">cada terreno.</span></h1>
+    <p>Desde el asfalto de la avenida hasta los senderos de El Cajas. Filtra por estilo, compara y arma tu pedido — o deja que el asesor te recomiende.</p>
+    <div class="hero-actions" style="margin-top:28px;">
+      <a href="#" class="btn btn-primary" data-advisor="compra">Encuentra tu bici</a>
+      <a href="#tienda" class="btn btn-outline">Ver catálogo</a>
+    </div>
+  </div>
+</header>
+
+<!-- DISCIPLINAS -->
+<section id="disciplinas">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Disciplinas</div>
+      <h2 class="section-title">Elige tu mundo.</h2>
+      <p class="section-desc">Te ayudamos a encontrar la bici perfecta para tu estilo de rodar.</p>
+    </div>
+    <div class="disciplines-grid">
+      <div class="discipline reveal">
+        <div class="discipline-img"><img src="img/white-bike-mountain.jpg" alt="Ciclismo de ruta" loading="lazy"/></div>
+        <div class="discipline-body">
+          <div class="discipline-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg></div>
+          <h3>Ruta</h3>
+          <p>Velocidad pura sobre asfalto. Cuadros aerodinámicos, componentes de carbono y la geometría perfecta para subir cualquier puerto.</p>
+          <ul class="discipline-features">
+            <li>Cuadros de carbono y aluminio</li>
+            <li>Grupos electrónicos y mecánicos</li>
+            <li>Ruedas tubeless ready</li>
+          </ul>
+          <a href="bicis.html?estilo=ruta#tienda" class="brand-link">Ver bicis de ruta →</a>
+        </div>
+      </div>
+      <div class="discipline reveal">
+        <div class="discipline-img"><img src="img/mtb-detail.jpg" alt="Mountain bike" loading="lazy"/></div>
+        <div class="discipline-body">
+          <div class="discipline-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 18l4-8 6 4 4-6 6 10"/><circle cx="6" cy="10" r="2"/><circle cx="18" cy="14" r="2"/></svg></div>
+          <h3>MTB</h3>
+          <p>Para los que buscan adrenalina en cada sendero. Suspensión full o hardtail, listas para los Andes ecuatorianos.</p>
+          <ul class="discipline-features">
+            <li>Suspensión RockShox y Fox</li>
+            <li>Frenos hidráulicos de disco</li>
+            <li>Cuadros 29" y 27.5"</li>
+          </ul>
+          <a href="bicis.html?estilo=mtb#tienda" class="brand-link">Ver MTB →</a>
+        </div>
+      </div>
+      <div class="discipline reveal">
+        <div class="discipline-img"><img src="img/mountain-path.jpg" alt="Bici gravel" loading="lazy"/></div>
+        <div class="discipline-body">
+          <div class="discipline-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6l4 4M21 6l-4 4M3 18l4-4M21 18l-4-4"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <h3>Gravel</h3>
+          <p>Lo mejor de dos mundos: aventura sin límites. La bici ideal para escapar a las trochas y descubrir Ecuador sin ataduras.</p>
+          <ul class="discipline-features">
+            <li>Geometría versátil y cómoda</li>
+            <li>Llantas all-road 700x40-50c</li>
+            <li>Bikepacking ready</li>
+          </ul>
+          <a href="bicis.html?estilo=gravel#tienda" class="brand-link">Ver gravel →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIENDA -->
+<section class="bg-soft-section" id="tienda">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Tienda</div>
+      <h2 class="section-title">Bicis, partes y accesorios.</h2>
+      <p class="section-desc">Catálogo curado con las mejores marcas del mercado. Envíos a todo el Ecuador.</p>
+    </div>
+    <div class="shop-filters">
+      <button class="filter-btn active" data-filter="todo">Todo</button>
+      <button class="filter-btn" data-filter="ruta">Ruta</button>
+      <button class="filter-btn" data-filter="mtb">MTB</button>
+      <button class="filter-btn" data-filter="gravel">Gravel</button>
+      <button class="filter-btn" data-filter="accesorios">Accesorios</button>
+      <button class="filter-btn" data-filter="cafe">Café</button>
+    </div>
+    <div class="products-grid" id="productsGrid"></div>
+  </div>
+</section>
+
+<!-- PROCESO DE COMPRA -->
+<section id="proceso">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Cómo funciona</div>
+      <h2 class="section-title">Tu bici en 3 pasos.</h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-step reveal"><div class="step-num">01</div><h4>Asesoría</h4><p>Cuéntanos tu estilo, nivel y presupuesto. Te recomendamos la bici ideal, sin presión.</p></div>
+      <div class="process-step reveal"><div class="step-num">02</div><h4>Bike fit / prueba</h4><p>Pruebas la bici y ajustamos tu posición para que sea cómoda y eficiente desde el día uno.</p></div>
+      <div class="process-step reveal"><div class="step-num">03</div><h4>A rodar</h4><p>Te la entregamos lista y te sumamos a la comunidad de rides Crank.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FRANJA CTA -->
+<div class="cta-band">
+  <div class="container">
+    <h2>¿No sabes cuál elegir?</h2>
+    <p>El asesor Crank te recomienda en menos de un minuto y arma tu mensaje de WhatsApp.</p>
+    <a href="#" class="btn" data-advisor="compra">Encuentra tu bici</a>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+
+<script src="site.js" defer></script>
+</body>
+</html>

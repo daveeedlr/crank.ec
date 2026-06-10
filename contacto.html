@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contacto y Marcas — Crank Cuenca</title>
+<meta name="description" content="Visítanos en Cuenca: dirección, horarios, WhatsApp e Instagram. Marcas oficiales que representamos. Reserva tu compra o agenda taller por WhatsApp." />
+<meta property="og:title" content="Contacto y Marcas — Crank Cuenca" />
+<meta property="og:description" content="Dirección, horarios y marcas oficiales de Crank en Cuenca, Ecuador." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="img/cuenca-vista.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body data-page="contacto">
+
+<div id="site-header"></div>
+
+<!-- PAGE HERO -->
+<header class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('img/cuenca-vista.jpg');"></div>
+  <div class="container">
+    <div class="section-eyebrow">Contacto</div>
+    <h1>Visítanos en <span class="accent">Cuenca.</span></h1>
+    <p>Ven a tomarte un café, conocer las bicis y conversar sobre tu próxima aventura sobre ruedas.</p>
+    <div class="hero-actions" style="margin-top:28px;">
+      <a href="#formulario" class="btn btn-primary">Reservar / Agendar</a>
+      <a href="https://wa.me/593995430561?text=Hola%20Crank!%20Tengo%20una%20consulta." target="_blank" rel="noopener" class="btn btn-outline">Escríbenos directo</a>
+    </div>
+  </div>
+</header>
+
+<!-- FORMULARIO RESERVA (2 tabs) -->
+<section class="form-section" id="formulario">
+  <div class="container">
+    <div class="section-header" style="text-align:center;margin:0 auto 40px;">
+      <div class="section-eyebrow center">Reserva</div>
+      <h2 class="section-title">Compra una bici o agenda taller.</h2>
+      <p class="section-desc">Completa el formulario y te contactaremos en menos de 24 horas. ¿Prefieres que te guiemos? Usa el <a href="#" data-advisor="compra" style="color:var(--naranja);text-decoration:none;">asesor de compra</a> o el <a href="#" data-advisor="taller" style="color:var(--naranja);text-decoration:none;">asesor de taller</a>.</p>
+    </div>
+    <div class="form-wrapper">
+      <div class="form-tabs">
+        <button class="form-tab active" data-pane="compra">Quiero comprar</button>
+        <button class="form-tab" data-pane="taller">Agendar taller</button>
+      </div>
+
+      <div class="form-pane active" data-pane="compra">
+        <form onsubmit="submitForm(event, 'compra')">
+          <div class="form-row">
+            <div class="form-field"><label>Nombre</label><input type="text" name="nombre" required placeholder="Tu nombre completo"></div>
+            <div class="form-field"><label>Teléfono / WhatsApp</label><input type="tel" name="telefono" required placeholder="+593 99 999 9999"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-field"><label>Email</label><input type="email" name="email" required placeholder="tu@email.com"></div>
+            <div class="form-field">
+              <label>¿Qué te interesa?</label>
+              <select name="interes" required>
+                <option value="">Selecciona una opción</option>
+                <option>Bici de Ruta</option>
+                <option>Bici de MTB</option>
+                <option>Bici de Gravel</option>
+                <option>Accesorios</option>
+                <option>Indumentaria</option>
+                <option>Otro</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row" style="grid-template-columns:1fr;">
+            <div class="form-field"><label>Mensaje (opcional)</label><textarea name="mensaje" placeholder="Cuéntanos qué buscas: marca, talla, presupuesto..."></textarea></div>
+          </div>
+          <button class="form-submit" type="submit">Enviar pedido por WhatsApp</button>
+        </form>
+      </div>
+
+      <div class="form-pane" data-pane="taller">
+        <form onsubmit="submitForm(event, 'taller')">
+          <div class="form-row">
+            <div class="form-field"><label>Nombre</label><input type="text" name="nombre" required placeholder="Tu nombre completo"></div>
+            <div class="form-field"><label>Teléfono / WhatsApp</label><input type="tel" name="telefono" required placeholder="+593 99 999 9999"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label>Tipo de servicio</label>
+              <select name="servicio" required>
+                <option value="">Selecciona un servicio</option>
+                <option>Mantenimiento básico — $25</option>
+                <option>Mantenimiento completo — $80</option>
+                <option>Servicio de suspensión — $60</option>
+                <option>Bike fit — $120</option>
+                <option>Tubeless setup — $35</option>
+                <option>Armado de bici — $100</option>
+                <option>Otro</option>
+              </select>
+            </div>
+            <div class="form-field"><label>Fecha preferida</label><input type="date" name="fecha" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-field"><label>Marca de la bici</label><input type="text" name="marca" placeholder="Ej: Specialized, Trek, Pinarello..."></div>
+            <div class="form-field"><label>Modelo / año</label><input type="text" name="modelo" placeholder="Ej: Tarmac SL7, 2024"></div>
+          </div>
+          <div class="form-row" style="grid-template-columns:1fr;">
+            <div class="form-field"><label>Detalles adicionales (opcional)</label><textarea name="mensaje" placeholder="¿Algún problema específico? ¿Notas algo raro?"></textarea></div>
+          </div>
+          <button class="form-submit" type="submit">Agendar cita por WhatsApp</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>Encuéntranos</h3>
+        <div class="contact-row">
+          <div class="contact-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="label">Dirección</div><div class="value">Cuenca, Ecuador</div></div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <div><div class="label">WhatsApp</div><div class="value"><a href="https://wa.me/593995430561?text=Hola%20Crank!" target="_blank" rel="noopener">+593 99 543 0561</a></div></div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+          <div><div class="label">Instagram</div><div class="value"><a href="https://instagram.com/crank.ec" target="_blank" rel="noopener">@crank.ec</a></div></div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div><div class="label">Email</div><div class="value"><a href="mailto:hola@crank.ec">hola@crank.ec</a></div></div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <h3>Horarios</h3>
+        <ul class="hours-list">
+          <li><span>Lunes</span><span>9:00 — 19:00</span></li>
+          <li><span>Martes</span><span>9:00 — 19:00</span></li>
+          <li><span>Miércoles</span><span>9:00 — 19:00</span></li>
+          <li><span>Jueves</span><span>9:00 — 19:00</span></li>
+          <li><span>Viernes</span><span>9:00 — 19:00</span></li>
+          <li><span>Sábado</span><span>9:00 — 17:00</span></li>
+          <li class="closed"><span>Domingo</span><span>Cerrado</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARCAS -->
+<section id="marcas">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Marcas que representamos</div>
+      <h2 class="section-title">Distribución oficial.</h2>
+      <p class="section-desc">Trabajamos directamente con las marcas que mejor entienden el ciclismo. Calidad, garantía y soporte de primera.</p>
+    </div>
+    <div class="brands-grid">
+      <a href="https://www.universalcolours.com/" target="_blank" rel="noopener" class="brand reveal">
+        <div class="brand-logomark"><div class="uc-logo">UNIVERSAL<br>COLOURS<small>· LONDON ·</small></div></div>
+        <div class="brand-tag">Apparel · UK</div>
+        <h4>Indumentaria técnica</h4>
+        <p>Maillots, culottes y kits de ruta y gravel hechos en Europa. Distribución oficial en Ecuador.</p>
+        <div class="brand-link">universalcolours.com →</div>
+      </a>
+      <a href="https://www.oneupcomponents.com/" target="_blank" rel="noopener" class="brand reveal">
+        <div class="brand-logomark"><div class="oneup-logo">ONEUP<span>COMPONENTS</span></div></div>
+        <div class="brand-tag">Components · Canadá</div>
+        <h4>Componentes MTB</h4>
+        <p>Tijas dropper, manillares, pedales y multitools de alto rendimiento. Representante oficial.</p>
+        <div class="brand-link">oneupcomponents.com →</div>
+      </a>
+      <div class="brand reveal">
+        <div class="brand-logomark"><div class="uc-logo" style="font-size:18px;">UNIVERSAL COLOURS<br>EC<small>· CUENCA ·</small></div></div>
+        <div class="brand-tag">Local Edition</div>
+        <h4>Ediciones Cuenca</h4>
+        <p>Kits limitados diseñados localmente. Solo en Crank.</p>
+        <div class="brand-link">@universal.colours.ec →</div>
+      </div>
+      <div class="brand reveal">
+        <div class="brand-logomark"><div style="font-family:'Archivo Black',sans-serif;font-size:24px;color:var(--hueso);text-align:center;line-height:1;">+12<br><span style="font-family:'Inter',sans-serif;font-weight:300;font-size:13px;color:var(--text-dim);letter-spacing:0.1em;">marcas más</span></div></div>
+        <div class="brand-tag">Multimarca</div>
+        <h4>Y mucho más</h4>
+        <p>Shimano, SRAM, Continental, Maxxis, Fox, RockShox y otras marcas líderes.</p>
+        <div class="brand-link">Ver todas →</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="site.js" defer></script>
+</body>
+</html>
