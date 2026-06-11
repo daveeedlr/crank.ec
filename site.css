@@ -14,10 +14,13 @@
   --forest-deep: #E3DBC1;     /* bandas / inputs / footer (beige más profundo) */
   --hueso: #20302A;           /* TEXTO oscuro (antes crema) */
   --hueso-light: #16241E;
-  --naranja: #FF5722;
-  --naranja-hover: #E64A1C;
-  --lima: #C8FF00;
-  --magenta: #E91E63;
+  /* "naranja" se reasigna al verde de marca para textos/íconos de acento
+     (legible sobre beige). Los CTAs ahora usan Lima. Sin naranja en la marca. */
+  --naranja: #194C3F;          /* Forest Light — acento de texto/íconos */
+  --naranja-hover: #0D2821;    /* Forest */
+  --lima: #C8FF00;             /* acento primario · CTAs */
+  --lima-deep: #A8D900;        /* hover de CTAs lima */
+  --magenta: #E1C3FF;          /* Lavanda — acento secundario */
   --carbon: #1A1A1A;
   --asphalt: #3D3D3D;
   --concrete: #737373;
@@ -95,8 +98,8 @@ nav.scrolled .logo { font-size: 22px; }
 .nav-links a.active { color: var(--naranja); }
 .nav-right { display: flex; align-items: center; gap: 14px; }
 .nav-cart {
-  background: var(--naranja);
-  color: white;
+  background: var(--lima);
+  color: var(--hueso);
   border: none;
   padding: 10px 18px;
   border-radius: 999px;
@@ -107,9 +110,9 @@ nav.scrolled .logo { font-size: 22px; }
   transition: background 0.2s;
   font-family: inherit;
 }
-.nav-cart:hover { background: var(--naranja-hover); }
+.nav-cart:hover { background: var(--lima-deep); }
 .nav-cart-count {
-  background: white; color: var(--naranja);
+  background: var(--hueso); color: var(--lima);
   border-radius: 999px;
   min-width: 22px; height: 22px;
   display: inline-flex; align-items: center; justify-content: center;
@@ -190,8 +193,8 @@ nav.scrolled .logo { font-size: 22px; }
 }
 .hero-tag {
   display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(255, 87, 34, 0.14);
-  border: 1px solid rgba(255, 87, 34, 0.4);
+  background: rgba(200,255,0, 0.14);
+  border: 1px solid rgba(200,255,0, 0.4);
   color: var(--naranja);
   padding: 7px 14px;
   border-radius: 999px;
@@ -233,8 +236,8 @@ nav.scrolled .logo { font-size: 22px; }
   transition: all 0.2s;
   font-family: inherit;
 }
-.btn-primary { background: var(--naranja); color: white; }
-.btn-primary:hover { background: var(--naranja-hover); transform: translateY(-2px); }
+.btn-primary { background: var(--lima); color: var(--hueso); }
+.btn-primary:hover { background: var(--lima-deep); transform: translateY(-2px); }
 .btn-outline {
   background: transparent;
   color: var(--text);
@@ -254,7 +257,7 @@ nav.scrolled .logo { font-size: 22px; }
   border-radius: 24px;
   overflow: hidden;
   border: 1px solid var(--line);
-  box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(255, 87, 34, 0.15);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(200,255,0, 0.15);
   position: relative;
 }
 .hero-image img {
@@ -377,7 +380,7 @@ section { padding: 100px 0; position: relative; }
 .discipline-body { padding: 28px 30px 32px; }
 .discipline-icon {
   width: 56px; height: 56px;
-  background: rgba(255, 87, 34, 0.14);
+  background: rgba(200,255,0, 0.14);
   border-radius: 16px;
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 20px;
@@ -418,9 +421,9 @@ section { padding: 100px 0; position: relative; }
 }
 .filter-btn:hover { color: var(--text); }
 .filter-btn.active {
-  background: var(--naranja);
-  border-color: var(--naranja);
-  color: white;
+  background: var(--lima);
+  border-color: var(--lima);
+  color: var(--hueso);
 }
 .products-grid {
   display: grid;
@@ -459,7 +462,7 @@ section { padding: 100px 0; position: relative; }
   letter-spacing: 0.06em;
 }
 .product-tag.lima { background: var(--lima); color: var(--hueso); }
-.product-tag.magenta { background: var(--magenta); color: white; }
+.product-tag.magenta { background: var(--magenta); color: var(--hueso); }
 .product-info { padding: 20px; flex: 1; display: flex; flex-direction: column; }
 .product-brand {
   color: var(--text-muted);
@@ -486,7 +489,7 @@ section { padding: 100px 0; position: relative; }
   color: var(--text-dim);
   text-transform: uppercase; letter-spacing: 0.04em;
 }
-.pill.accent { color: var(--naranja); border-color: rgba(255,87,34,0.4); background: rgba(255,87,34,0.1); }
+.pill.accent { color: var(--naranja); border-color: rgba(200,255,0,0.4); background: rgba(200,255,0,0.1); }
 .product-ideal { font-size: 12px; color: var(--text-muted); margin-bottom: 12px; }
 .product-ideal strong { color: var(--text-dim); }
 .product-bottom {
@@ -515,7 +518,7 @@ section { padding: 100px 0; position: relative; }
   display: inline-flex; align-items: center; gap: 6px;
   font-family: inherit;
 }
-.add-cart-btn:hover { background: var(--naranja); color: white; }
+.add-cart-btn:hover { background: var(--lima); color: var(--hueso); }
 
 /* ===== REWARDS ===== */
 #rewards {
@@ -719,9 +722,9 @@ section { padding: 100px 0; position: relative; }
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
-.event-tag.ride { background: rgba(255, 87, 34, 0.15); color: var(--naranja); border: 1px solid rgba(255, 87, 34, 0.4); }
+.event-tag.ride { background: rgba(200,255,0, 0.15); color: var(--naranja); border: 1px solid rgba(200,255,0, 0.4); }
 .event-tag.evento { background: rgba(200, 255, 0, 0.12); color: var(--lima); border: 1px solid rgba(200, 255, 0, 0.4); }
-.event-tag.female { background: rgba(233, 30, 99, 0.15); color: var(--magenta); border: 1px solid rgba(233, 30, 99, 0.4); }
+.event-tag.female { background: rgba(225,195,255,0.30); color: var(--hueso); border: 1px solid rgba(225,195,255,0.7); }
 .event-cta a {
   color: var(--hueso); text-decoration: none;
   font-weight: 600; font-size: 14px;
@@ -874,7 +877,7 @@ section { padding: 100px 0; position: relative; }
 .contact-row:last-child { border-bottom: none; }
 .contact-icon {
   width: 42px; height: 42px;
-  background: rgba(255, 87, 34, 0.14);
+  background: rgba(200,255,0, 0.14);
   border-radius: 12px;
   display: flex; align-items: center; justify-content: center;
   color: var(--naranja);
@@ -960,8 +963,8 @@ section { padding: 100px 0; position: relative; }
 .form-submit {
   width: 100%;
   margin-top: 24px;
-  background: var(--naranja);
-  color: white;
+  background: var(--lima);
+  color: var(--hueso);
   border: none;
   padding: 16px;
   border-radius: 12px;
@@ -970,7 +973,7 @@ section { padding: 100px 0; position: relative; }
   font-family: inherit;
   transition: background 0.2s;
 }
-.form-submit:hover { background: var(--naranja-hover); }
+.form-submit:hover { background: var(--lima-deep); }
 .form-pane { display: none; }
 .form-pane.active { display: block; }
 
@@ -1116,15 +1119,15 @@ footer {
 .toast {
   position: fixed; bottom: 30px; left: 50%;
   transform: translateX(-50%) translateY(100px);
-  background: var(--naranja);
-  color: white;
+  background: var(--lima);
+  color: var(--hueso);
   padding: 14px 24px;
   border-radius: 999px;
   font-weight: 600;
   font-size: 14px;
   z-index: 300;
   transition: transform 0.3s;
-  box-shadow: 0 10px 40px rgba(255, 87, 34, 0.4);
+  box-shadow: 0 10px 40px rgba(200,255,0, 0.4);
 }
 .toast.show { transform: translateX(-50%) translateY(0); }
 
@@ -1238,7 +1241,7 @@ footer {
   display: flex; flex-direction: column; gap: 10px; text-decoration: none;
 }
 .intent:hover { border-color: var(--naranja); transform: translateY(-3px); background: var(--bg-soft); }
-.intent .intent-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(255,87,34,0.14); color: var(--naranja); display: flex; align-items: center; justify-content: center; }
+.intent .intent-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(200,255,0,0.14); color: var(--naranja); display: flex; align-items: center; justify-content: center; }
 .intent strong { font-size: 15px; color: var(--hueso); font-weight: 700; }
 .intent span { font-size: 13px; color: var(--text-dim); }
 
@@ -1256,7 +1259,7 @@ footer {
 .diff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .diff { background: var(--bg-card); border: 1px solid var(--line); border-radius: 18px; padding: 28px; transition: all 0.3s; }
 .diff:hover { border-color: var(--naranja); transform: translateY(-3px); }
-.diff .diff-icon { width: 50px; height: 50px; border-radius: 14px; background: rgba(255,87,34,0.14); color: var(--naranja); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+.diff .diff-icon { width: 50px; height: 50px; border-radius: 14px; background: rgba(200,255,0,0.14); color: var(--naranja); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
 .diff h4 { font-family: 'Archivo Black', sans-serif; font-size: 18px; color: var(--hueso); margin-bottom: 8px; }
 .diff p { color: var(--text-dim); font-size: 14px; }
 
@@ -1317,15 +1320,17 @@ footer {
 
 /* --- Franjas CTA a todo el ancho --- */
 .cta-band {
-  background: linear-gradient(120deg, var(--naranja), #ff7a3c);
+  background: linear-gradient(120deg, #0D2821, #194C3F);
   padding: 64px 0; text-align: center;
 }
 .cta-band.lima { background: var(--lima); }
 .cta-band.lima h2, .cta-band.lima p { color: var(--hueso); }
-.cta-band h2 { font-family: 'Archivo Black', sans-serif; font-size: clamp(30px,4.5vw,52px); color: white; margin-bottom: 14px; letter-spacing: -0.02em; }
-.cta-band p { color: rgba(255,255,255,0.9); font-size: 17px; margin-bottom: 28px; max-width: 560px; margin-left: auto; margin-right: auto; }
-.cta-band .btn { background: #16241E; color: var(--cream); }
-.cta-band .btn:hover { background: #0c1611; transform: translateY(-2px); }
+.cta-band h2 { font-family: 'Archivo Black', sans-serif; font-size: clamp(30px,4.5vw,52px); color: var(--cream); margin-bottom: 14px; letter-spacing: -0.02em; }
+.cta-band p { color: rgba(251,248,238,0.85); font-size: 17px; margin-bottom: 28px; max-width: 560px; margin-left: auto; margin-right: auto; }
+.cta-band .btn { background: var(--lima); color: var(--hueso); }
+.cta-band .btn:hover { background: var(--lima-deep); transform: translateY(-2px); }
+.cta-band.lima .btn { background: #16241E; color: var(--cream); }
+.cta-band.lima .btn:hover { background: #0c1611; transform: translateY(-2px); }
 .cta-band.lima .btn { background: #16241E; color: var(--cream); }
 
 /* --- WhatsApp flotante --- */
@@ -1355,7 +1360,7 @@ footer {
 .advisor-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
 .advisor-head h3 { font-family: 'Archivo Black', sans-serif; font-size: 24px; color: var(--hueso); }
 .advisor-progress { height: 5px; background: var(--forest-deep); border-radius: 999px; margin: 18px 0 26px; overflow: hidden; }
-.advisor-progress span { display: block; height: 100%; background: var(--naranja); border-radius: 999px; transition: width 0.3s; }
+.advisor-progress span { display: block; height: 100%; background: var(--lima); border-radius: 999px; transition: width 0.3s; }
 .advisor-step { display: none; }
 .advisor-step.active { display: block; }
 .advisor-step .q { font-size: 13px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; font-weight: 600; }
@@ -1366,7 +1371,7 @@ footer {
   font-size: 14px; font-weight: 600; text-align: left; transition: all 0.2s;
 }
 .opt:hover { border-color: var(--naranja); }
-.opt.selected { border-color: var(--naranja); background: rgba(255,87,34,0.12); color: var(--naranja); }
+.opt.selected { border-color: var(--naranja); background: rgba(200,255,0,0.12); color: var(--naranja); }
 .advisor .form-field { margin-bottom: 14px; }
 .advisor-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 26px; }
 .advisor-nav button {
@@ -1374,8 +1379,8 @@ footer {
   cursor: pointer; font-family: inherit; border: none; transition: all 0.2s;
 }
 .advisor-nav .back { background: var(--bg-card); color: var(--hueso); border: 1px solid var(--line); }
-.advisor-nav .next { background: var(--naranja); color: white; margin-left: auto; }
-.advisor-nav .next:hover { background: var(--naranja-hover); }
+.advisor-nav .next { background: var(--lima); color: var(--hueso); margin-left: auto; }
+.advisor-nav .next:hover { background: var(--lima-deep); }
 .advisor-nav .next:disabled { opacity: 0.4; cursor: not-allowed; }
 
 /* Botón que abre el asesor (reutilizable) */
