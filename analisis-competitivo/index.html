@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crank vs LAP.ccc — Análisis Competitivo y Plan de Acción</title>
+<style>
+  :root{
+    --beige:#EDE8D0; --beige-soft:#E5DDC2; --card:#FAF6E9; --cream:#FBF8EE;
+    --forest:#20302A; --forest-deep:#16241E; --green:#194C3F; --green-hover:#0D2821;
+    --lima:#C8FF00; --lima-deep:#A8D900; --lavender:#E1C3FF;
+    --carbon:#1A1A1A; --dim:rgba(32,48,42,.72); --muted:rgba(32,48,42,.52);
+    --line:rgba(32,48,42,.16); --line-strong:rgba(32,48,42,.30);
+    --radius:20px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:var(--beige);color:var(--forest);line-height:1.6}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 28px}
+  header{background:var(--forest-deep);color:var(--cream);padding:72px 0 56px}
+  .kicker{display:inline-block;background:var(--lima);color:var(--forest-deep);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:20px}
+  h1{font-size:clamp(34px,5vw,54px);line-height:1.08;letter-spacing:-.02em;font-weight:800}
+  h1 .vs{color:var(--lima)}
+  .sub{margin-top:16px;font-size:18px;color:rgba(251,248,238,.75);max-width:720px}
+  .meta{margin-top:24px;font-size:13px;color:rgba(251,248,238,.5);letter-spacing:.05em;text-transform:uppercase}
+  section{padding:56px 0;border-bottom:1px solid var(--line)}
+  .sec-label{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin-bottom:8px}
+  h2{font-size:clamp(26px,3.4vw,36px);letter-spacing:-.015em;font-weight:800;margin-bottom:22px}
+  h3{font-size:19px;font-weight:700;margin-bottom:10px}
+  p{margin-bottom:14px}
+  .lead{font-size:18px;color:var(--dim);max-width:820px}
+  .grid{display:grid;gap:18px}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+  .g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  .card h3{display:flex;align-items:center;gap:8px}
+  .card p{color:var(--dim);font-size:15px;margin-bottom:8px}
+  .card ul{padding-left:18px;color:var(--dim);font-size:15px}
+  .card li{margin-bottom:7px}
+  .dark{background:var(--forest);color:var(--cream);border:none}
+  .dark p,.dark ul{color:rgba(251,248,238,.78)}
+  .dark h3{color:var(--cream)}
+  .stat{background:var(--forest);color:var(--cream);border-radius:var(--radius);padding:22px;text-align:left}
+  .stat .n{font-size:34px;font-weight:800;color:var(--lima);line-height:1.1}
+  .stat .l{font-size:13px;color:rgba(251,248,238,.65);margin-top:6px}
+  table{width:100%;border-collapse:collapse;background:var(--card);border-radius:var(--radius);overflow:hidden;font-size:14.5px}
+  .tablewrap{border:1px solid var(--line);border-radius:var(--radius);overflow-x:auto}
+  th{background:var(--forest);color:var(--cream);text-align:left;padding:13px 16px;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase}
+  th.crank-col{background:var(--green)}
+  td{padding:13px 16px;border-top:1px solid var(--line);vertical-align:top;color:var(--dim)}
+  td:first-child{font-weight:700;color:var(--forest);white-space:nowrap}
+  .win{background:rgba(200,255,0,.18);font-weight:600;color:var(--forest)}
+  .lose{background:rgba(225,195,255,.22)}
+  .tag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:12px}
+  .tag.lima{background:var(--lima);color:var(--forest-deep)}
+  .tag.lav{background:var(--lavender);color:var(--forest-deep)}
+  .tag.green{background:var(--green);color:var(--cream)}
+  .swot{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+  .num{font-size:13px;font-weight:800;color:var(--green);letter-spacing:.08em}
+  .pillar{border-left:5px solid var(--lima);padding-left:20px}
+  .road{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .quote{background:var(--forest-deep);color:var(--cream);border-radius:var(--radius);padding:36px;font-size:21px;font-weight:600;line-height:1.45;margin:26px 0}
+  .quote .hl{color:var(--lima)}
+  footer{padding:40px 0 60px;color:var(--muted);font-size:13px}
+  .kpi td:first-child{white-space:normal}
+  .note{font-size:13px;color:var(--muted);margin-top:10px}
+  @media print{ header{padding:40px 0} section{padding:30px 0} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <span class="kicker">Confidencial · Estrategia Crank</span>
+    <h1>CRANK <span class="vs">vs</span> LAP.ccc</h1>
+    <p class="sub">Análisis competitivo completo y plan para defender Cuenca, recuperar clientes perdidos y expandirnos a mercados donde ellos no están.</p>
+    <p class="meta">Cuenca, Ecuador · Junio 2026 · Preparado para el equipo Crank</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <p class="sec-label">01 · Resumen ejecutivo</p>
+    <h2>La situación en una página</h2>
+    <p class="lead">LAP.ccc es nuestro competidor más serio en Cuenca: copia nuestro estilo e iniciativas, representa más marcas, importa más producto y tiene más capital para financiar lanzamientos, giveaways y líneas nuevas. En el último año nos ha quitado clientes. Pero su modelo tiene un punto ciego enorme: <strong>es una tienda de productos, no un ecosistema</strong>. No tienen taller, no tienen café, no tienen programa de fidelidad, cierran los domingos y dependen de dos marcas de bicicletas. Ahí es donde ganamos.</p>
+    <div class="quote">No podemos ganarle a LAP gastando más que ellos. Les ganamos haciendo lo que el dinero no compra rápido: <span class="hl">servicio, comunidad y retención.</span> Cada bici que LAP vende necesita mantenimiento — y ellos no tienen taller.</div>
+    <div class="grid g4">
+      <div class="stat"><div class="n">0</div><div class="l">Talleres mecánicos tiene LAP. Cada Specialized que venden es un cliente potencial de nuestro taller.</div></div>
+      <div class="stat"><div class="n">7 vs 5.5</div><div class="l">Días que abrimos por semana vs LAP (cierra domingos — el día que Cuenca rueda).</div></div>
+      <div class="stat"><div class="n">2 vs 15+</div><div class="l">Marcas de bicicleta de LAP (Specialized, ENVE) vs marcas que Crank vende y atiende.</div></div>
+      <div class="stat"><div class="n">50%</div><div class="l">Del foco de LAP está en running, no en ciclismo. Su atención está dividida; la nuestra no.</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="sec-label">02 · Quién es LAP.ccc</p>
+    <h2>Perfil del competidor</h2>
+    <div class="grid g2">
+      <div class="card">
+        <span class="tag lav">Posicionamiento</span>
+        <h3>"Your one-stop concept store"</h3>
+        <p>Concept store premium de ciclismo <em>y running</em> con marcas curadas. Discurso casi calcado al nuestro: comunidad, experiencias, curaduría, sostenibilidad, asesoría personalizada y hasta análisis de biomecánica y eventos deportivos.</p>
+        <p><strong>Sitio:</strong> lapccc.com (WooCommerce, bilingüe ES/EN) · <strong>IG:</strong> @lap.ccc</p>
+        <p><strong>Horario:</strong> L–V 11:00–19:30, Sáb 11:00–16:00. <strong>Domingos cerrado.</strong></p>
+      </div>
+      <div class="card">
+        <span class="tag lav">Portafolio de marcas</span>
+        <h3>Más marcas, más capital</h3>
+        <ul>
+          <li><strong>Bicicletas:</strong> Specialized, ENVE — premium, tickets altos.</li>
+          <li><strong>Ropa ciclismo:</strong> Gobik, PAS Normal Studios, Oliver Otto.</li>
+          <li><strong>Running:</strong> Asics, Hermanos Koumori, PNS.</li>
+          <li><strong>Nutrición:</strong> Hammer Nutrition, NeverSecond, Skratch, ProBar.</li>
+          <li><strong>Accesorios:</strong> Silca, cascos, zapatos, gafas, aros.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="tag green">Sus fortalezas reales</span>
+        <h3>Lo que sí debemos respetar</h3>
+        <ul>
+          <li><strong>Capital:</strong> financian giveaways, importaciones grandes y líneas nuevas más rápido que nosotros.</li>
+          <li><strong>E-commerce funcional:</strong> carrito, precios publicados, pagos con tarjeta. Nosotros aún vendemos por WhatsApp.</li>
+          <li><strong>Specialized + ENVE:</strong> marcas aspiracionales que atraen al segmento de ticket más alto.</li>
+          <li><strong>Doble mercado:</strong> running les da tráfico y clientela que nosotros no tocamos.</li>
+          <li><strong>Marcas de ropa de moda:</strong> PAS Normal Studios es el uniforme del ciclista aspiracional.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="tag lima">Sus debilidades</span>
+        <h3>Las grietas en su modelo</h3>
+        <ul>
+          <li><strong>Sin taller:</strong> cero ingresos recurrentes por servicio; sus clientes deben ir a otro lado (a nosotros).</li>
+          <li><strong>Sin café, sin "tercer lugar":</strong> no hay razón para visitarlos sin intención de compra.</li>
+          <li><strong>Sin programa de fidelidad:</strong> no tienen mecanismo de retención ni datos de frecuencia.</li>
+          <li><strong>Sitio descuidado:</strong> secciones con lorem ipsum, plantilla genérica ("Why Choose KRYO?"), productos en $0.00. La curaduría es discurso, no ejecución.</li>
+          <li><strong>Dependencia de 2 marcas de bici:</strong> si Specialized cambia distribución o precios, su negocio de bicis queda expuesto.</li>
+          <li><strong>Foco dividido:</strong> ciclismo + running = la mitad de su energía en cada uno.</li>
+          <li><strong>Cerrados los domingos</strong> — el día principal de rodadas en Cuenca.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="sec-label">03 · Frente a frente</p>
+    <h2>Comparativa directa</h2>
+    <div class="tablewrap">
+    <table>
+      <tr><th>Dimensión</th><th class="crank-col">Crank</th><th>LAP.ccc</th></tr>
+      <tr><td>Modelo</td><td class="win">Ecosistema: bicis + café + taller multimarca + comunidad</td><td>Retail puro: tienda de productos curados</td></tr>
+      <tr><td>Taller mecánico</td><td class="win">Certificado, +10 años, multimarca (Shimano, SRAM, Campagnolo, Fox, RockShox)</td><td class="lose">No tiene</td></tr>
+      <tr><td>Marcas de bici</td><td class="win">15+ marcas (Canyon, Colnago…) y soporte para cualquier bici</td><td>2 (Specialized, ENVE) — premium pero estrecho</td></tr>
+      <tr><td>Segmentos</td><td class="win">Ruta, MTB, gravel, urbano, bikepacking, niños</td><td>Ruta/performance + running</td></tr>
+      <tr><td>Café / espacio social</td><td class="win">Café de especialidad ecuatoriano, baristas que pedalean</td><td class="lose">No tiene</td></tr>
+      <tr><td>Fidelidad</td><td class="win">Crank Pass (wallet digital, sellos y recompensas)</td><td class="lose">No tiene</td></tr>
+      <tr><td>Comunidad / eventos</td><td class="win">Rodadas semanales, Girls Ride Out, clínicas, Ingapirca, Ruta del Tren</td><td>Discurso de comunidad; pocas iniciativas visibles propias (replican las nuestras)</td></tr>
+      <tr><td>Horario</td><td class="win">7 días a la semana</td><td>5.5 días; domingos cerrado</td></tr>
+      <tr><td>E-commerce</td><td class="lose">Sin carrito: catálogo + WhatsApp</td><td class="win">WooCommerce completo con pagos con tarjeta</td></tr>
+      <tr><td>Ropa de moda ciclista</td><td class="lose">Limitada</td><td class="win">Gobik, PAS Normal Studios, Oliver Otto</td></tr>
+      <tr><td>Running</td><td>No participamos (decisión correcta: foco)</td><td class="win">Asics, Koumori — mercado adicional</td></tr>
+      <tr><td>Capital / inversión</td><td class="lose">Limitado</td><td class="win">Mayor músculo financiero para stock y giveaways</td></tr>
+      <tr><td>Identidad de marca</td><td class="win">Sistema propio (manual de marca, paleta, voz)</td><td>Plantilla genérica con secciones sin terminar</td></tr>
+    </table>
+    </div>
+    <p class="note">Verde lima = ventaja Crank · Lavanda = ventaja LAP. Fuentes: lapccc.com y crank.ec, junio 2026.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="sec-label">04 · SWOT Crank</p>
+    <h2>Dónde estamos parados</h2>
+    <div class="swot">
+      <div class="card"><span class="tag lima">Fortalezas</span>
+        <ul>
+          <li>Único ecosistema bici + café + taller de Cuenca: tres razones de visita, tres fuentes de ingreso.</li>
+          <li>Taller multimarca certificado con +10 años: confianza que el dinero no compra rápido.</li>
+          <li>Comunidad real y activa (rodadas, Girls Ride Out) — el activo más difícil de copiar.</li>
+          <li>Crank Pass: retención + datos de frecuencia de cada cliente.</li>
+          <li>Abiertos 7 días, incluido el domingo de rodada.</li>
+        </ul>
+      </div>
+      <div class="card"><span class="tag lav">Debilidades</span>
+        <ul>
+          <li>Menos capital: no podemos igualar su ritmo de giveaways e importaciones.</li>
+          <li>Sin e-commerce transaccional: perdemos la venta impulsiva online.</li>
+          <li>Oferta débil en ropa/apparel de moda (donde LAP es fuerte).</li>
+          <li>Propuesta de valor aún no comunicada con suficiente filo (score de marca 61/100).</li>
+        </ul>
+      </div>
+      <div class="card"><span class="tag lima">Oportunidades</span>
+        <ul>
+          <li>Cada cliente de LAP necesita taller: convertir sus ventas en nuestro servicio.</li>
+          <li>Ciudades sin tienda premium ni taller certificado: Loja, Azogues, Machala, Riobamba.</li>
+          <li>Turismo de gravel/bikepacking (Cajas, Ingapirca, Ruta del Tren): nadie lo está armando como producto.</li>
+          <li>Segmentos que LAP ignora: niños/familia, urbano/commuter, mujeres, principiantes.</li>
+          <li>Envíos a todo Ecuador ya operativos: base para e-commerce nacional.</li>
+        </ul>
+      </div>
+      <div class="card"><span class="tag lav">Amenazas</span>
+        <ul>
+          <li>LAP sigue copiando iniciativas y comprimiendo nuestra diferenciación percibida.</li>
+          <li>Su capital les permite aguantar guerras de precio que nosotros no.</li>
+          <li>Specialized como marca-imán puede capturar al comprador de primera bici premium.</li>
+          <li>Si montan taller propio o programa de fidelidad, nuestra ventana se cierra.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="sec-label">05 · Estrategia</p>
+    <h2>Tres frentes: Defender · Diferenciar · Expandir</h2>
+    <p class="lead">La regla de oro: <strong>nunca competir donde su dinero decide</strong> (stock, giveaways, precio). Competir donde deciden el tiempo, la confianza y la comunidad.</p>
+
+    <div style="margin-top:30px" class="grid">
+      <div class="card pillar">
+        <span class="num">FRENTE 1</span>
+        <h3>Defender Cuenca: el taller es el foso</h3>
+        <p>El servicio es nuestro foso defensivo: ingreso recurrente, frecuencia de visita 2–4× al año y la relación de confianza más fuerte del ciclismo. LAP no tiene taller — cada bici que venden madura hacia nosotros.</p>
+        <ul>
+          <li><strong>"Bienvenida Specialized":</strong> primera revisión gratuita para cualquier bici comprada en otra tienda. Convertimos sus ventas en nuestros clientes de servicio.</li>
+          <li><strong>Planes de mantenimiento anual</strong> (3 servicios prepagados con descuento): ingresos predecibles y cliente amarrado 12 meses.</li>
+          <li><strong>Garantía de taller visible:</strong> entrega en fecha o el servicio es gratis. Nadie más en Cuenca puede prometerlo.</li>
+          <li><strong>Domingos Crank:</strong> taller express + café post-rodada. Somos los únicos abiertos.</li>
+        </ul>
+      </div>
+
+      <div class="card pillar">
+        <span class="num">FRENTE 2</span>
+        <h3>Diferenciar: de tienda a club</h3>
+        <p>LAP copia campañas; no puede copiar pertenencia. Hay que subir el costo de cambiarse de tienda.</p>
+        <ul>
+          <li><strong>Crank Pass 2.0:</strong> niveles (Rider → Gregario → Capitán) con beneficios reales: prioridad de taller, café del socio, descuento de aniversario. El giveaway de LAP compra un like; el Pass compra lealtad.</li>
+          <li><strong>Calendario de comunidad propio e innegociable:</strong> rodada dominical fija + Girls Ride Out mensual + 1 clínica de mecánica al mes. Ritmo constante > campañas espectaculares.</li>
+          <li><strong>Bike fit como producto estrella:</strong> servicio de alto margen, alto valor percibido, y LAP no lo ofrece con taller detrás.</li>
+          <li><strong>Contenido de autoridad:</strong> el mecánico como personaje (series "del taller"), no solo fotos de producto. Producto lo tiene cualquiera con plata; criterio, no.</li>
+          <li><strong>Tagline al frente:</strong> "Donde rueda Cuenca — Bici · Café · Taller" en bio, fachada y cada pieza.</li>
+        </ul>
+      </div>
+
+      <div class="card pillar">
+        <span class="num">FRENTE 3</span>
+        <h3>Expandir donde LAP no está</h3>
+        <p>No pelear running (es su cancha y diluye foco). Crecer en territorio sin defensor:</p>
+        <ul>
+          <li><strong>Geografía:</strong> Loja, Azogues y Machala no tienen tienda premium ni taller certificado. Empezar con "Crank Days" mensuales (taller móvil + venta + rodada) antes de invertir en local.</li>
+          <li><strong>E-commerce nacional:</strong> catálogo transaccional sobre la base de envíos que ya tenemos. Accesorios y nutrición primero (ticket bajo, recompra alta).</li>
+          <li><strong>Turismo de aventura:</strong> paquetes gravel/bikepacking (Cajas, Ingapirca, Ruta del Tren) con alquiler, soporte mecánico y café de salida. Alianzas con hoteles y operadores: ticket alto, cero competencia.</li>
+          <li><strong>Familias y niños:</strong> primera bici + clínica de seguridad + trade-in de crecimiento. Cliente de por vida que LAP ni mira.</li>
+          <li><strong>Convenios corporativos:</strong> mantenimiento de flotas para empresas y delivery, descuentos a colaboradores.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="sec-label">06 · Recuperación de clientes</p>
+    <h2>Playbook de win-back</h2>
+    <div class="grid g3">
+      <div class="card"><span class="num">PASO 1</span><h3>Lista y diagnóstico</h3><p>Armar la lista de clientes inactivos +6 meses (taller, WhatsApp, Crank Pass). Etiquetar por valor: bici comprada, frecuencia de taller, asistencia a rodadas. Llamar a los 20 más valiosos — preguntar, no vender: ¿qué encontraron en otro lado?</p></div>
+      <div class="card"><span class="num">PASO 2</span><h3>Oferta de regreso</h3><p>Mensaje personal de WhatsApp (no masivo): revisión gratuita de su bici + café de la casa + doble sello de Crank Pass en la primera visita. El gancho es el taller, no el descuento — el descuento lo puede igualar LAP; la revisión de un mecánico con 10 años, no.</p></div>
+      <div class="card"><span class="num">PASO 3</span><h3>Amarre</h3><p>En esa visita: inscripción al plan de mantenimiento anual o a la siguiente rodada. El objetivo no es la transacción, es volver a meterlos al ritmo del club. Medir: % de recuperados activos a 90 días.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="sec-label">07 · Roadmap</p>
+    <h2>90 días de ejecución</h2>
+    <div class="road">
+      <div class="card dark">
+        <span class="tag lima">Días 1–30 · Asegurar la base</span>
+        <ul>
+          <li>Lanzar "Bienvenida Specialized" (revisión gratuita a bicis de otras tiendas).</li>
+          <li>Activar playbook de win-back con los 50 clientes perdidos de mayor valor.</li>
+          <li>Fijar calendario de comunidad (domingo + Girls Ride Out + clínica mensual) y publicarlo.</li>
+          <li>Tagline y propuesta de valor en bio, fachada y plantillas.</li>
+        </ul>
+      </div>
+      <div class="card dark">
+        <span class="tag lima">Días 31–60 · Monetizar la diferencia</span>
+        <ul>
+          <li>Lanzar planes de mantenimiento anual y Crank Pass 2.0 con niveles.</li>
+          <li>Lanzar bike fit como servicio insignia con agenda online.</li>
+          <li>Catálogo e-commerce v1: accesorios + nutrición con checkout (o pedido WhatsApp en 2 clics).</li>
+          <li>Serie de contenido "Del taller" semanal.</li>
+        </ul>
+      </div>
+      <div class="card dark">
+        <span class="tag lima">Días 61–90 · Expandir</span>
+        <ul>
+          <li>Primer "Crank Day" en Loja o Azogues (taller móvil + rodada + venta).</li>
+          <li>Primer paquete de turismo gravel (Cajas o Ingapirca) con hotel aliado.</li>
+          <li>Programa familias/niños: primera bici + clínica de seguridad.</li>
+          <li>Revisión de KPIs y decisión de duplicar lo que funcionó.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-top:36px">KPIs para saber si está funcionando</h3>
+    <div class="tablewrap">
+    <table class="kpi">
+      <tr><th>Indicador</th><th>Hoy</th><th>Meta 90 días</th></tr>
+      <tr><td>Clientes perdidos recuperados (activos de nuevo)</td><td>0</td><td>15 de los 50 contactados (30%)</td></tr>
+      <tr><td>Bicis "de otras tiendas" atendidas en taller / mes</td><td>línea base</td><td>+20 al mes</td></tr>
+      <tr><td>Planes de mantenimiento anual vendidos</td><td>0</td><td>40</td></tr>
+      <tr><td>Miembros activos Crank Pass</td><td>línea base</td><td>2× la línea base</td></tr>
+      <tr><td>Asistencia promedio a rodadas</td><td>línea base</td><td>+50%</td></tr>
+      <tr><td>Ventas e-commerce / WhatsApp fuera de Cuenca</td><td>~0</td><td>10% de ventas de accesorios</td></tr>
+      <tr><td>Seguidores IG @crank.ec</td><td>3,700</td><td>5,000 con ratio sano</td></tr>
+    </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="sec-label">08 · Cierre</p>
+    <h2>La idea que ordena todo</h2>
+    <div class="quote">LAP vende productos. Crank vende la vida ciclista completa: la bici, el café, el taller, la rodada del domingo y la comunidad. <span class="hl">Ellos pueden copiar campañas; no pueden copiar diez años de confianza ni un club.</span> Defendemos con el taller, diferenciamos con el club, y crecemos donde ellos ni siquiera miran.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Crank · Análisis competitivo LAP.ccc · Junio 2026 · Fuentes: lapccc.com, crank.ec, @lap.ccc, @crank.ec, investigación de mercado Ecuador. Documento interno — no distribuir.
+  </div>
+</footer>
+
+</body>
+</html>
