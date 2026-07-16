@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crank · Estrategia de Marca, Benchmark y Marketing</title>
+<style>
+  :root{
+    --green:#15302A; --green2:#1E433A; --olive:#8FA31E; --lime:#C7D98C;
+    --cream:#F4F1E9; --ink:#1A1F1D; --muted:#6E7873; --line:#E2DDD0; --white:#fff;
+    --good:#3F7D54; --warn:#C28A2B; --bad:#B4503F;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+  header.hero{background:var(--green);color:var(--cream);padding:72px 0 64px;}
+  header.hero .wrap{display:flex;flex-direction:column;gap:18px;}
+  .logo{width:64px;height:64px;border-radius:50%;background:var(--green2);display:flex;align-items:center;justify-content:center;font-weight:800;letter-spacing:1px;border:2px solid var(--lime);color:#fff;font-size:15px;}
+  header.hero h1{font-size:42px;line-height:1.12;font-weight:800;letter-spacing:-.5px;max-width:760px;}
+  header.hero p.sub{font-size:18px;color:var(--lime);max-width:680px;}
+  header.hero .meta{font-size:13px;color:#B9C6BD;margin-top:6px;}
+  nav.toc{background:var(--green2);color:var(--cream);position:sticky;top:0;z-index:10;border-bottom:1px solid rgba(255,255,255,.1);}
+  nav.toc .wrap{display:flex;flex-wrap:wrap;gap:4px 22px;padding:13px 24px;font-size:13.5px;}
+  nav.toc a{color:var(--lime);text-decoration:none;font-weight:600;white-space:nowrap;}
+  nav.toc a:hover{color:#fff;}
+  section{padding:56px 0;border-bottom:1px solid var(--line);}
+  section:nth-child(even){background:var(--white);}
+  .eyebrow{font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--olive);margin-bottom:10px;}
+  h2{font-size:30px;font-weight:800;letter-spacing:-.4px;color:var(--green);margin-bottom:8px;}
+  h3{font-size:19px;font-weight:700;color:var(--green2);margin:26px 0 10px;}
+  p.lead{font-size:17px;color:#3a423e;max-width:820px;margin-bottom:8px;}
+  p{margin-bottom:12px;max-width:880px;}
+  ul{margin:6px 0 14px 22px;}
+  li{margin-bottom:7px;max-width:840px;}
+  .grid{display:grid;gap:18px;}
+  .g2{grid-template-columns:repeat(2,1fr);} .g3{grid-template-columns:repeat(3,1fr);} .g4{grid-template-columns:repeat(4,1fr);}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:22px;}
+  section:nth-child(even) .card{background:var(--cream);}
+  .card h4{font-size:16px;color:var(--green);margin-bottom:8px;font-weight:800;}
+  .card .big{font-size:34px;font-weight:800;color:var(--green);line-height:1;}
+  .card .lbl{font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+  table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px;background:var(--white);border-radius:12px;overflow:hidden;border:1px solid var(--line);}
+  th{background:var(--green);color:var(--cream);text-align:left;padding:12px 14px;font-weight:700;font-size:13px;}
+  td{padding:11px 14px;border-top:1px solid var(--line);vertical-align:top;}
+  tr:nth-child(even) td{background:#FBFAF5;}
+  .crankcol{background:rgba(143,163,30,.10)!important;font-weight:600;}
+  .pill{display:inline-block;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:700;}
+  .p-good{background:#E4F0E8;color:var(--good);} .p-warn{background:#F8EEDA;color:var(--warn);} .p-bad{background:#F6E2DD;color:var(--bad);}
+  .score-row{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+  .score-row .name{flex:0 0 230px;font-weight:700;font-size:14px;color:var(--green2);}
+  .bar{flex:1;height:24px;background:#ECE7DA;border-radius:8px;overflow:hidden;position:relative;}
+  .bar > span{display:block;height:100%;background:linear-gradient(90deg,var(--green2),var(--olive));border-radius:8px;}
+  .bar .tgt{position:absolute;top:-3px;bottom:-3px;width:3px;background:var(--bad);}
+  .score-row .num{flex:0 0 92px;text-align:right;font-size:13px;color:var(--muted);font-weight:700;}
+  .num b{color:var(--green);}
+  .timeline{border-left:3px solid var(--olive);margin-left:8px;padding-left:22px;}
+  .phase{margin-bottom:26px;position:relative;}
+  .phase::before{content:"";position:absolute;left:-30px;top:4px;width:14px;height:14px;border-radius:50%;background:var(--green);border:3px solid var(--lime);}
+  .phase .tag{font-size:12px;font-weight:800;letter-spacing:1px;color:var(--olive);text-transform:uppercase;}
+  .phase h4{font-size:17px;color:var(--green);margin:2px 0 6px;}
+  .kpi{display:flex;gap:10px;align-items:baseline;}
+  .callout{background:var(--green);color:var(--cream);border-radius:14px;padding:26px 28px;margin:18px 0;}
+  .callout h3{color:var(--lime);margin-top:0;}
+  .callout p,.callout li{color:#E8EDE6;max-width:none;}
+  .pillarbar{display:flex;height:34px;border-radius:8px;overflow:hidden;margin:10px 0 18px;font-size:11.5px;font-weight:700;color:#fff;}
+  .pillarbar div{display:flex;align-items:center;justify-content:center;text-align:center;padding:0 4px;}
+  footer{background:var(--green);color:#B9C6BD;padding:34px 0;font-size:13px;}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+  .tag-list{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;}
+  .tag-list span{background:var(--cream);border:1px solid var(--line);padding:5px 12px;border-radius:20px;font-size:12.5px;color:var(--green2);font-weight:600;}
+  section:nth-child(even) .tag-list span{background:var(--white);}
+  @media(max-width:780px){.g2,.g3,.g4{grid-template-columns:1fr}header.hero h1{font-size:32px}.score-row .name{flex-basis:140px}nav.toc{position:static}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="logo">CRANK</div>
+    <div class="eyebrow" style="color:var(--lime)">Estrategia de marca · Benchmark · Plan de marketing · Automatización</div>
+    <h1>Cómo llevar la marca Crank al nivel de las mejores marcas de ciclismo</h1>
+    <p class="sub">Un plan para que el Instagram de @crank.ec se vea más profesional y natural, integre el taller, las rodadas y el café sin saturar, y crezca en el mercado ecuatoriano — con Claude (Cowork) como centro de operaciones.</p>
+    <p class="meta">Preparado para Crank · Cuenca, Ecuador · Junio 2026</p>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="wrap">
+    <a href="#resumen">Resumen</a>
+    <a href="#diagnostico">Diagnóstico</a>
+    <a href="#benchmark">Benchmark</a>
+    <a href="#scorecard">Scorecard</a>
+    <a href="#gaps">Brechas</a>
+    <a href="#feed">Marca & Feed</a>
+    <a href="#marketing">Plan Ecuador</a>
+    <a href="#roadmap">Roadmap 90 días</a>
+    <a href="#automatizacion">Claude como centro</a>
+  </div>
+</nav>
+
+<!-- RESUMEN -->
+<section id="resumen">
+  <div class="wrap">
+    <div class="eyebrow">Resumen ejecutivo</div>
+    <h2>Dónde está Crank hoy</h2>
+    <p class="lead">Crank ya tiene lo más difícil: un concepto diferenciado (bici + café + mecánica multimarca), buena fotografía y una comunidad activa con rodadas reales. El problema no es la calidad — es la <strong>consistencia y la lectura de marca</strong>. El feed mezcla estilos, la propuesta de valor no se comunica en un vistazo, y faltan sistemas para convertir audiencia en clientes del taller y la tienda.</p>
+    <div class="grid g4" style="margin-top:22px">
+      <div class="card"><div class="lbl">Seguidores</div><div class="big">3,700</div><div class="lbl" style="margin-top:6px">242 posts · sigue a 1,103</div></div>
+      <div class="card"><div class="lbl">Score de marca actual</div><div class="big">61<span style="font-size:18px">/100</span></div><div class="lbl" style="margin-top:6px">Objetivo 12 meses: 85+</div></div>
+      <div class="card"><div class="lbl">Brecha vs. líder regional</div><div class="big">3.9×</div><div class="lbl" style="margin-top:6px">alcance vs. República No.1</div></div>
+      <div class="card"><div class="lbl">Foco de automatización</div><div class="big">2</div><div class="lbl" style="margin-top:6px">Contenido/calendario + Ventas/DMs</div></div>
+    </div>
+    <div class="callout">
+      <h3>La tesis en una frase</h3>
+      <p>Crank no necesita publicar más cosas ni verse más "comercial". Necesita un <strong>sistema de marca consistente</strong> y un <strong>motor de operación automatizado</strong> que convierta su mejor activo —la comunidad y el taller— en crecimiento medible. Esa es exactamente la diferencia entre Crank y marcas como República No.1 o Moloko Cycling.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DIAGNOSTICO -->
+<section id="diagnostico">
+  <div class="wrap">
+    <div class="eyebrow">Diagnóstico</div>
+    <h2>Lo que vemos en @crank.ec</h2>
+    <div class="grid g2" style="margin-top:18px">
+      <div class="card">
+        <h4>✅ Fortalezas</h4>
+        <ul>
+          <li><strong>Concepto único:</strong> bici + café + taller multimarca. Pocos lo tienen y es muy "instagrameable".</li>
+          <li><strong>Fotografía de buen nivel:</strong> tomas editoriales de rodadas, producto y mecánica.</li>
+          <li><strong>Comunidad real:</strong> rodadas (Ingapirca MTB & Gravel, Ruta del Tren, First Long Ride), Girls Ride Out, Día Mundial de la Bicicleta.</li>
+          <li><strong>Marcas premium visibles:</strong> Canyon, Colnago, DT Swiss, Continental, Precision Fuel.</li>
+          <li><strong>Programa de fidelidad activo:</strong> tarjeta digital / wallet pass.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>⚠️ Lo que resta profesionalismo</h4>
+        <ul>
+          <li><strong>Feed sin sistema visual:</strong> mezcla tiles claros y oscuros, varias tipografías y plantillas. Se ve menos "marca".</li>
+          <li><strong>Propuesta de valor débil:</strong> la bio lista categorías (Bicis/Café/Mecánica) pero no dice <em>por qué Crank</em>.</li>
+          <li><strong>Link roto de lectura:</strong> el enlace es una URL cruda de wallet en vez de un link-in-bio ordenado.</li>
+          <li><strong>Highlights desordenados:</strong> nombres y portadas inconsistentes (Mecanica, Martes de Café, Santa Madre, Conti.GP5000…).</li>
+          <li><strong>Ratio social bajo:</strong> sigue a 1,103 cuentas con 3,700 seguidores — resta autoridad de marca.</li>
+          <li><strong>Sin embudo de conversión claro:</strong> el contenido inspira, pero no guía a agendar taller o comprar.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENCHMARK -->
+<section id="benchmark">
+  <div class="wrap">
+    <div class="eyebrow">Benchmark competitivo</div>
+    <h2>Crank vs. 3 marcas referentes</h2>
+    <p class="lead">Comparamos contra un espectro deliberado: un <strong>par local</strong> (Bicio, Quito), una <strong>referente regional premium</strong> (República No.1, México) y una <strong>marca global de comunidad/aventura</strong> (Moloko Cycling). Juntas marcan el camino de "tienda local" a "marca aspiracional".</p>
+    <table>
+      <tr>
+        <th style="width:160px">Dimensión</th>
+        <th class="crankcol">Crank (EC)</th>
+        <th>Bicio (EC)</th>
+        <th>República No.1 (MX)</th>
+        <th>Moloko Cycling (UE)</th>
+      </tr>
+      <tr><td><strong>Seguidores</strong></td><td class="crankcol">3,700</td><td>2,944</td><td>14,300</td><td>73,500</td></tr>
+      <tr><td><strong>Posts / Sigue a</strong></td><td class="crankcol">242 / 1,103</td><td>1,279 / 3,357</td><td>1,087 / 315</td><td>1,012 / 1,430</td></tr>
+      <tr><td><strong>Concepto</strong></td><td class="crankcol">Bici + café + taller multimarca</td><td>Tienda + taller</td><td>"Cycling &amp; Coffee Temple"</td><td>Aventuras de ciclismo "you can join"</td></tr>
+      <tr><td><strong>Propuesta de valor</strong></td><td class="crankcol">Implícita (categorías)</td><td>Servicio/oferta</td><td>"Le rendimos culto a la bici"</td><td>Founder-led, lifestyle</td></tr>
+      <tr><td><strong>Estilo visual</strong></td><td class="crankcol">Bueno pero inconsistente</td><td>Comercial, recargado</td><td>Premium y consistente</td><td>Editorial de viaje, top</td></tr>
+      <tr><td><strong>Motor de marca</strong></td><td class="crankcol">Rodadas + producto</td><td>Promos + taller</td><td>Marca + cultura</td><td>Destinos + comunidad</td></tr>
+      <tr><td><strong>Conversión</strong></td><td class="crankcol">Débil</td><td>Directa (ofertas)</td><td>Catálogo + cultura</td><td>Viajes pagados</td></tr>
+      <tr><td><strong>Qué aprender</strong></td><td class="crankcol">—</td><td>Qué <em>no</em> hacer: evitar saturar de promo</td><td>Identidad y tagline de culto</td><td>Convertir rodadas en producto y storytelling</td></tr>
+    </table>
+    <div class="grid g3" style="margin-top:6px">
+      <div class="card"><h4>Bicio · par local</h4><p style="font-size:14px">Tamaño parecido pero feed muy comercial y saturado de texto/ofertas. Es el ejemplo de "típico comercial" que Crank quiere evitar. Crank ya gana en estética.</p></div>
+      <div class="card"><h4>República No.1 · premium regional</h4><p style="font-size:14px">El modelo a seguir más cercano: mismo ADN (bici + café), pero con identidad de "templo", tagline memorable y feed impecable. 3.9× el alcance de Crank.</p></div>
+      <div class="card"><h4>Moloko Cycling · marca global</h4><p style="font-size:14px">Cómo una comunidad de rodadas se vuelve marca aspiracional y negocio (viajes). Fotografía editorial y storytelling de fundadores. La meta de largo plazo.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCORECARD -->
+<section id="scorecard">
+  <div class="wrap">
+    <div class="eyebrow">Scorecard</div>
+    <h2>Calificación de la página actual</h2>
+    <p class="lead">Cada dimensión está calificada del 1 al 10. La barra muestra a Crank hoy; la línea roja marca el nivel del mejor referente (el objetivo). El total: <strong>61/100</strong>, con objetivo de <strong>85/100</strong>.</p>
+
+    <div style="margin-top:24px">
+      <div class="score-row"><div class="name">Identidad &amp; consistencia de feed</div><div class="bar"><span style="width:60%"></span><div class="tgt" style="left:90%"></div></div><div class="num"><b>6</b> · meta 9</div></div>
+      <div class="score-row"><div class="name">Propuesta de valor / tagline</div><div class="bar"><span style="width:50%"></span><div class="tgt" style="left:90%"></div></div><div class="num"><b>5</b> · meta 9</div></div>
+      <div class="score-row"><div class="name">Fotografía / dirección de arte</div><div class="bar"><span style="width:80%"></span><div class="tgt" style="left:100%"></div></div><div class="num"><b>8</b> · meta 10</div></div>
+      <div class="score-row"><div class="name">Bio &amp; link-in-bio (conversión)</div><div class="bar"><span style="width:55%"></span><div class="tgt" style="left:90%"></div></div><div class="num"><b>5</b> · meta 9</div></div>
+      <div class="score-row"><div class="name">Highlights (portadas + orden)</div><div class="bar"><span style="width:50%"></span><div class="tgt" style="left:90%"></div></div><div class="num"><b>5</b> · meta 9</div></div>
+      <div class="score-row"><div class="name">Mix de contenido</div><div class="bar"><span style="width:70%"></span><div class="tgt" style="left:90%"></div></div><div class="num"><b>7</b> · meta 9</div></div>
+      <div class="score-row"><div class="name">Comunidad &amp; engagement</div><div class="bar"><span style="width:55%"></span><div class="tgt" style="left:90%"></div></div><div class="num"><b>5</b> · meta 9</div></div>
+      <div class="score-row"><div class="name">Rodadas / eventos como motor</div><div class="bar"><span style="width:70%"></span><div class="tgt" style="left:100%"></div></div><div class="num"><b>7</b> · meta 10</div></div>
+      <div class="score-row"><div class="name">Reels / video &amp; alcance</div><div class="bar"><span style="width:55%"></span><div class="tgt" style="left:90%"></div></div><div class="num"><b>6</b> · meta 9</div></div>
+      <div class="score-row"><div class="name">Conversión a venta / taller</div><div class="bar"><span style="width:50%"></span><div class="tgt" style="left:80%"></div></div><div class="num"><b>5</b> · meta 8</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GAPS -->
+<section id="gaps">
+  <div class="wrap">
+    <div class="eyebrow">Análisis de brechas</div>
+    <h2>Qué falta para llegar a su nivel</h2>
+    <table>
+      <tr><th style="width:210px">Brecha</th><th>Qué hacen los referentes</th><th>Acción concreta para Crank</th></tr>
+      <tr><td><strong>Sistema visual</strong></td><td>Paleta y plantillas fijas; el feed se lee como una sola marca.</td><td>Definir 1 paleta (verde Crank + crema + acento lima), 3 plantillas reutilizables y una regla de ritmo del grid.</td></tr>
+      <tr><td><strong>Propuesta de valor</strong></td><td>Tagline memorable ("Le rendimos culto a la bici").</td><td>Adoptar un tagline propio, p. ej. <em>"Donde rueda Cuenca · Bici · Café · Taller"</em> y ponerlo en bio + portadas.</td></tr>
+      <tr><td><strong>Bio &amp; enlaces</strong></td><td>Link-in-bio ordenado (Linktree/Taplink) con CTA claros.</td><td>Crear link-in-bio con: Agenda tu taller · Próxima rodada · Tienda/WhatsApp · Tarjeta digital.</td></tr>
+      <tr><td><strong>Highlights</strong></td><td>Portadas unificadas y nombres claros.</td><td>Rediseñar 6 portadas con el mismo estilo: Rodadas · Taller · Café · Tienda · Girls Ride · Tarjeta.</td></tr>
+      <tr><td><strong>Autoridad social</strong></td><td>Siguen a pocas cuentas; se ven como referentes.</td><td>Reducir "siguiendo" a marcas/aliados/clientes clave; subir frecuencia de Reels.</td></tr>
+      <tr><td><strong>Conversión</strong></td><td>Catálogo, reservas y CTA en cada pieza.</td><td>CTA fijo por pilar (agenda taller / inscríbete a la rodada / escríbenos por WhatsApp) + destacados de producto.</td></tr>
+      <tr><td><strong>Storytelling</strong></td><td>Historias de fundadores y clientes; las rodadas son producto.</td><td>Serie de fundadores ("ME FUNDÍ…" ya iniciada), testimonios y convertir rutas insignia (Ingapirca/Ruta del Tren) en experiencias.</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- FEED -->
+<section id="feed">
+  <div class="wrap">
+    <div class="eyebrow">Marca &amp; feed</div>
+    <h2>Verse más profesional y natural — sin saturar</h2>
+    <p class="lead">El objetivo no es "más comercial", sino <strong>más marca</strong>. La regla: cada pieza debe sentirse parte del mismo universo Crank y aportar a comunidad, expertise o cultura — la venta llega como consecuencia, no como grito.</p>
+
+    <h3>Sistema de pilares de contenido</h3>
+    <div class="pillarbar">
+      <div style="width:30%;background:var(--green)">Comunidad &amp; Rodadas · 30%</div>
+      <div style="width:20%;background:var(--green2)">Taller &amp; Expertise · 20%</div>
+      <div style="width:20%;background:var(--olive)">Producto &amp; Marcas · 20%</div>
+      <div style="width:15%;background:#6E7873">Café &amp; Lifestyle · 15%</div>
+      <div style="width:15%;background:#3F7D54">Clientes / UGC · 15%</div>
+    </div>
+    <div class="grid g3">
+      <div class="card"><h4>1 · Comunidad &amp; Rodadas</h4><p style="font-size:14px">Calendario de rodadas, Girls Ride Out, retos, club de Strava, recaps. <em>El corazón de la marca.</em></p></div>
+      <div class="card"><h4>2 · Taller &amp; Expertise</h4><p style="font-size:14px">Serie "ABC de tu bici", tips de mantenimiento, antes/después, mecánica multimarca. Genera confianza y citas.</p></div>
+      <div class="card"><h4>3 · Producto &amp; Marcas</h4><p style="font-size:14px">Canyon, Colnago, DT Swiss, Continental, nutrición. Siempre con contexto/uso, nunca solo precio.</p></div>
+      <div class="card"><h4>4 · Café &amp; Lifestyle</h4><p style="font-size:14px">Crank Coffee, cultura ciclista, encuentros. Lo que hace a Crank un lugar, no solo una tienda.</p></div>
+      <div class="card"><h4>5 · Clientes / UGC</h4><p style="font-size:14px">Riders locales, testimonios, fotos de la comunidad con #RuedaConCrank. Prueba social.</p></div>
+      <div class="card" style="background:var(--green);color:var(--cream)"><h4 style="color:var(--lime)">Regla de oro</h4><p style="font-size:14px;color:#E8EDE6">Máx. 1 de cada 5 piezas es venta directa. El resto construye comunidad y autoridad.</p></div>
+    </div>
+
+    <h3>Plantilla de semana tipo</h3>
+    <table>
+      <tr><th>Día</th><th>Formato</th><th>Pilar</th><th>Ejemplo</th></tr>
+      <tr><td>Lunes</td><td>Carrusel</td><td>Taller</td><td>"ABC de tu bici: revisa esto antes de rodar"</td></tr>
+      <tr><td>Miércoles</td><td>Reel</td><td>Comunidad</td><td>Recap de la última rodada / convocatoria a la próxima</td></tr>
+      <tr><td>Viernes</td><td>Post + Stories</td><td>Producto/Café</td><td>Producto en uso o momento Crank Coffee</td></tr>
+      <tr><td>Domingo</td><td>Stories/UGC</td><td>Clientes</td><td>Repost de la comunidad rodando</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- MARKETING -->
+<section id="marketing">
+  <div class="wrap">
+    <div class="eyebrow">Plan de marketing · Ecuador</div>
+    <h2>Posicionamiento en el mercado ecuatoriano</h2>
+
+    <div class="callout">
+      <h3>Posicionamiento propuesto</h3>
+      <p style="font-size:18px"><strong>"Crank es el punto de encuentro del ciclismo en Cuenca y el Austro: bici, café y taller multimarca para una comunidad que rueda en serio."</strong></p>
+      <p>Taglines candidatos: <em>"Donde rueda Cuenca"</em> · <em>"Pedalea. Repara. Conecta."</em> · <em>"Tu casa sobre ruedas."</em></p>
+    </div>
+
+    <h3>Segmentos objetivo</h3>
+    <div class="tag-list">
+      <span>Roadies / performance</span><span>MTB &amp; gravel aventureros</span><span>Mujeres ciclistas (Girls Ride Out)</span><span>Nuevos ciclistas / commuters urbanos</span><span>Cicloturismo en el Austro</span>
+    </div>
+
+    <h3>Canales y para qué sirve cada uno</h3>
+    <table>
+      <tr><th style="width:180px">Canal</th><th>Rol</th><th>Prioridad</th></tr>
+      <tr><td>Instagram</td><td>Núcleo de marca, comunidad y descubrimiento.</td><td><span class="pill p-good">Alta</span></td></tr>
+      <tr><td>Google Business Profile</td><td>Capturar búsquedas "taller / tienda bicicletas Cuenca" — alto intento de compra.</td><td><span class="pill p-good">Alta</span></td></tr>
+      <tr><td>WhatsApp Business</td><td>Ventas, citas de taller y atención (canal #1 en Ecuador).</td><td><span class="pill p-good">Alta</span></td></tr>
+      <tr><td>Club de Strava</td><td>Comunidad de rodadas siempre activa entre eventos.</td><td><span class="pill p-warn">Media</span></td></tr>
+      <tr><td>Email / Tarjeta digital</td><td>Fidelización y campañas a clientes existentes.</td><td><span class="pill p-warn">Media</span></td></tr>
+      <tr><td>TikTok / Reels cross-post</td><td>Alcance nuevo con video corto reutilizado.</td><td><span class="pill p-warn">Media</span></td></tr>
+    </table>
+
+    <h3>Tácticas de crecimiento local</h3>
+    <ul>
+      <li><strong>Rutas insignia como producto:</strong> empaquetar Ingapirca (MTB/Gravel) y Ruta del Tren como experiencias guiadas con cupos, fotografía y café incluido.</li>
+      <li><strong>Co-marketing con marcas:</strong> activaciones con Canyon, Colnago, Continental, Precision Fuel (sorteos, demos, fondo de marca).</li>
+      <li><strong>Alianzas locales:</strong> clubes, granfondos del Austro, hoteles y cafeterías para cicloturismo; empresas para "bike to work".</li>
+      <li><strong>Programa de referidos:</strong> aprovechar la tarjeta digital para premiar a quien trae un amigo a una rodada o al taller.</li>
+      <li><strong>UGC y hashtag propio (#RuedaConCrank):</strong> repost constante de la comunidad como prueba social.</li>
+      <li><strong>Prensa e influencers ciclistas EC:</strong> invitarlos a rodadas insignia para alcance fuera de Cuenca.</li>
+    </ul>
+
+    <h3>KPIs a seguir</h3>
+    <div class="grid g4">
+      <div class="card"><div class="lbl">Alcance no-seguidores</div><div class="big">≥45%</div></div>
+      <div class="card"><div class="lbl">Engagement rate</div><div class="big">≥5%</div></div>
+      <div class="card"><div class="lbl">Asistentes / rodada</div><div class="big">+30%</div></div>
+      <div class="card"><div class="lbl">Citas de taller vía DM/WA</div><div class="big">Medir</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="wrap">
+    <div class="eyebrow">Ejecución</div>
+    <h2>Roadmap de 90 días</h2>
+    <div class="timeline" style="margin-top:24px">
+      <div class="phase">
+        <div class="tag">Mes 1 · Fundamentos de marca</div>
+        <h4>Ordenar la casa</h4>
+        <ul>
+          <li>Redefinir bio + tagline y crear link-in-bio con CTAs.</li>
+          <li>Diseñar sistema visual: paleta, 3 plantillas y 6 portadas de highlights.</li>
+          <li>Montar calendario editorial y club de Strava.</li>
+          <li>Optimizar Google Business Profile y WhatsApp Business.</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="tag">Mes 2 · Motor de contenido &amp; comunidad</div>
+        <h4>Publicar con ritmo</h4>
+        <ul>
+          <li>4 posts + 3 Reels por semana siguiendo los pilares.</li>
+          <li>Lanzar serie "ABC del taller" y calendario de rodadas.</li>
+          <li>Activar UGC #RuedaConCrank y primer evento con sponsor.</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="tag">Mes 3 · Conversión &amp; escala</div>
+        <h4>Convertir audiencia en clientes</h4>
+        <ul>
+          <li>Destacados de catálogo + campaña de tarjeta digital y referidos.</li>
+          <li>Colaboración con una marca/club para alcance regional.</li>
+          <li>Primer reporte mensual y optimización con datos.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTOMATIZACION -->
+<section id="automatizacion">
+  <div class="wrap">
+    <div class="eyebrow">Operación con IA</div>
+    <h2>Claude (Cowork) como centro de operaciones</h2>
+    <p class="lead">La idea: que gran parte de la operación de marketing y ventas se dispare desde Claude, usando <strong>skills</strong> (rutinas reutilizables) y <strong>connectors</strong> (apps ya integradas). Foco inicial elegido: <strong>contenido/calendario</strong> y <strong>ventas/DMs</strong>.</p>
+
+    <h3>Mapa de automatización</h3>
+    <table>
+      <tr><th style="width:190px">Necesidad</th><th>Skill / Connector</th><th>Qué automatiza</th><th style="width:120px">Frecuencia</th></tr>
+      <tr><td><strong>Calendario de contenido</strong></td><td>Skill <code>crank-weekly-content</code> + Notion/Google Docs + Canva</td><td>Genera 7 ideas/semana con captions y arte base por pilar, listas para aprobar.</td><td>Semanal (auto)</td></tr>
+      <tr><td><strong>Vigilancia de competencia</strong></td><td>Skill <code>crank-competitor-watch</code> + Claude in Chrome + Slack</td><td>Resume qué publicaron República, Moloko y Bicio e ideas a replicar.</td><td>Mensual (auto)</td></tr>
+      <tr><td><strong>Atención de DMs/WhatsApp</strong></td><td>Skill <code>crank-lead-desk</code> + HubSpot + Gmail</td><td>Clasifica consulta (taller/venta/rodada), redacta respuesta y crea contacto/deal.</td><td>On-demand</td></tr>
+      <tr><td><strong>Citas de taller</strong></td><td>Google Calendar + Asana</td><td>Agenda la cita, crea la tarea y envía recordatorio.</td><td>On-demand</td></tr>
+      <tr><td><strong>Rodadas / eventos</strong></td><td>Skill <code>crank-rodada-ops</code> + Calendar + Slack</td><td>Crea el evento, convocatoria, lista de inscritos y recordatorios.</td><td>Por evento</td></tr>
+      <tr><td><strong>Prospección de alianzas</strong></td><td>Apollo + HubSpot</td><td>Encuentra marcas/hoteles/empresas y arma lista de contacto para co-marketing.</td><td>Mensual</td></tr>
+      <tr><td><strong>Reporte de resultados</strong></td><td>Skill <code>crank-monthly-report</code> + xlsx/Docs/Slack</td><td>Consolida métricas de IG y ventas en un digest con recomendaciones.</td><td>Mensual (auto)</td></tr>
+    </table>
+
+    <div class="grid g2" style="margin-top:8px">
+      <div class="card">
+        <h4>Flujo: Contenido &amp; calendario</h4>
+        <p style="font-size:14px">Cada lunes Claude propone la semana (pilares + fechas EC + rodadas), redacta captions, genera artes en Canva y los deja en Notion/Slack para tu visto bueno. Tú apruebas; nada se publica sin tu confirmación.</p>
+      </div>
+      <div class="card">
+        <h4>Flujo: Ventas &amp; DMs</h4>
+        <p style="font-size:14px">Una consulta entra por DM o WhatsApp → Claude la clasifica, propone respuesta con plantilla de marca, registra el lead en HubSpot y, si es taller, sugiere un horario en Calendar. Tú confirmas el envío.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <h3>Cómo empezar (next steps)</h3>
+      <ul>
+        <li>Conectar los connectors clave: <strong>HubSpot, Google Calendar, Gmail, Notion, Canva, Slack</strong>.</li>
+        <li>Crear las primeras 3 skills: <code>crank-weekly-content</code>, <code>crank-lead-desk</code>, <code>crank-monthly-report</code>.</li>
+        <li>Programar tareas automáticas (cada lunes 7am: ideas de la semana; fin de mes: reporte).</li>
+        <li>Definir plantillas de respuesta y de captions con la voz de marca de Crank.</li>
+      </ul>
+      <p style="font-size:13px;color:#B9C6BD">Nota: las acciones con efecto externo (publicar, enviar correos/DMs, agendar) siempre pasan por tu aprobación antes de ejecutarse.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>Crank · Estrategia de marca, benchmark y marketing · Cuenca, Ecuador</div>
+    <div>Preparado con Claude (Cowork) · Junio 2026</div>
+  </div>
+</footer>
+
+</body>
+</html>
