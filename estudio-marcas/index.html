@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crank — Estudio de Marcas y Representaciones para Ecuador</title>
+<style>
+  :root{
+    --beige:#EDE8D0; --beige-soft:#E5DDC2; --card:#FAF6E9; --cream:#FBF8EE;
+    --forest:#20302A; --forest-deep:#16241E; --green:#194C3F;
+    --lima:#C8FF00; --lima-deep:#A8D900; --lavender:#E1C3FF;
+    --dim:rgba(32,48,42,.72); --muted:rgba(32,48,42,.52);
+    --line:rgba(32,48,42,.16); --radius:20px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:var(--beige);color:var(--forest);line-height:1.6}
+  .wrap{max-width:1150px;margin:0 auto;padding:0 28px}
+  header{background:var(--forest-deep);color:var(--cream);padding:68px 0 52px}
+  .kicker{display:inline-block;background:var(--lima);color:var(--forest-deep);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:20px}
+  h1{font-size:clamp(32px,4.6vw,50px);line-height:1.08;letter-spacing:-.02em;font-weight:800}
+  h1 .hl{color:var(--lima)}
+  .sub{margin-top:16px;font-size:18px;color:rgba(251,248,238,.75);max-width:760px}
+  .meta{margin-top:22px;font-size:13px;color:rgba(251,248,238,.5);letter-spacing:.05em;text-transform:uppercase}
+  section{padding:52px 0;border-bottom:1px solid var(--line)}
+  .sec-label{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin-bottom:8px}
+  h2{font-size:clamp(25px,3.2vw,34px);letter-spacing:-.015em;font-weight:800;margin-bottom:20px}
+  h3{font-size:18px;font-weight:700;margin-bottom:10px}
+  p{margin-bottom:14px}
+  .lead{font-size:17.5px;color:var(--dim);max-width:840px}
+  .grid{display:grid;gap:16px}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+  .g3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+  .g4{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .card p{color:var(--dim);font-size:14.5px;margin-bottom:8px}
+  .card ul{padding-left:18px;color:var(--dim);font-size:14.5px}
+  .card li{margin-bottom:6px}
+  .dark{background:var(--forest);color:var(--cream);border:none}
+  .dark p,.dark ul{color:rgba(251,248,238,.78)}
+  .dark h3{color:var(--cream)}
+  table{width:100%;border-collapse:collapse;background:var(--card);font-size:13.5px}
+  .tablewrap{border:1px solid var(--line);border-radius:var(--radius);overflow-x:auto;margin-bottom:8px}
+  th{background:var(--forest);color:var(--cream);text-align:left;padding:11px 14px;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+  td{padding:10px 14px;border-top:1px solid var(--line);vertical-align:top;color:var(--dim)}
+  td:first-child{font-weight:700;color:var(--forest);white-space:nowrap}
+  .pill{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 9px;border-radius:999px;white-space:nowrap}
+  .p-white{background:var(--lima);color:var(--forest-deep)}
+  .p-grey{background:#D9D2B8;color:var(--forest)}
+  .p-present{background:var(--forest);color:var(--cream)}
+  .p-locked{background:var(--lavender);color:var(--forest-deep)}
+  .fit{font-weight:800;color:var(--green);white-space:nowrap}
+  h4.cat{font-size:21px;font-weight:800;margin:34px 0 6px;letter-spacing:-.01em}
+  .cat-note{font-size:13.5px;color:var(--muted);margin-bottom:12px}
+  .tag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:12px}
+  .tag.lima{background:var(--lima);color:var(--forest-deep)}
+  .tag.lav{background:var(--lavender);color:var(--forest-deep)}
+  .tag.green{background:var(--green);color:var(--cream)}
+  .quote{background:var(--forest-deep);color:var(--cream);border-radius:var(--radius);padding:34px;font-size:20px;font-weight:600;line-height:1.45;margin:24px 0}
+  .quote .hl{color:var(--lima)}
+  .num{font-size:13px;font-weight:800;color:var(--green);letter-spacing:.08em}
+  .stat{background:var(--forest);color:var(--cream);border-radius:var(--radius);padding:20px}
+  .stat .n{font-size:30px;font-weight:800;color:var(--lima);line-height:1.15}
+  .stat .l{font-size:12.5px;color:rgba(251,248,238,.65);margin-top:6px}
+  .legend{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 6px;font-size:13px;color:var(--dim);align-items:center}
+  footer{padding:40px 0 60px;color:var(--muted);font-size:13px}
+  .note{font-size:13px;color:var(--muted);margin-top:8px}
+  @media print{ header{padding:36px 0} section{padding:28px 0} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <span class="kicker">Confidencial · Estrategia Crank</span>
+    <h1>Estudio de marcas:<br>las representaciones <span class="hl">que Ecuador no tiene</span></h1>
+    <p class="sub">15 categorías de producto, ~90 marcas evaluadas, presencia en Ecuador verificada una por una. Objetivo: construir un portafolio de representaciones que nadie pueda copiar — ni LAP con todo su capital.</p>
+    <p class="meta">Cuenca, Ecuador · Junio 2026 · Preparado para el equipo Crank</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <p class="sec-label">01 · Resumen ejecutivo</p>
+    <h2>Lo que encontramos</h2>
+    <p class="lead">El mercado ecuatoriano de ciclismo premium tiene muchísimo espacio en blanco. Las marcas masivas (Giro, Shimano, Garmin, Maxxis, Park Tool) ya tienen dueño — pero el segmento boutique-premium, exactamente donde vive Crank, está casi vacío. La oportunidad más grande es armar un <strong>ecosistema italiano alrededor de Pinarello</strong> (Kask, Koo, Fizik, Vittoria) y un <strong>universo boutique alrededor de Universal Colours</strong> (Alba Optics, Quoc, Fingerscrossed, Bivo, Knog) que LAP no puede replicar comprando inventario: estas marcas eligen a sus representantes por identidad, no por chequera.</p>
+    <div class="grid g4">
+      <div class="stat"><div class="n">~90</div><div class="l">marcas evaluadas en 15 categorías, con verificación de presencia en Ecuador (oficial, gris o inexistente).</div></div>
+      <div class="stat"><div class="n">35+</div><div class="l">marcas en whitespace total: sin distribuidor ni retail oficial en Ecuador hoy.</div></div>
+      <div class="stat"><div class="n">4</div><div class="l">bloqueadores reales: Tatoo.ws, Velodrom (Quito), LAP.ccc y los distribuidores de marcas masivas.</div></div>
+      <div class="stat"><div class="n">5</div><div class="l">paquetes de representación propuestos, priorizados por fit, acceso y sinergia con el taller y el café.</div></div>
+    </div>
+    <div class="quote">La defensa definitiva contra un competidor con más dinero es un portafolio de marcas que no se consigue con dinero: <span class="hl">se consigue siendo la tienda que esas marcas quieren tener en Ecuador.</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="sec-label">02 · El mapa de bloqueo</p>
+    <h2>Quién tiene qué en Ecuador</h2>
+    <p class="lead">Antes de elegir marcas, hay que entender quién bloquea cada espacio. Hallazgo clave: <strong>Tatoo.ws bloquea más categorías que LAP</strong>, y en Quito existe un jugador que no teníamos en el radar: <strong>Velodrom</strong>, que ya vende Rapha, MAAP, PAS Normal Studios… y Pinarello.</p>
+    <div class="grid g2">
+      <div class="card"><span class="tag lav">LAP.ccc (Cuenca)</span>
+        <p>Specialized, ENVE, Gobik, PAS Normal Studios, Oliver Otto, Asics, Hammer Nutrition, NeverSecond, Skratch, <strong>Silca</strong> (bombas/herramienta/lubricante premium).</p>
+        <p class="note">Su bloqueo real está en apparel de moda y nutrición. Silca nos cierra parcialmente bombas premium — Lezyne choca ahí.</p></div>
+      <div class="card"><span class="tag lav">Tatoo.ws (cadena outdoor nacional)</span>
+        <p>Muc-Off (distribuidor oficial), SiS, 226ers, CamelBak, Finish Line, Maxxis (retail), Smith, Supacaz, Castelli (retail), Park Tool (retail), Crankbrothers, Wahoo (retail), Garmin (retail).</p>
+        <p class="note">El incumbente silencioso. Antes de negociar cualquier marca, verificar si su relación es distribución formal o solo importación.</p></div>
+      <div class="card"><span class="tag lav">Velodrom (Quito / Tumbaco)</span>
+        <p>Rapha, MAAP, PAS Normal Studios, <strong>Pinarello</strong>, ENVE, Specialized, Colnago, Factor.</p>
+        <p class="note">⚠ Importante: venden Pinarello en Quito. Hay que clarificar nuestro territorio/exclusividad con Pinarello y evitar ser "segundo stockist" de marcas que ellos ya tienen.</p></div>
+      <div class="card"><span class="tag lav">Distribuidores establecidos</span>
+        <p>Garmin/Tacx → Skytec (garmin.ec) · Maxxis → Maxximundo (con presencia en Cuenca) · Santini → Santini SMS (Quito) · Castelli → distribuidor con IG oficial · Trek/Bontrager → Bikehouse · Oakley → Luxottica · Rudy Project, Tailwind: distribuidores activos.</p>
+        <p class="note">Categorías cerradas: GPS Garmin, llantas MTB volumen, apparel race italiano (Castelli/Santini).</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="sec-label">03 · Estudio por categoría</p>
+    <h2>Las 15 categorías, marca por marca</h2>
+    <div class="legend">
+      <span class="pill p-white">Whitespace</span> sin presencia oficial en Ecuador ·
+      <span class="pill p-grey">Gris</span> solo MercadoLibre / importación informal ·
+      <span class="pill p-present">Presente</span> con distribuidor o retail oficial ·
+      <span class="pill p-locked">Bloqueada</span> en manos de LAP o atada a un canal ·
+      <strong>Fit</strong> = encaje con Crank (1–5)
+    </div>
+
+    <h4 class="cat">1 · Cascos</h4>
+    <p class="cat-note">Giro/Bell saturados; Smith en Tatoo. El espacio premium está totalmente abierto.</p>
+    <div class="tablewrap"><table>
+      <tr><th>Marca</th><th>Tier</th><th>Posicionamiento</th><th>Ecuador</th><th>Distribución</th><th>Fit</th></tr>
+      <tr><td>Kask</td><td>Premium</td><td>Italiano, Team Ineos — el casco natural junto a Pinarello</td><td><span class="pill p-white">Whitespace</span></td><td>Modelo distribuidor; ya firmó con CycleWear en Colombia → acepta dealers LatAm</td><td class="fit">5</td></tr>
+      <tr><td>MET</td><td>Medio-premium</td><td>Italiano, Pogačar/UAE; escalera de precio más accesible</td><td><span class="pill p-white">Whitespace</span></td><td>Distribuidor clásico; presente en Colombia/Chile</td><td class="fit">4</td></tr>
+      <tr><td>POC</td><td>Premium</td><td>Sueco, diseño + ciencia de seguridad; combina con Universal Colours</td><td><span class="pill p-grey">Gris</span></td><td>Distribuidores por país en LatAm</td><td class="fit">4</td></tr>
+      <tr><td>Abus</td><td>Medio-premium</td><td>Ingeniería alemana, Movistar Team</td><td><span class="pill p-grey">Gris</span></td><td>Huella LatAm modesta</td><td class="fit">3</td></tr>
+      <tr><td>Limar</td><td>Medio</td><td>Italiano, "el más liviano"</td><td><span class="pill p-white">Whitespace</span></td><td>Pequeño, dealer-friendly</td><td class="fit">3</td></tr>
+      <tr><td>Giro / Bell / Smith / Lazer</td><td>Medio</td><td>Masivos o atados a canales (Shimano, Tatoo, MegaBike)</td><td><span class="pill p-present">Presente</span></td><td>—</td><td class="fit">1–2</td></tr>
+    </table></div>
+
+    <h4 class="cat">2 · Gafas</h4>
+    <p class="cat-note">Oakley es de Luxottica (inalcanzable como exclusiva); Rudy Project ya tiene distribuidor. El nicho boutique está vacío.</p>
+    <div class="tablewrap"><table>
+      <tr><th>Marca</th><th>Tier</th><th>Posicionamiento</th><th>Ecuador</th><th>Distribución</th><th>Fit</th></tr>
+      <tr><td>Koo</td><td>Premium</td><td>La marca hermana de Kask — una sola negociación, dos categorías</td><td><span class="pill p-white">Whitespace</span></td><td>Va con la distribución Kask</td><td class="fit">5</td></tr>
+      <tr><td>Alba Optics</td><td>Premium boutique</td><td>Culto de diseño milanés — "la Universal Colours de las gafas"</td><td><span class="pill p-white">Whitespace</span></td><td>Dealers selectos; ama tiendas independientes</td><td class="fit">5</td></tr>
+      <tr><td>Scicon</td><td>Premium</td><td>Italiano, pelotón pro (UAE), lentes audaces</td><td><span class="pill p-white">Whitespace</span></td><td>Expansión agresiva, distribuidor-friendly</td><td class="fit">4</td></tr>
+      <tr><td>100%</td><td>Medio-premium</td><td>Crossover MTB/moto, legado Sagan</td><td><span class="pill p-grey">Gris</span></td><td>Canales moto en LatAm</td><td class="fit">3</td></tr>
+      <tr><td>SunGod / Roka</td><td>Premium</td><td>Solo venta directa (DTC)</td><td><span class="pill p-white">Whitespace</span></td><td>Sin programa wholesale — no representables</td><td class="fit">3</td></tr>
+      <tr><td>Oakley / Rudy Project / Smith</td><td>—</td><td>Canales tomados</td><td><span class="pill p-present">Presente</span></td><td>—</td><td class="fit">2–3</td></tr>
+    </table></div>
+
+    <h4 class="cat">3 · Ropa / apparel</h4>
+    <p class="cat-note">La categoría más estratégica. Castelli y Santini tienen distribuidor; Velodrom (Quito) tiene Rapha/MAAP/PNS. La jugada: marcas que complementen Universal Colours sin chocar con nadie.</p>
+    <div class="tablewrap"><table>
+      <tr><th>Marca</th><th>Tier</th><th>Posicionamiento</th><th>Ecuador</th><th>Distribución</th><th>Fit</th></tr>
+      <tr><td>Café du Cycliste</td><td>Premium</td><td>Francés, "tailored tech", fuerte en casual/après-ride y línea femenina — sinergia perfecta con nuestro café</td><td><span class="pill p-white">Whitespace</span></td><td>Programa formal de retail partners</td><td class="fit">5</td></tr>
+      <tr><td>Q36.5</td><td>Super-premium</td><td>Laboratorio italiano (ex-R&D de Assos), minimalismo técnico — el kit del comprador de Pinarello</td><td><span class="pill p-white">Whitespace</span></td><td>Programa de stockists; ya en CyclingPro Colombia</td><td class="fit">5</td></tr>
+      <tr><td>Pedal Mafia</td><td>Medio-premium</td><td>Australiano, diseño divertido, precio accesible, buena línea femenina + kits custom</td><td><span class="pill p-white">Whitespace</span></td><td>Muy dealer-friendly</td><td class="fit">4</td></tr>
+      <tr><td>Attaquer</td><td>Medio-premium</td><td>Australiano, prints atrevidos, estética street, unisex</td><td><span class="pill p-white">Whitespace</span></td><td>Wholesale/stockists</td><td class="fit">4</td></tr>
+      <tr><td>Velocio</td><td>Premium</td><td>La mejor línea femenina del mercado — encaja con Girls Ride Out</td><td><span class="pill p-white">Whitespace</span></td><td>Mayormente DTC, wholesale limitado</td><td class="fit">4</td></tr>
+      <tr><td>Black Sheep</td><td>Medio-premium</td><td>Drops limitados, fuerte en mujeres</td><td><span class="pill p-white">Whitespace</span></td><td>Mayormente DTC</td><td class="fit">4</td></tr>
+      <tr><td>Assos</td><td>Super-premium</td><td>El benchmark técnico suizo</td><td><span class="pill p-grey">Gris</span></td><td>Red de dealers selectiva</td><td class="fit">4</td></tr>
+      <tr><td>Rapha / MAAP / PNS</td><td>Premium</td><td>Rapha es DTC-only; MAAP y PNS ya tienen casa en Ecuador</td><td><span class="pill p-locked">Bloqueada</span></td><td>Velodrom (Quito) / LAP</td><td class="fit">—</td></tr>
+      <tr><td>Castelli / Santini / Le Col</td><td>Medio-premium</td><td>Distribuidores establecidos o DTC-heavy</td><td><span class="pill p-present">Presente</span></td><td>—</td><td class="fit">3</td></tr>
+    </table></div>
+
+    <h4 class="cat">4 · Zapatos</h4>
+    <p class="cat-note">Giro/Shimano son commodity local. Todo el segmento premium está en gris o vacío.</p>
+    <div class="tablewrap"><table>
+      <tr><th>Marca</th><th>Tier</th><th>Posicionamiento</th><th>Ecuador</th><th>Distribución</th><th>Fit</th></tr>
+      <tr><td>Quoc</td><td>Premium</td><td>Británico minimalista; ruta/gravel/ciudad — el zapato boutique por excelencia</td><td><span class="pill p-white">Whitespace</span></td><td>Programa de stockists activo (300+ tiendas)</td><td class="fit">5</td></tr>
+      <tr><td>Fizik</td><td>Premium</td><td>Diseño italiano; zapatos + asientos + cinta en una sola relación</td><td><span class="pill p-grey">Gris</span></td><td>Modelo distribuidor — la conversación de mayor palanca</td><td class="fit">5</td></tr>
+      <tr><td>Udog</td><td>Premium</td><td>Indie italiano, estética knit/lace, historia exclusiva</td><td><span class="pill p-white">Whitespace</span></td><td>Pequeño, boutique-friendly</td><td class="fit">5</td></tr>
+      <tr><td>DMT</td><td>Premium</td><td>Knit de carrera (Pogačar)</td><td><span class="pill p-grey">Gris</span></td><td>Modelo distribuidor</td><td class="fit">4</td></tr>
+      <tr><td>Sidi / Northwave / Lake / Bont</td><td>Premium</td><td>Herencia italiana / fit specialist / heat-moldable</td><td><span class="pill p-white">Whitespace</span></td><td>Dealer-friendly en general</td><td class="fit">3</td></tr>
+    </table></div>
+
+    <h4 class="cat">5 · Medias</h4>
+    <p class="cat-note">Categoría 100% vacía en Ecuador. Ticket bajo, margen alto, rotación rápida — ideal para el mostrador del café.</p>
+    <div class="tablewrap"><table>
+      <tr><th>Marca</th><th>Tier</th><th>Posicionamiento</th><th>Ecuador</th><th>Distribución</th><th>Fit</th></tr>
+      <tr><td>Fingerscrossed</td><td>Premium</td><td>Diseño bávaro — LA media boutique; combina con Universal Colours</td><td><span class="pill p-white">Whitespace</span></td><td>Wholesale-friendly</td><td class="fit">5</td></tr>
+      <tr><td>Sporcks</td><td>Medio-premium</td><td>Español: proveedor hispanohablante, logística fácil</td><td><span class="pill p-white">Whitespace</span></td><td>Dealer-friendly</td><td class="fit">4</td></tr>
+      <tr><td>Pacific & Co</td><td>Medio-premium</td><td>Diseño de Barcelona, wholesale + custom</td><td><span class="pill p-white">Whitespace</span></td><td>Accesible</td><td class="fit">4</td></tr>
+      <tr><td>DeFeet</td><td>Medio</td><td>Clásico US — permite <strong>medias custom marca Crank</strong> con MOQ bajo</td><td><span class="pill p-white">Whitespace</span></td><td>Muy dealer-friendly</td><td class="fit">4</td></tr>
+      <tr><td>The Athletic</td><td>Premium</td><td>Cultura de diseño de Portland</td><td><span class="pill p-white">Whitespace</span></td><td>Wholesale pequeño</td><td class="fit">4</td></tr>
+    </table></div>
+
+    <h4 class="cat">6 · Guantes</h4>
+    <div class="tablewrap"><table>
+      <tr><th>Marca</th><th>Tier</th><th>Posicionamiento</th><th>Ecuador</th><th>Distribución</th><th>Fit</th></tr>
+      <tr><td>GripGrab</td><td>Medio-premium</td><td>Especialista danés (guantes/medias/accesorios), estética escandinava limpia</td><td><span class="pill p-white">Whitespace</span></td><td>Nativo de wholesale, MOQ bajo — primera orden de bajo riesgo</td><td class="fit">5</td></tr>
+      <tr><td>Roeckl</td><td>Premium</td><td>Alemán, 180 años haciendo guantes, estándar del pelotón</td><td><span class="pill p-white">Whitespace</span></td><td>Modelo dealer clásico</td><td class="fit">4</td></tr>
+      <tr><td>Q36.5 (guantes)</td><td>Premium</td><td>La cuña de entrada hacia su apparel completo</td><td><span class="pill p-white">Whitespace</span></td><td>Precedente Colombia</td><td class="fit">5</td></tr>
+      <tr><td>Castelli / Giro / Supacaz</td><td>Medio</td><td>Canales tomados</td><td><span class="pill p-present">Presente</span></td><td>—</td><td class="fit">2</td></tr>
+    </table></div>
+
+    <h4 class="cat">7 · Llantas (ruta / gravel / MTB)</h4>
+    <p class="cat-note">Continental ya está en casa. Maxxis tiene importador (con local en Cuenca); Pirelli está en Setecientos. La jugada es ruta/gravel premium.</p>
+    <div class="tablewrap"><table>
+      <tr><th>Marca</th><th>Tier</th><th>Posicionamiento</th><th>Ecuador</th><th>Distribución</th><th>Fit</th></tr>
+      <tr><td>Vittoria</td><td>Premium</td><td>Italiano, Corsa Pro, grafeno — pareja natural de Pinarello</td><td><span class="pill p-grey">Gris</span></td><td>Programas formales de distribuidor en MX/CO — representación oficial abierta</td><td class="fit">5</td></tr>
+      <tr><td>René Herse</td><td>Ultra-premium</td><td>Culto gravel/all-road de Seattle — define a una tienda boutique</td><td><span class="pill p-white">Whitespace</span></td><td>DTC + dealers selectos; bajo volumen, alto margen y caché</td><td class="fit">5</td></tr>
+      <tr><td>Panaracer</td><td>Medio-premium</td><td>Japonés (fabrica René Herse), GravelKing — el boom gravel</td><td><span class="pill p-white">Whitespace</span></td><td>Wholesale tradicional accesible</td><td class="fit">4</td></tr>
+      <tr><td>Schwalbe</td><td>Medio-premium</td><td>Alemán all-rounder</td><td><span class="pill p-grey">Gris</span></td><td>Slot de distribuidor posiblemente abierto</td><td class="fit">3</td></tr>
+      <tr><td>Continental</td><td>Premium</td><td>Ya en casa — profundizar la relación</td><td><span class="pill p-present">Presente</span></td><td>Existente</td><td class="fit">5</td></tr>
+      <tr><td>Maxxis / Pirelli / Michelin</td><td>—</td><td>Canales tomados</td><td><span class="pill p-present">Presente</span></td><td>—</td><td class="fit">2–3</td></tr>
+    </table></div>
+
+    <h4 class="cat">8 · Nutrición deportiva</h4>
+    <p class="cat-note">⚠ Toda esta categoría requiere registro sanitario ARCSA por SKU (meses + costo por producto). LAP bloquea Hammer/NeverSecond/Skratch; Tatoo tiene SiS y 226ers; Tailwind tiene distribuidor. Precision Fuel ya es nuestro.</p>
+    <div class="tablewrap"><table>
+      <tr><th>Marca</th><th>Tier</th><th>Posicionamiento</th><th>Ecuador</th><th>Distribución</th><th>Fit</th></tr>
+      <tr><td>Maurten</td><td>Ultra-premium</td><td>Hidrogel, Kipchoge/WorldTour — prestigio puro; pocos SKUs = ARCSA manejable; perfecto para el mostrador del café</td><td><span class="pill p-white">Whitespace</span></td><td>Asociaciones con distribuidores nacionales (modelo MX existe)</td><td class="fit">5</td></tr>
+      <tr><td>Näak</td><td>Premium</td><td>Canadiense, combustible oficial UTMB — waffles y barras con crossover café</td><td><span class="pill p-white">Whitespace</span></td><td>Red internacional de distribuidores en crecimiento</td><td class="fit">5</td></tr>
+      <tr><td>GU Energy</td><td>Medio</td><td>Pionero del gel, jugada de volumen</td><td><span class="pill p-grey">Gris</span></td><td>Ecuador ausente de su lista de dealers (AR/BR/CL cubiertos)</td><td class="fit">3</td></tr>
+      <tr><td>Precision Fuel</td><td>Premium</td><td>Ya en casa — profundizar y formalizar</td><td><span class="pill p-present">Presente</span></td><td>Existente</td><td class="fit">5</td></tr>
+      <tr><td>SiS / 226ers / Tailwind / Hammer / Skratch / NeverSecond</td><td>—</td><td>Tomados (Tatoo, distribuidores, LAP)</td><td><span class="pill p-locked">Bloqueada</span></td><td>—</td><td class="fit">—</td></tr>
+    </table></div>
+
+    <h4 class="cat">9 · Ciclocomputadores y electrónica</h4>
+    <p class="cat-note">Garmin/Tacx cerrado vía Skytec. La jugada: ser la casa oficial del ecosistema rival.</p>
+    <div class="tablewrap"><table>
+      <tr><th>Marca</th><th>Tier</th><th>Posicionamiento</th><th>Ecuador</th><th>Distribución</th><th>Fit</th></tr>
+      <tr><td>Wahoo</td><td>Premium</td><td>KICKR + ELEMNT; el contrapeso natural de Garmin — se vende en EC pero <strong>sin distribuidor oficial</strong></td><td><span class="pill p-grey">Gris</span></td><td>Programa internacional de dealers abierto (formulario activo)</td><td class="fit">5</td></tr>
+      <tr><td>Hammerhead</td><td>Premium</td><td>Karoo 3 (SRAM) — encaja con cliente Pinarello/AXS</td><td><span class="pill p-white">Whitespace</span></td><td>Canal SRAM</td><td class="fit">4</td></tr>
+      <tr><td>Coros</td><td>Medio-premium</td><td>Batería récord, precio accesible</td><td><span class="pill p-white">Whitespace</span></td><td>Distribuidores regionales activos en LatAm</td><td class="fit">3</td></tr>
+      <tr><td>Garmin / Tacx / Elite / Bryton</td><td>—</td><td>Tomados o sin fit boutique</td><td><span class="pill p-present">Presente</span></td><td>Skytec / bicis.ec</td><td class="fit">2–3</td></tr>
+    </table></div>
+
+    <h4 class="cat">10 · Asientos</h4>
+    <div class="tablewrap"><table>
+      <tr><th>Marca</th><th>Tier</th><th>Posicionamiento</th><th>Ecuador</th><th>Distribución</th><th>Fit</th></tr>
+      <tr><td>Fizik</td><td>Premium</td><td>El benchmark race — misma conversación que zapatos</td><td><span class="pill p-grey">Gris</span></td><td>Una relación, tres categorías (asientos+zapatos+cinta)</td><td class="fit">5</td></tr>
+      <tr><td>Brooks England</td><td>Premium</td><td>Cuero heritage + Cambium urbano; icónico, regalable, perfecto para la vitrina del café</td><td><span class="pill p-white">Whitespace</span></td><td>Dealer-friendly (grupo Selle Italia)</td><td class="fit">5</td></tr>
+      <tr><td>SQlab</td><td>Premium</td><td>Sistema alemán de fit con medición de isquiones — <strong>sinergia directa con nuestro bike fit</strong></td><td><span class="pill p-white">Whitespace</span></td><td>Programa dealer con entrenamiento de fit</td><td class="fit">4</td></tr>
+      <tr><td>Ergon</td><td>Medio-premium</td><td>Ergonomía alemana, grips + asientos</td><td><span class="pill p-white">Whitespace</span></td><td>Dealer-friendly</td><td class="fit">4</td></tr>
+      <tr><td>Prologo / Selle Italia / Selle SMP</td><td>Medio-premium</td><td>Italianos clásicos</td><td><span class="pill p-grey">Gris</span></td><td>Modelo distribuidor</td><td class="fit">3–4</td></tr>
+    </table></div>
+
+    <h4 class="cat">11 · Herramientas y taller</h4>
+    <p class="cat-note">Park Tool ya tiene distribuidor en Quito. La alternativa con pedigree existe y está libre.</p>
+    <div class="tablewrap"><table>
+      <tr><th>Marca</th><th>Tier</th><th>Posicionamiento</th><th>Ecuador</th><th>Distribución</th><th>Fit</th></tr>
+      <tr><td>Unior</td><td>Premium pro</td><td>Herramienta europea de equipos WorldTour — LA pared de taller alternativa a Park Tool</td><td><span class="pill p-white">Whitespace</span></td><td>Programa internacional activo, presente en LatAm</td><td class="fit">5</td></tr>
+      <tr><td>Feedback Sports</td><td>Premium</td><td>Caballetes y soportes visibles — refuerzan el taller certificado</td><td><span class="pill p-white">Whitespace</span></td><td>Distribuidor por país, accesible</td><td class="fit">4</td></tr>
+      <tr><td>Wolf Tooth</td><td>Premium boutique</td><td>CNC made-in-USA, componentes + herramientas EnCase</td><td><span class="pill p-white">Whitespace</span></td><td>Dealer program directo, MOQ bajo</td><td class="fit">4</td></tr>
+      <tr><td>Lezyne</td><td>Premium</td><td>Aluminio CNC: bombas, multis, luces — ojo: choca parcialmente con Silca (LAP)</td><td><span class="pill p-white">Whitespace</span></td><td>Distribuidores por país</td><td class="fit">4</td></tr>
+      <tr><td>CeramicSpeed</td><td>Ultra-premium</td><td>UFO chains, rodamientos, OSPW — el halo de un taller premium</td><td><span class="pill p-white">Whitespace</span></td><td>Dealer program existe</td><td class="fit">5</td></tr>
+      <tr><td>Park Tool / Topeak / Crankbrothers / Birzman</td><td>—</td><td>Tomados o commodity</td><td><span class="pill p-present">Presente</span></td><td>—</td><td class="fit">2–3</td></tr>
+    </table></div>
+
+    <h4 class="cat">12 · Bidones / caramañolas e hidratación</h4>
+    <div class="tablewrap"><table>
+      <tr><th>Marca</th><th>Tier</th><th>Posicionamiento</th><th>Ecuador</th><th>Distribución</th><th>Fit</th></tr>
+      <tr><td>Bivo</td><td>Premium</td><td>Acero inoxidable de Vermont, objeto de diseño — merch perfecto del café, regalable</td><td><span class="pill p-white">Whitespace</span></td><td>DTC + dealers selectos, MOQ bajo</td><td class="fit">5</td></tr>
+      <tr><td>Fidlock</td><td>Premium</td><td>Sistema magnético TWIST alemán — se vende solo en demo</td><td><span class="pill p-white">Whitespace</span></td><td>Distribuidores en CL/CO, ninguno en EC</td><td class="fit">4</td></tr>
+      <tr><td>Polar Bottle</td><td>Medio</td><td>Térmico práctico para las subidas de Azuay</td><td><span class="pill p-white">Whitespace</span></td><td>Wholesale fácil, bajo caché</td><td class="fit">3</td></tr>
+      <tr><td>Elite / CamelBak</td><td>Medio</td><td>Commodity, tomados</td><td><span class="pill p-present">Presente</span></td><td>—</td><td class="fit">2</td></tr>
+    </table></div>
+
+    <h4 class="cat">13 · Lubricantes y cuidado</h4>
+    <p class="cat-note">Muc-Off es de Tatoo (oficial); Silca es de LAP; Finish Line es commodity. El espacio wax/premium está libre.</p>
+    <div class="tablewrap"><table>
+      <tr><th>Marca</th><th>Tier</th><th>Posicionamiento</th><th>Ecuador</th><th>Distribución</th><th>Fit</th></tr>
+      <tr><td>CeramicSpeed UFO</td><td>Ultra-premium</td><td>Marginal gains de carrera — vende el taller, no el estante</td><td><span class="pill p-white">Whitespace</span></td><td>Dealer program</td><td class="fit">5</td></tr>
+      <tr><td>Peaty's</td><td>Premium</td><td>UK, marca de Steve Peat, diseño de estante excelente</td><td><span class="pill p-white">Whitespace</span></td><td>Mapa de distribuidores abierto</td><td class="fit">4</td></tr>
+      <tr><td>Squirt</td><td>Medio-premium</td><td>Pionero del wax, biodegradable — ya en Perú/Chile</td><td><span class="pill p-white">Whitespace</span></td><td>Wholesale probado en LatAm</td><td class="fit">4</td></tr>
+      <tr><td>AbsoluteBlack Graphenlube</td><td>Ultra-premium</td><td>Wax de grafeno</td><td><span class="pill p-white">Whitespace</span></td><td>Muy DTC — difícil</td><td class="fit">3</td></tr>
+      <tr><td>Muc-Off / Finish Line / Silca</td><td>—</td><td>Tomados (Tatoo / commodity / LAP)</td><td><span class="pill p-locked">Bloqueada</span></td><td>—</td><td class="fit">—</td></tr>
+    </table></div>
+
+    <h4 class="cat">14 · Chamois / cremas</h4>
+    <p class="cat-note">Categoría prácticamente inexistente en el retail formal ecuatoriano: costo bajo, margen alto, recompra constante.</p>
+    <div class="tablewrap"><table>
+      <tr><th>Marca</th><th>Tier</th><th>Posicionamiento</th><th>Ecuador</th><th>Distribución</th><th>Fit</th></tr>
+      <tr><td>Chamois Butt'r</td><td>Medio</td><td>Líder de categoría US, línea Her' para mujeres</td><td><span class="pill p-white">Whitespace</span></td><td>Muy distribuidor-friendly</td><td class="fit">4</td></tr>
+      <tr><td>Assos Chamois Crème</td><td>Premium</td><td>LA crema de referencia — producto halo sin necesitar todo el apparel Assos</td><td><span class="pill p-white">Whitespace</span></td><td>Vía dealers Assos</td><td class="fit">5</td></tr>
+      <tr><td>dznuts / Morgan Blue</td><td>Medio-premium</td><td>Pro-endorsed / cuidado belga de pelotón</td><td><span class="pill p-white">Whitespace</span></td><td>Wholesale US / distribuidor</td><td class="fit">3</td></tr>
+    </table></div>
+
+    <h4 class="cat">15 · Accesorios (luces, bolsas, mounts, candados)</h4>
+    <div class="tablewrap"><table>
+      <tr><th>Marca</th><th>Tier</th><th>Posicionamiento</th><th>Ecuador</th><th>Distribución</th><th>Fit</th></tr>
+      <tr><td>Knog</td><td>Medio-premium</td><td>Luces/timbres de Melbourne (Blinder, Oi) — diseño primero, margen alto</td><td><span class="pill p-white">Whitespace</span></td><td>Distribuidores por país (Chile ya existe)</td><td class="fit">5</td></tr>
+      <tr><td>Apidura</td><td>Premium</td><td>Líder de bikepacking — distribuye en Chile y Colombia, Ecuador vacío; gravel de Azuay en crecimiento</td><td><span class="pill p-white">Whitespace</span></td><td>Red LatAm operando → fácil replicar</td><td class="fit">5</td></tr>
+      <tr><td>Restrap</td><td>Premium</td><td>Bolsas UK hechas a mano</td><td><span class="pill p-white">Whitespace</span></td><td>Dealer program activo</td><td class="fit">4</td></tr>
+      <tr><td>Ortlieb</td><td>Premium</td><td>Alforjas alemanas, estándar del cicloturismo mundial</td><td><span class="pill p-grey">Gris</span></td><td>Distribuidores autorizados por país</td><td class="fit">4</td></tr>
+      <tr><td>Quad Lock</td><td>Medio-premium</td><td>Mounts de teléfono bici+moto+auto — rotación rápida</td><td><span class="pill p-white">Whitespace</span></td><td>Distribuidores regionales (CL/MX)</td><td class="fit">4</td></tr>
+      <tr><td>Hiplok / K-Edge</td><td>Premium</td><td>Candados de diseño / mounts CNC</td><td><span class="pill p-white">Whitespace</span></td><td>Accesibles, volumen bajo</td><td class="fit">4</td></tr>
+      <tr><td>Abus / Kryptonite / Cateye / Tailfin</td><td>—</td><td>Tomados, gris o DTC</td><td><span class="pill p-present">Presente</span></td><td>—</td><td class="fit">2–3</td></tr>
+    </table></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="sec-label">04 · La propuesta</p>
+    <h2>Cinco paquetes de representación</h2>
+    <p class="lead">No son 35 negociaciones — son 5 historias coherentes. Cada paquete agrupa marcas que se venden juntas, se negocian con lógica parecida y refuerzan un pilar de Crank.</p>
+
+    <div class="grid g2" style="margin-top:24px">
+      <div class="card dark">
+        <span class="tag lima">Paquete 1 · La Casa Italiana — prioridad máxima</span>
+        <h3>Kask + Koo · Fizik · Vittoria</h3>
+        <p>El ecosistema italiano alrededor de Pinarello. Kask y Koo son una sola negociación (dos categorías); Fizik trae zapatos + asientos + cinta en una relación; Vittoria completa la bici. Es la respuesta estructural al ecosistema Specialized/ENVE de LAP: <strong>cuando un cliente compra una Pinarello en Crank, todo lo demás también es de la casa.</strong></p>
+        <p>Señal de viabilidad: Kask ya firmó distribuidor boutique en Colombia; Vittoria tiene programas formales en MX/CO; Q36.5 (mismo perfil) ya está en una tienda colombiana.</p>
+      </div>
+      <div class="card dark">
+        <span class="tag lima">Paquete 2 · El Universo Boutique</span>
+        <h3>Alba Optics · Quoc · Fingerscrossed · Bivo · Knog</h3>
+        <p>Marcas de diseño que comparten cliente con Universal Colours y viven perfectas en el mostrador del café: gafas de culto, zapatos minimalistas, medias de diseño, botella-objeto, luces de Melbourne. Ticket medio, margen alto, rotación de regalo. <strong>Estas marcas eligen tiendas por identidad — exactamente nuestro juego, imposible de comprar con capital.</strong></p>
+        <p>Complementos: GripGrab (guantes/accesorios, MOQ bajo), Pacific & Co o DeFeet (medias custom Crank).</p>
+      </div>
+      <div class="card">
+        <span class="tag green">Paquete 3 · El Taller de Autoridad</span>
+        <h3>Unior · CeramicSpeed · Feedback Sports · Wolf Tooth</h3>
+        <p>Park Tool ya tiene casa en Quito; Unior es la pared de taller WorldTour que nadie tiene. CeramicSpeed (UFO, rodamientos, OSPW) convierte el taller en destino de marginal gains. Feedback equipa el espacio visible; Wolf Tooth agrega boutique CNC. <strong>Refuerza el foso del taller propio vs el tercerizado de LAP.</strong></p>
+      </div>
+      <div class="card">
+        <span class="tag green">Paquete 4 · Café & Combustible</span>
+        <h3>Maurten · Näak (+ profundizar Precision Fuel)</h3>
+        <p>Maurten = prestigio Kipchoge en el mostrador, pocos SKUs (ARCSA manejable). Näak = combustible oficial UTMB con waffles/barras que viven naturales junto al espresso. <strong>⚠ Toda nutrición requiere registro ARCSA por SKU: empezar el trámite temprano, presupuestar meses.</strong></p>
+      </div>
+      <div class="card">
+        <span class="tag green">Paquete 5 · Aventura & Gravel</span>
+        <h3>Apidura · René Herse / Panaracer · Restrap · SQlab</h3>
+        <p>El arsenal del turismo gravel/bikepacking (Cajas, Ingapirca): bolsas líderes con red LatAm ya operando (Apidura distribuye en Chile y Colombia), llantas de culto, y SQlab con sistema de fit que alimenta nuestro bike fit. <strong>Conecta directo con la expansión de turismo de aventura del plan competitivo.</strong></p>
+      </div>
+      <div class="card">
+        <span class="tag lav">Relleno táctico de margen</span>
+        <h3>Chamois Butt'r · Squirt o Peaty's · Quad Lock · MET o POC</h3>
+        <p>Categorías huérfanas de bajo riesgo: crema chamois (categoría inexistente en EC), lubricante wax, mounts de rotación rápida, y un segundo casco con escalera de precio más accesible que Kask para el cliente Cube.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="sec-label">05 · Cómo decidir</p>
+    <h2>Criterios y advertencias</h2>
+    <div class="grid g3">
+      <div class="card"><span class="num">CRITERIO 1</span><h3>Whitespace real</h3><p>Verificar SIEMPRE antes de negociar: que no exista distribuidor formal (no solo ausencia en Google). Preguntar a la marca directamente "¿tienen distribución en Ecuador?" — es además la mejor línea de apertura.</p></div>
+      <div class="card"><span class="num">CRITERIO 2</span><h3>Wholesale-friendly</h3><p>Descartar DTC-only por bonitas que sean: Rapha, SunGod, Roka, Tailfin, Zwift, AbsoluteBlack. No tienen programa de dealers — no hay nada que representar.</p></div>
+      <div class="card"><span class="num">CRITERIO 3</span><h3>Precedente LatAm</h3><p>Priorizar marcas con dealers ya operando en Colombia/Chile/Perú (Kask, Vittoria, Apidura, Q36.5, Fidlock, Knog, Squirt): si firmaron allá, firman acá. Es el mejor predictor de éxito.</p></div>
+      <div class="card"><span class="num">ADVERTENCIA 1</span><h3>Velodrom y Pinarello</h3><p>Velodrom (Quito) vende Pinarello, Rapha, MAAP, PNS, ENVE. Clarificar territorio con Pinarello y NO perseguir marcas donde seríamos segundo stockist del país.</p></div>
+      <div class="card"><span class="num">ADVERTENCIA 2</span><h3>Tatoo es el bloqueador real</h3><p>Antes de cada negociación, confirmar si Tatoo tiene acuerdo formal o solo importa (Wahoo es el caso clave: se vende en Tatoo pero Ecuador no aparece en la lista oficial de distribuidores Wahoo — el slot parece abierto).</p></div>
+      <div class="card"><span class="num">ADVERTENCIA 3</span><h3>ARCSA en nutrición</h3><p>Registro sanitario por SKU: meses de trámite y costo por producto. Elegir marcas de pocos SKUs (Maurten ideal) y arrancar el papeleo antes de firmar nada.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="sec-label">06 · Plan de acción</p>
+    <h2>Primeros 60 días</h2>
+    <div class="grid g3">
+      <div class="card dark">
+        <span class="tag lima">Semanas 1–2 · Preparar</span>
+        <ul>
+          <li>Armar el "brand book de representación": quiénes somos, fotos del local/café/taller, comunidad, Pinarello + Universal Colours, plan de crecimiento.</li>
+          <li>Verificar exclusividad/territorio con Pinarello (tema Velodrom).</li>
+          <li>Confirmar estado formal de Wahoo, Fizik y Vittoria en Ecuador (¿distribuidor o solo retail?).</li>
+        </ul>
+      </div>
+      <div class="card dark">
+        <span class="tag lima">Semanas 3–6 · Contactar</span>
+        <ul>
+          <li>Ola 1 (máxima prioridad): Kask/Koo, Fizik, Vittoria, Quoc, Alba Optics.</li>
+          <li>Ola 2: Wahoo (dealer form), Unior, Apidura, Maurten, Fingerscrossed, Knog, Bivo.</li>
+          <li>Formato: correo corto + brand book + pedido piloto concreto. Las boutique responden a historias, no a órdenes de compra grandes.</li>
+        </ul>
+      </div>
+      <div class="card dark">
+        <span class="tag lima">Semanas 7–8 · Cerrar y lanzar</span>
+        <ul>
+          <li>Cerrar 3–5 representaciones piloto con MOQ bajo.</li>
+          <li>Iniciar trámite ARCSA para la marca de nutrición elegida.</li>
+          <li>Lanzamiento con evento: "las marcas que solo encuentras en Crank" — rodada + café + drop.</li>
+          <li>Medir sell-through a 90 días antes de ampliar órdenes.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:30px">LAP puede importar más de lo mismo. Lo que no puede hacer es ser la única casa en Ecuador de Kask, Fizik, Vittoria, Quoc o Maurten. <span class="hl">Cada representación exclusiva es un ladrillo más del foso.</span></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Crank · Estudio de marcas y representaciones · Junio 2026 · Presencia en Ecuador verificada vía búsqueda web (lapccc.com, tatoo.ws, velodrom.cc, megabikestore.ec, cikla.ec, bicis.ec, garmin.ec, MercadoLibre EC, sitios oficiales de cada marca). Estados sujetos a confirmación directa con cada marca antes de negociar. Documento interno — no distribuir.
+  </div>
+</footer>
+
+</body>
+</html>
