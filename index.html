@@ -8,7 +8,7 @@
 <meta property="og:title" content="Crank — Bicis, Café y Taller en Cuenca" />
 <meta property="og:description" content="Bicis de ruta, MTB y gravel, café de especialidad y mecánica multimarca en Cuenca, Ecuador." />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="img/hero-cyclist.jpg" />
+<meta property="og:image" content="img/san-cristobal-w.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -18,40 +18,27 @@
 
 <div id="site-header"></div>
 
-<!-- HERO -->
-<header class="hero">
-  <div class="hero-bg"></div>
-  <div class="container hero-content">
-    <div>
-      <div class="hero-tag"><span class="hero-tag-dot"></span>Cuenca, Ecuador</div>
-      <h1>
-        Pedalea<br>
-        <span class="accent">más lejos.</span><br>
-        <span class="stroke">Toma mejor café.</span>
-      </h1>
-      <p>Bicicletas de ruta, MTB y gravel. Accesorios premium, café de especialidad y mecánica multimarca. Todo bajo un mismo techo en el corazón de Cuenca.</p>
-      <div class="hero-actions">
-        <a href="#" class="btn btn-primary" data-advisor="compra">
-          Encuentra tu bici
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <a href="bicis.html" class="btn btn-outline">Ver la tienda</a>
-      </div>
+<!-- HERO — carrusel a pantalla completa. Las fotos y los pies de foto se
+     configuran en HERO_SLIDES, al inicio de site.js -->
+<header class="hero-cine">
+  <div class="hero-slides" id="heroSlides"></div>
+  <div class="hero-shade"></div>
+
+  <div class="container hero-foot">
+    <div class="hero-caption cap-in">
+      <span class="hero-cap-title" id="heroCapTitle">San Cristóbal</span>
+      <span class="hero-cap-place" id="heroCapPlace">Cuenca · Ecuador</span>
     </div>
-    <div class="hero-visual">
-      <div class="hero-image">
-        <img src="img/white-bike-mountain.jpg" alt="Bicicleta en las montañas de Cuenca" />
-      </div>
-      <div class="stat-badge badge-1">
-        <div class="num">15+</div>
-        <div class="label">Marcas premium</div>
-      </div>
-      <div class="stat-badge badge-2">
-        <div class="num">100%</div>
-        <div class="label">Mecánica certificada</div>
-      </div>
+    <div class="hero-actions">
+      <a href="#" class="btn btn-primary" data-advisor="compra">
+        Encuentra tu bici
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="bicis.html" class="btn btn-ghost">Ver la tienda</a>
     </div>
   </div>
+
+  <div class="hero-dots" id="heroDots"></div>
 </header>
 
 <!-- MARQUEE -->
@@ -84,42 +71,42 @@
     </div>
     <div class="segments-grid">
       <a class="segment reveal" href="bicis.html?estilo=ruta#tienda">
-        <img src="img/bike-road.jpg" alt="Ruta" loading="lazy">
+        <img src="img/ruta-peloton.jpg" alt="Ruta" loading="lazy">
         <div class="seg-kicker">Asfalto</div>
         <h3>Ruta</h3>
         <p>Velocidad pura y subidas de puerto.</p>
         <span class="seg-arrow">Ver bicis de ruta →</span>
       </a>
       <a class="segment reveal" href="bicis.html?estilo=mtb#tienda">
-        <img src="img/mtb-detail.jpg" alt="MTB" loading="lazy">
+        <img src="img/mtb-rocas.jpg" alt="MTB" loading="lazy">
         <div class="seg-kicker">Montaña</div>
         <h3>MTB</h3>
         <p>Adrenalina en cada sendero de los Andes.</p>
         <span class="seg-arrow">Ver MTB →</span>
       </a>
       <a class="segment reveal" href="bicis.html?estilo=gravel#tienda">
-        <img src="img/mountain-path.jpg" alt="Gravel" loading="lazy">
+        <img src="img/gravel-puente.jpg" alt="Gravel" loading="lazy">
         <div class="seg-kicker">All-road</div>
         <h3>Gravel</h3>
         <p>Aventura sin límites, asfalto y trocha.</p>
         <span class="seg-arrow">Ver gravel →</span>
       </a>
       <a class="segment reveal" href="bicis.html?estilo=urbano#tienda">
-        <img src="img/cyclist-riding.jpg" alt="Urbano" loading="lazy">
+        <img src="img/atardecer-ruta.jpg" alt="Urbano" loading="lazy">
         <div class="seg-kicker">Ciudad</div>
         <h3>Urbano / Commuter</h3>
         <p>Moverte por Cuenca con estilo.</p>
         <span class="seg-arrow">Ver urbanas →</span>
       </a>
       <a class="segment reveal" href="bicis.html?estilo=bikepacking#tienda">
-        <img src="img/gravel-path.jpg" alt="Bikepacking" loading="lazy">
+        <img src="img/bikepacking-mirador.jpg" alt="Bikepacking" loading="lazy">
         <div class="seg-kicker">Aventura</div>
         <h3>Bikepacking</h3>
         <p>Listas para cargar y desaparecer días.</p>
         <span class="seg-arrow">Ver setup →</span>
       </a>
       <a class="segment reveal" href="bicis.html?estilo=ninos#tienda">
-        <img src="img/couple-hug.jpg" alt="Niños" loading="lazy">
+        <img src="img/equipo-crank.jpg" alt="Niños" loading="lazy">
         <div class="seg-kicker">Familia</div>
         <h3>Niños</h3>
         <p>Su primera bici, segura y a su medida.</p>

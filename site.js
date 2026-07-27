@@ -24,17 +24,17 @@ const wa = (text) => `https://wa.me/${CRANK.whatsapp}${text ? '?text=' + text : 
 /* ====================== 2. CATÁLOGO Y EVENTOS =========================== */
 const products = [
   { id: 1, name: 'Pinarello Dogma F', brand: 'Universal Colours', category: 'ruta', price: 12500, tag: 'PREMIUM', img: 'img/white-bike-mountain.jpg', attrs:['Carbono','Ruta','Avanzado'], ideal:'competición y subidas largas' },
-  { id: 2, name: 'MTB Trail Series 29"', brand: 'Crank Editions', category: 'mtb', price: 3200, tag: 'TOP', img: 'img/mtb-detail.jpg', attrs:['29"','Trail','Intermedio'], ideal:'senderos y El Cajas' },
-  { id: 3, name: 'Gravel Aventura', brand: 'Crank Editions', category: 'gravel', price: 3800, tag: 'NUEVO', img: 'img/bike-frame-detail.jpg', attrs:['All-road','Bikepacking','Versátil'], ideal:'trochas y viajes largos' },
+  { id: 2, name: 'MTB Trail Series 29"', brand: 'Crank Editions', category: 'mtb', price: 3200, tag: 'TOP', img: 'img/mtb-rocas.jpg', attrs:['29"','Trail','Intermedio'], ideal:'senderos y El Cajas' },
+  { id: 3, name: 'Gravel Aventura', brand: 'Crank Editions', category: 'gravel', price: 3800, tag: 'NUEVO', img: 'img/gravel-puente.jpg', attrs:['All-road','Bikepacking','Versátil'], ideal:'trochas y viajes largos' },
   { id: 4, name: 'Bici Ruta Carbono', brand: 'Universal Colours', category: 'ruta', price: 4500, img: 'img/bike-road.jpg', attrs:['Carbono','Ruta','Intermedio'], ideal:'rodar rápido en asfalto' },
-  { id: 5, name: 'Casco Pro Aero', brand: 'ProSafety', category: 'accesorios', price: 280, img: 'img/yellow-helmets.jpg', attrs:['Aero','Certificado'], ideal:'ruta y velocidad' },
+  { id: 5, name: 'Casco Pro Aero', brand: 'ProSafety', category: 'accesorios', price: 280, img: 'img/comunidad-previa.jpg', attrs:['Aero','Certificado'], ideal:'ruta y velocidad' },
   { id: 6, name: 'Gafas Performance', brand: 'Universal Colours', category: 'accesorios', price: 195, img: 'img/sunglasses-display.jpg', attrs:['UV400','Lente intercambiable'], ideal:'todo terreno' },
-  { id: 7, name: 'Maillot Crank Long Ride', brand: 'Crank Editions', category: 'accesorios', price: 95, tag: 'EDICIÓN', tagLima: true, img: 'img/first-long-ride-1.jpg', attrs:['Edición','Técnico'], ideal:'salidas largas' },
-  { id: 8, name: 'Bici Ruta Edición Pucará', brand: 'Crank Editions', category: 'ruta', price: 5200, tag: 'EDICIÓN', img: 'img/cyclist-photo.jpg', attrs:['Carbono','Edición limitada'], ideal:'coleccionistas y rodar fuerte' },
-  { id: 9, name: 'Café Espresso 250g', brand: 'Crank Roast', category: 'cafe', price: 12, tag: 'FRESCO', tagLima: true, img: 'img/coffee-bike.jpg', attrs:['Ecuatoriano','Recién tostado'], ideal:'tu espresso de cada mañana' },
-  { id: 10, name: 'Café Filtrado V60', brand: 'Crank Roast', category: 'cafe', price: 14, tag: 'NUEVO', img: 'img/celebration.jpg', attrs:['Origen único','Filtrado'], ideal:'métodos lentos' },
+  { id: 7, name: 'Maillot Crank Long Ride', brand: 'Crank Editions', category: 'accesorios', price: 95, tag: 'EDICIÓN', tagLima: true, img: 'img/kit-universal-colours.jpg', attrs:['Edición','Técnico'], ideal:'salidas largas' },
+  { id: 8, name: 'Bici Ruta Edición Pucará', brand: 'Crank Editions', category: 'ruta', price: 5200, tag: 'EDICIÓN', img: 'img/ruta-carrera.jpg', attrs:['Carbono','Edición limitada'], ideal:'coleccionistas y rodar fuerte' },
+  { id: 9, name: 'Café Espresso 250g', brand: 'Crank Roast', category: 'cafe', price: 12, tag: 'FRESCO', tagLima: true, img: 'img/cyclist-riding.jpg', attrs:['Ecuatoriano','Recién tostado'], ideal:'tu espresso de cada mañana' },
+  { id: 10, name: 'Café Filtrado V60', brand: 'Crank Roast', category: 'cafe', price: 14, tag: 'NUEVO', img: 'img/bottle-bike.jpg', attrs:['Origen único','Filtrado'], ideal:'métodos lentos' },
   { id: 11, name: 'Pack The Last Dance', brand: 'Crank Rides', category: 'accesorios', price: 65, tag: 'COLECCIÓN', tagMagenta: true, img: 'img/last-dance-1.jpg', attrs:['Colección','Ride'], ideal:'fans de los rides Crank' },
-  { id: 12, name: 'Sesión Bike Fit Pro', brand: 'Crank Taller', category: 'accesorios', price: 120, img: 'img/cyclist-mid.jpg', attrs:['Ajuste pro','+Comodidad'], ideal:'evitar lesiones y rendir más' },
+  { id: 12, name: 'Sesión Bike Fit Pro', brand: 'Crank Taller', category: 'accesorios', price: 120, img: 'img/taller-mecanico.jpg', attrs:['Ajuste pro','+Comodidad'], ideal:'evitar lesiones y rendir más' },
 ];
 
 const events = [
@@ -46,10 +46,26 @@ const events = [
   { day: 21, month: 'JUN', year: 2026, title: 'The Last Dance · Ingapirca', time: '06:00', distance: '95 km', type: 'ride', meta: 'Edición limitada · Kit incluido' },
 ];
 
+/* ====================== 2.b PORTADA — SLIDES DEL HERO ==================
+   Fuente única del carrusel de la portada. Para cambiar las fotos o los
+   pies de foto, edita SOLO este arreglo. Orden = orden de aparición.
+   img    → foto horizontal (escritorio / tablet)
+   imgM   → foto vertical (celular). Si falta, se usa img.
+   title  → pie de foto grande (nombre del ride)
+   place  → línea pequeña debajo (lugar · provincia)
+   ======================================================================= */
+const HERO_SLIDES = [
+  { img: 'img/san-cristobal-w.jpg',   imgM: 'img/san-cristobal-p.jpg',   title: 'San Cristóbal',    place: 'Cuenca · Ecuador' },
+  { img: 'img/pucara-neblina-w.jpg',  imgM: 'img/pucara-neblina-p.jpg',  title: 'Epic Ride Pucará', place: 'Pucará · Azuay' },
+  { img: 'img/tunel-ingapirca-w.jpg', imgM: 'img/tunel-ingapirca-p.jpg', title: 'The Last Dance',   place: 'Ingapirca · Cañar' },
+  { img: 'img/pico-ruta-w.jpg',       imgM: 'img/pico-ruta-p.jpg',       title: 'Crank Long Ride',  place: 'Azuay · Ecuador' },
+];
+const HERO_DELAY = 6000; // ms entre fotos
+
 /* ====================== 3. HEADER / FOOTER COMPARTIDOS ================== */
 const NAV_ITEMS = [
   { page: 'bicis',    label: 'Bicis',    href: 'bicis.html' },
-  { page: 'taller',   label: 'Taller',   href: 'taller.html' },
+  { page: 'taller',   label: 'Mecánica', href: 'taller.html' },
   { page: 'cafe',     label: 'Café',     href: 'cafe.html' },
   { page: 'eventos',  label: 'Eventos',  href: 'eventos.html' },
   { page: 'contacto', label: 'Contacto', href: 'contacto.html' },
@@ -127,7 +143,7 @@ function injectFooter() {
         <div class="footer-col">
           <h5>Servicios</h5>
           <ul>
-            <li><a href="taller.html#taller">Taller</a></li>
+            <li><a href="taller.html#taller">Mecánica</a></li>
             <li><a href="taller.html#taller">Bike Fit</a></li>
             <li><a href="cafe.html#cafe">Café</a></li>
             <li><a href="cafe.html#rewards">Crank Pass</a></li>
@@ -351,9 +367,72 @@ function closeMobileMenu() { document.getElementById('mobileOverlay').classList.
 function initScrollHeader() {
   const nav = document.getElementById('siteNav');
   if (!nav) return;
-  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 30);
+  // En la portada el header flota transparente sobre la foto hasta que se hace scroll.
+  const overHero = !!document.querySelector('.hero-cine');
+  const onScroll = () => {
+    const scrolled = window.scrollY > 30;
+    nav.classList.toggle('scrolled', scrolled);
+    if (overHero) nav.classList.toggle('over-hero', !scrolled);
+  };
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
+}
+
+/* ====================== 7.b CARRUSEL DEL HERO (portada) ================ */
+function initHero() {
+  const stage = document.getElementById('heroSlides');
+  const capT  = document.getElementById('heroCapTitle');
+  const capP  = document.getElementById('heroCapPlace');
+  const dotsW = document.getElementById('heroDots');
+  if (!stage || !HERO_SLIDES.length) return;
+
+  // En celular se usa la versión vertical de cada foto (pesa menos y encuadra mejor)
+  const small = window.matchMedia('(max-width: 820px)').matches;
+  const srcOf = s => (small && s.imgM) ? s.imgM : s.img;
+
+  // Construir slides y puntos desde HERO_SLIDES
+  stage.innerHTML = HERO_SLIDES.map((s, n) =>
+    `<div class="hero-slide${n === 0 ? ' is-active' : ''}" style="background-image:url('${srcOf(s)}')" role="img" aria-label="${s.title}"></div>`
+  ).join('');
+  if (dotsW) {
+    dotsW.innerHTML = HERO_SLIDES.map((s, n) =>
+      `<button type="button" class="${n === 0 ? 'is-active' : ''}" aria-label="Ver ${s.title}"></button>`
+    ).join('');
+  }
+
+  const slides = Array.from(stage.children);
+  const dots   = dotsW ? Array.from(dotsW.children) : [];
+  let i = 0, timer = null;
+
+  // Precargar el resto en segundo plano (la 1ª ya la carga el navegador)
+  const preload = () => HERO_SLIDES.slice(1).forEach(s => { const im = new Image(); im.src = srcOf(s); });
+  if ('requestIdleCallback' in window) requestIdleCallback(preload, { timeout: 2500 });
+  else setTimeout(preload, 1200);
+
+  function paint(n) {
+    slides[i].classList.remove('is-active');
+    if (dots[i]) dots[i].classList.remove('is-active');
+    i = (n + slides.length) % slides.length;
+    slides[i].classList.add('is-active');
+    if (dots[i]) dots[i].classList.add('is-active');
+    if (capT && capP) {
+      const cap = document.querySelector('.hero-caption');
+      if (cap) { cap.classList.remove('cap-in'); void cap.offsetWidth; cap.classList.add('cap-in'); }
+      capT.textContent = HERO_SLIDES[i].title;
+      capP.textContent = HERO_SLIDES[i].place;
+    }
+  }
+  function restart() { clearInterval(timer); timer = setInterval(() => paint(i + 1), HERO_DELAY); }
+
+  dots.forEach((b, n) => b.addEventListener('click', () => { paint(n); restart(); }));
+
+  // Pausar si la pestaña no está visible (ahorra batería/datos)
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) clearInterval(timer); else restart();
+  });
+
+  paint(0);
+  if (slides.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) restart();
 }
 
 let _revealObs = null;
@@ -666,6 +745,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderProducts();
   renderEvents();
   updateCart();
+  initHero();
   initScrollHeader();
   initShopFilters();
   initFormTabs();
